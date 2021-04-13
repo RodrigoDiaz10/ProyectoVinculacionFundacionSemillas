@@ -1,13 +1,19 @@
-body{
-    background:#eee;
-    margin-top:20px;
+body {
+    background: #eee;
+    margin-top: 20px;
+}
+
+div.col {
+    text-align: right;
+}
+capitalize {
+    text-transform: capitalize;
 }
 
 .home-blog {
     padding-top: 80px;
     padding-bottom: 80px
 }
-
 
 .media.blog-media {
     margin-top: 30px;
@@ -102,8 +108,7 @@ body{
     background-color: rgba(255, 255, 255, .9)
 }
 
-.media.blog-media:hover .circle .day,
-.media.blog-media:hover .circle .month {
+.media.blog-media:hover .circle .day, .media.blog-media:hover .circle .month {
     color: #222
 }
 
@@ -235,18 +240,14 @@ body{
     }
 }
 
-
-
 @media (min-width:768px) {
-    .blog-left-sidebar .media.blog-media,
-    .blog-right-sidebar .media.blog-media {
+    .blog-left-sidebar .media.blog-media, .blog-right-sidebar .media.blog-media {
         display: table
     }
 }
 
 @media (min-width:768px) {
-    .blog-left-sidebar .media.blog-media>a,
-    .blog-right-sidebar .media.blog-media>a {
+    .blog-left-sidebar .media.blog-media>a, .blog-right-sidebar .media.blog-media>a {
         display: table-cell;
         vertical-align: top;
         min-width: 250px
@@ -254,8 +255,7 @@ body{
 }
 
 @media (min-width:768px) {
-    .blog-left-sidebar .media.blog-media .media-body,
-    .blog-right-sidebar .media.blog-media .media-body {
+    .blog-left-sidebar .media.blog-media .media-body, .blog-right-sidebar .media.blog-media .media-body {
         border-top: 1px solid #efeff3;
         border-left: none;
         display: table-cell;
@@ -263,14 +263,12 @@ body{
     }
 }
 
-.blog-left-sidebar .media.blog-media .media-body a.post-link,
-.blog-right-sidebar .media.blog-media .media-body a.post-link {
+.blog-left-sidebar .media.blog-media .media-body a.post-link, .blog-right-sidebar .media.blog-media .media-body a.post-link {
     padding: 22px 0
 }
 
 @media (min-width:1200px) {
-    .blog-left-sidebar .media.blog-media>a,
-    .blog-right-sidebar .media.blog-media>a {
+    .blog-left-sidebar .media.blog-media>a, .blog-right-sidebar .media.blog-media>a {
         min-width: 250px
     }
 }
@@ -351,7 +349,6 @@ body{
     background-color: rgba(255, 255, 255, .7)
 }
 
-.blog-post-contents .media.blog-media:hover .circle .day,
-.blog-post-contents .media.blog-media:hover .circle .month {
+.blog-post-contents .media.blog-media:hover .circle .day, .blog-post-contents .media.blog-media:hover .circle .month {
     opacity: 1
 }
