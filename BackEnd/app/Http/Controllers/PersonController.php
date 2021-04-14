@@ -36,8 +36,31 @@ class PersonController extends Controller
      */
     public function store(Request $request)
     {
+     
+        $data = $request->json()->all();
         
+        $dataPerson = $data['person'];
 
+        $person = new Person();
+        $person->name =  $dataPerson['name'];
+        $person->surname =  $dataPerson['surname'];
+        $person->dateBirth =  $dataPerson['dateBirth'];
+        $person->age =  $dataPerson['age'];
+        $person->CI =  $dataPerson['CI'];
+        $person->mothersName =  $dataPerson['mothersName'];
+        $person->fathersName =  $dataPerson['fathersName'];
+        $person->study =  $dataPerson['study'];
+        $person->houseAddress =  $dataPerson['houseAddress'];
+        $person->schoolName = $dataPerson['schoolName'];
+        $person->Image =  $dataPerson['image'];
+        $person->save();
+
+        return response()->json([
+        'data' => [
+            'Guardado'=>'Exitoso'
+        ]
+    ], 201);        
+/*
         $person = new person;
         $person->name = $request->input('name');
         $person->surname = $request->input('surname');
@@ -56,7 +79,7 @@ class PersonController extends Controller
                 $person
        );
 
-
+*/
     }
 
     /**
