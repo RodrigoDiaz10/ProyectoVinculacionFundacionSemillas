@@ -40,24 +40,7 @@ export class ComponentsComponent implements OnInit {
                 "imagen": "./assets/img/faces/erik-lucatero-2.jpg",
                 "cargo": "por definir"
             },
-            {
-                "nombre": "Esteban",
-                "apellido": "Vega",
-                "imagen": "./assets/img/faces/clem-onojeghuo-3.jpg",
-                "cargo": "por definir"
-            },
-            {
-                "nombre": "Brayan",
-                "apellido": "Arroyo",
-                "imagen": "./assets/img/faces/joe-gardner-2.jpg",
-                "cargo": "por definir"
-            },
-            {
-                "nombre": "Luis",
-                "apellido": "Congo",
-                "imagen": "./assets/img/faces/erik-lucatero-2.jpg",
-                "cargo": "por definir"
-            },
+            
         ]
     }
     isWeekend(date: NgbDateStruct) {

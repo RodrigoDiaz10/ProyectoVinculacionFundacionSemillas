@@ -2,6 +2,9 @@ body{
     background:#eee;
     margin-top:20px;
 }
+.bg{
+    background: #0275d8;
+}
 
 .home-blog {
     padding-top: 80px;
@@ -85,7 +88,7 @@ body{
     transition: opacity .3s, -webkit-transform .3s ease;
     transition: transform .3s ease, opacity .3s;
     transition: transform .3s ease, opacity .3s, -webkit-transform .3s ease;
-    background: rgba(12, 198, 82, .7)
+    background: rgba(12, 71, 198, 0.7)
 }
 
 .media.blog-media>a img {
@@ -108,7 +111,7 @@ body{
 }
 
 .media.blog-media:hover .media-body h5 {
-    color: #0cc652
+    color: #099e29
 }
 
 .media.blog-media:hover .media-body a.post-link {
