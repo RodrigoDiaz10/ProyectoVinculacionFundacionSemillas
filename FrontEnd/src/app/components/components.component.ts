@@ -17,32 +17,32 @@ imageObject = [{
         image: './assets/img/2.jpg',
         thumbImage: './assets/img/2.jpg',
         alt: 'alt of image',
-        title: 'title of image'
+        title: '1'
     },{
         image: './assets/img/3.jpg',
         thumbImage: './assets/img/3.jpg',
         alt: 'alt of image',
-        title: 'title of image'
+        title: '2'
     },{
         image: './assets/img/4.jpg',
         thumbImage: './assets/img/4.jpg',
         alt: 'alt of image',
-        title: 'title of image'
+        title: '3'
     },{
         image: './assets/img/2.jpg',
         thumbImage: './assets/img/2.jpg',
         alt: 'alt of image',
-        title: 'title of image'
+        title: '4'
     },{
         image: './assets/img/3.jpg',
         thumbImage: './assets/img/3.jpg',
         alt: 'alt of image',
-        title: 'title of image'
+        title: '5'
     },{
         image: './assets/img/4.jpg',
         thumbImage: './assets/img/4.jpg',
         alt: 'alt of image',
-        title: 'title of image'
+        title: '6'
     }
 ];
 
@@ -67,8 +67,8 @@ imageObject = [{
                 "cargo": "por definir"
             },
             {
-                "nombre": "Oyuki",
-                "apellido": "Cruz",
+                "nombre": "Viviana",
+                "apellido": "Reyes",
                 "imagen": "./assets/img/faces/joe-gardner-2.jpg",
                 "cargo": "por definir"
             },
