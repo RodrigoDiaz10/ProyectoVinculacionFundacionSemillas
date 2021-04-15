@@ -12,6 +12,40 @@ import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 })
 
 export class ComponentsComponent implements OnInit {
+
+imageObject = [{
+        image: './assets/img/2.jpg',
+        thumbImage: './assets/img/2.jpg',
+        alt: 'alt of image',
+        title: 'title of image'
+    },{
+        image: './assets/img/3.jpg',
+        thumbImage: './assets/img/3.jpg',
+        alt: 'alt of image',
+        title: 'title of image'
+    },{
+        image: './assets/img/4.jpg',
+        thumbImage: './assets/img/4.jpg',
+        alt: 'alt of image',
+        title: 'title of image'
+    },{
+        image: './assets/img/2.jpg',
+        thumbImage: './assets/img/2.jpg',
+        alt: 'alt of image',
+        title: 'title of image'
+    },{
+        image: './assets/img/3.jpg',
+        thumbImage: './assets/img/3.jpg',
+        alt: 'alt of image',
+        title: 'title of image'
+    },{
+        image: './assets/img/4.jpg',
+        thumbImage: './assets/img/4.jpg',
+        alt: 'alt of image',
+        title: 'title of image'
+    }
+];
+
     page = 4;
     page1 = 5;
     focus;
@@ -21,6 +55,10 @@ export class ComponentsComponent implements OnInit {
     model: NgbDateStruct;
     voluntarios: any[];
     constructor(private renderer: Renderer2) {
+
+
+
+
         this.voluntarios = [
             {
                 "nombre": "Marcos",
@@ -40,7 +78,7 @@ export class ComponentsComponent implements OnInit {
                 "imagen": "./assets/img/faces/erik-lucatero-2.jpg",
                 "cargo": "por definir"
             },
-            
+
         ]
     }
     isWeekend(date: NgbDateStruct) {
