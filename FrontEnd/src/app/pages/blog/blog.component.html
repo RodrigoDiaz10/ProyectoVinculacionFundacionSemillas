@@ -23,67 +23,93 @@
                     <h5 class="day">14</h5>
                     <span class="month">sep</span>
                 </div>
+                <div class="card-body  bg">
+                    <a class="d-inline-block">
+                        <h2>ksjd</h2>
+                    </a>
+                    <p>sdsdk}</p>
+                </div>
+            </div>
+        </div>
+
+        <!--<div class="col" *ngFor="let c of contenido" >
+            Title: {{ c.nombre }}
+            Image <img src="{{ c.imagen }}" alt="">
+        </div>-->
+        <div class="col-md-12" *ngFor="let c of contenido; let even=even">
+            <div class="media blog-media">
+                <a href="#"><img class="d-flex" src="{{ c.imagen }}" alt="Generic placeholder image"></a>
+                <div class="circle">
+                    <h5 class="day">14</h5>
+                    <span class="month">sep</span>
+                </div>
                 <div class="media-body">
                     <a href="">
-                        <h5 class="mt-0">Post #1</h5>
-                    </a> Sodales aliquid, in eget ac cupidatat velit autem numquam ullam ducimus occaecati placeat
-                    error.
+                        <h5 class="mt-0">{{c.nombre}}</h5>
+                    </a> {{c.contenido}}
                     <a href="#" class="post-link">Read More</a>
                     <ul>
-                        <li>by: Admin</li>
+                        <li>by: {{c.nombre}}</li>
                         <li class="text-right"><a href="#">07 comments</a></li>
                     </ul>
                 </div>
             </div>
         </div>
-        <div class="col" *ngIf="!even">
-            Title: {{ c.nombre }}
-            Image <img src="{{ c.imagen }}" alt="">
-        </div> 
-    <div class="col-md-12" *ngFor="let c of contenido; let even=even">
-        <div class="media blog-media">
-            <a href="#"><img class="d-flex" src="{{ c.imagen }}"
-                    alt="Generic placeholder image"></a>
-            <div class="circle">
-                <h5 class="day">14</h5>
-                <span class="month">sep</span>
-            </div>
-            <div class="media-body">
-                <a href="">
-                    <h5 class="mt-0">{{c.nombre}}</h5>
-                </a> {{c.contenido}}
-                      <a href="#" class="post-link">Read More</a>
-                <ul>
-                    <li>by: {{c.nombre}}</li>
-                    <li class="text-right"><a href="#">07 comments</a></li>
-                </ul>
-            </div>
-        </div>
     </div>
-
-<section class="blog_area section-padding">
-    <div class="container">
-        <div class="row">
-            <div class="col-7 offset-2">
-                <div class="blog_left_sidebar">
-                    <article class="blog_item" ><!--*ngFor="let blog of datosArreglados"-->
-                        <br><br>    
-                        <a href="#"><img class="d-flex" src="https://bootdey.com/img/Content/avatar/avatar4.png"
-                            alt="Generic placeholder image"></a>
-                    <div class="circle">
-                        <h5 class="day">09</h5>
-                        <span class="month">sep</span>
+</div>
+<div class="d-flex  justify-content-center alig-items-center">
+<section class="blog_area  section-padding ">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card blog_left_sidebar media blog-media">
+                        <article class="blog_item">
+                            <br><br>    
+                            <div class="blog_item_img imagen">
+                                <img class="d-flex card-img rounded-0" src="./assets/img/faces/joe-gardner-2.jpg" alt="">
+                                <a href="#" class="blog_item_date">
+                                    <h3>15</h3>
+                                    <p>Jan</p>
+                                </a>
+                            </div>
+                            <div class="card-body blog_details bg">
+                                <a class="d-inline-block" >
+                                    <h2>kjghhjhgj</h2>
+                                </a>
+                                <p>jhgjj</p>
+                            </div>
+                        </article>
+                        <br><br>
                     </div>
-                        <div class="blog_details bg">
-                            <a class="d-inline-block" >
-                                <h2>ksjd</h2>
-                            </a>
-                            <p>sdsdk}</p>
-                        </div>
-                    </article>
-                    <br><br>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 col-lg-8 offset-lg-2 col-sm-12">
+            <div class="card ">
+                <article class="blog_item">
+                    <br><br>    
+                    <div class="blog_item_img imagen">
+                        <img class="card-img rounded-0" src="./assets/img/2.jpg" alt="">
+                        <a href="#" class="blog_item_date">
+                            <h3>15</h3>
+                            <p>Jan</p>
+                        </a>
+                    </div>
+                    <div class="card-body blog_details bg">
+                        <a class="d-inline-block" >
+                            <h2>kjghhjhgj</h2>
+                        </a>
+                        <p>jhgjj</p>
+                    </div>
+                </article>
+                <br><br>
+            </div>
+        </div>
+      </div>
+</div>
+    
