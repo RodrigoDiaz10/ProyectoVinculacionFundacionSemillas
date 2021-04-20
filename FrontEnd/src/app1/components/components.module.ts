@@ -6,7 +6,6 @@ import { FormsModule } from '@angular/forms';
 import { JwBootstrapSwitchNg2Module } from 'jw-bootstrap-switch-ng2';
 import { RouterModule } from '@angular/router';
 import { ComponentsComponent } from './components.component';
-import { NgImageSliderModule } from 'ng-image-slider';
 
 @NgModule({
     imports: [
@@ -14,12 +13,10 @@ import { NgImageSliderModule } from 'ng-image-slider';
         FormsModule,
         NgbModule,
         RouterModule,
-        JwBootstrapSwitchNg2Module,
-        NgImageSliderModule,
+        JwBootstrapSwitchNg2Module
     ],
     declarations: [
         ComponentsComponent,
-        
     ],
     entryComponents: [],
     exports: [ComponentsComponent]

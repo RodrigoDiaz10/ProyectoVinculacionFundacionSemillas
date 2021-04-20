@@ -25,6 +25,21 @@ contenido: any[];
           "imagen": "./assets/img/faces/erik-lucatero-2.jpg",
           "contenido": "por definir"
       },
+      {
+          "nombre": "Esteban",
+          "imagen": "./assets/img/faces/clem-onojeghuo-3.jpg",
+          "contenido": "por definir"
+      },
+      {
+          "nombre": "Brayan",
+          "imagen": "./assets/img/faces/joe-gardner-2.jpg",
+          "contenido": "por definir"
+      },
+      {
+          "nombre": "Luis",
+          "imagen": "./assets/img/faces/erik-lucatero-2.jpg",
+          "contenido": "por definir"
+      },
   ]
    }
 
