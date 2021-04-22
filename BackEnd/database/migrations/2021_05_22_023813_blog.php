@@ -19,6 +19,7 @@ class Blog extends Migration
             $table->string('description',300)->nullable();
             $table->string('image')->nullable();
             $table->string('link')->nullable();
+            $table->foreignId('date_Event_id')->constrained('dateEvents');
             $table->timestamps();
         });
     }

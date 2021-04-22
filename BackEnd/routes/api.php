@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PersonController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\DateEventController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,7 +21,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/', '\App\Http\Controllers\UserController@index');
+//Route::get('/', '\App\Http\Controllers\UserController@index');
 
 Route::post('/login', '\App\Http\Controllers\AuthController@login');
 
@@ -34,4 +35,5 @@ Route::post('/reset', '\App\Http\Controllers\ForgotController@reset');
 
 Route::apiResource('person',PersonController::class);
 Route::apiResource('blog',BlogController::class);
+Route::apiResource('event',BlogController::class);
 

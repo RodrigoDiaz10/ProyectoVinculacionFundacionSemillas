@@ -40,22 +40,42 @@ class BlogController extends Controller
      */
     public function store(Request $request)
     {
-        if($request->hasFile('image')){
+       //path image save
+        /*if($request->hasFile('image')){
             $file = $request->file('image');
             $name = time().$file->getClientOriginalName();
             $file->move(public_path().'/images/',$name);
-       }
+       }*/
+       //after 
+       /*
         $blog = new blog;
         $blog->title = $request->input('title');
         $blog->description = $request->input('description');
         $blog->image = $name;
-        $blog->link = $request->input('link');
+        $blog->link = $request->input('link');*/
+        //before
+        
+        $data = $request->json()->all();
+        
+        $dataBlog = $data['blog'];
+        $dataDateEvent = $data['dateEvent'];
+        $dateEvent = DateEvent::findOrFail($dataDateEvent['id']);
+
+        $blog = new Blog();
+        $blog->title =  $dataBlog['title'];
+        $blog->description =  $dataBlog['description'];
+        $blog->image =  $dataBlog['image'];
+        $blog->link =  $dataBlog['link'];
+        $blog->dateEvents()->associate($dateEvent);
+      
       
 
         $blog->save();
-        return response()->json(
-             $blog
-        );
+        return response()->json([
+            'data' => [
+                'Guardado'=>'Exitoso'
+            ]
+        ], 201);  
     }
 
     /**
@@ -69,10 +89,9 @@ class BlogController extends Controller
         $blog = blog::findOrFail($id);
         return response()->json([
             'data' => [
-                'blog' => $blog
+                'Message'=>'Encontrado'
             ]
-             
-            ]);
+        ], 201);  
     }
 
     /**
@@ -101,16 +120,23 @@ class BlogController extends Controller
        }
       $blog->update($request->all());
       return response()->json(['message'=>$blog],202);*/
+        $data = $request->json()->all();
         $blog = blog::findOrFail($id);
-        $blog->title = $request->input('title');
-        $blog->description = $request->input('description');
-        $blog->image = $request->input('image');
-        $blog->link = $request->input('link');
+        
+        
+        $dataBlog = $data['blog'];
+
+        $blog->title =  $dataBlog['title'];
+        $blog->description =  $dataBlog['description'];
+        $blog->image =  $dataBlog['image'];
+        $blog->link =  $dataBlog['link'];
+
         $blog->save();
         return response()->json([
-             'blog'=> $blog
-             ]);
-            
+            'data' => [
+                'Actualizado'=>'Exitoso'
+            ]
+        ], 201); 
         
     }
 
@@ -124,11 +150,12 @@ class BlogController extends Controller
     {
         $blog = blog::findOrFail($id);
         $blog->delete();
-        return response()->json(['message'=>'Blog quitado', 'Blog'=>$blog],200);
+        return response()->json(['Message'=>'Eliminado'],201);
     }
 
     public function imageStore(Request $request)
-    {
+    { 
+        //falta probar
        if($request->hasFile('image')){
             $file = $request->file('image');
             $name = time().$file->getClientOriginalName();
