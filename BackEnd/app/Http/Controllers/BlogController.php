@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\blog;
+use App\Models\dateEvent;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -67,8 +68,7 @@ class BlogController extends Controller
         $blog->image =  $dataBlog['image'];
         $blog->link =  $dataBlog['link'];
         $blog->dateEvents()->associate($dateEvent);
-      
-      
+
 
         $blog->save();
         return response()->json([
