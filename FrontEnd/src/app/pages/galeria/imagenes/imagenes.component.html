@@ -1,0 +1,21 @@
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<p>imagenes works!</p>
+<div class="container">
+    <div class="group-2">
+        <div>
+            <img *ngFor="let img of fotos; let i = index" [src]="img.image" (click)="showLightbox(i)" />
+        </div>
+    </div>
+    
+    <!-- ng-image-fullscreen-view  -->
+    <ng-image-fullscreen-view class="contenedor"
+            [images]="fotos"
+            [imageIndex]="currentIndex"
+            [show]="showFlag"
+            (close)="closeEventHandler()"></ng-image-fullscreen-view>
+</div>

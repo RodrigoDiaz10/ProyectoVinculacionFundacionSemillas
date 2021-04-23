@@ -8,6 +8,8 @@ import { LoginComponent } from './pages/login/login.component';
 import { LandingComponent } from './pages/landing/landing.component';
 import { BlogComponent } from './pages/blog/blog.component';
 import { RegisterComponent } from './pages/register/register.component';
+import { GaleriaComponent } from './pages/galeria/galeria.component';
+import { ImagenesComponent } from './pages/galeria/imagenes/imagenes.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -17,6 +19,8 @@ const routes: Routes = [
   { path: 'landing', component: LandingComponent },
   { path: 'blog', component: BlogComponent },
   { path: 'register', component: RegisterComponent },
+  { path: 'galeria', component: GaleriaComponent }, 
+  { path: 'imagenes/:id', component: ImagenesComponent }, 
 ];
 
 @NgModule({

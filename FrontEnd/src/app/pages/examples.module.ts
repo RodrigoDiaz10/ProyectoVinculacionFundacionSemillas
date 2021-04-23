@@ -7,19 +7,27 @@ import { ProfileComponent } from './profile/profile.component';
 import { LoginComponent } from './login/login.component';
 import { BlogComponent } from './blog/blog.component';
 import { RegisterComponent } from './register/register.component';
+import { GaleriaComponent } from './galeria/galeria.component';
+import { ImagenesComponent } from './galeria/imagenes/imagenes.component';
+import {CardModule} from 'primeng/card';
+import { NgImageFullscreenViewModule } from 'ng-image-fullscreen-view';
 
 @NgModule({
     imports: [
         CommonModule,
         FormsModule,
         NgbModule,
+        CardModule,
+        NgImageFullscreenViewModule,
     ],
     declarations: [
         LandingComponent,
         ProfileComponent,
         LoginComponent,
         BlogComponent,
-        RegisterComponent
+        RegisterComponent,
+        GaleriaComponent,
+        ImagenesComponent
     ]
 })
 export class ExamplesModule { }
