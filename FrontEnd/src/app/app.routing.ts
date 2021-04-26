@@ -20,7 +20,7 @@ const routes: Routes = [
   { path: 'blog', component: BlogComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'galeria', component: GaleriaComponent }, 
-  { path: 'imagenes/:id', component: ImagenesComponent }, 
+  { path: 'imagenes/:id/:album', component: ImagenesComponent }, 
 ];
 
 @NgModule({

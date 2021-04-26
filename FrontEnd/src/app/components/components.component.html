@@ -2,10 +2,10 @@
 <div class="wrapper">
     <div class="card page-carousel">
         <ngb-carousel>
-            <ng-template ngbSlide  *ngFor="let item of imageObject">
-                <div class="page-header section-dark"  [style.backgroundImage]="'url('+ item.image +')'">
+            <ng-template ngbSlide  *ngFor="let item of imageObject; index as i">
+                <div class="page-header section-dark backimage"  [style.backgroundImage]="'url('+ item.image +')'">
                 <div class="carousel-caption">
-                    <p>Imagen 1</p>
+                    <p>Imagen {{i+1}}</p>
                 </div>
                 </div>
             </ng-template>
@@ -72,7 +72,7 @@
         </div>
     </div>
 <!-- Galeria -->
-    <div class="section  text-center">
+    <!-- <div class="section  text-center">
         <div class="container">
             <h2 class="title">Galeria</h2>
                 <ng-image-slider #nav
@@ -82,7 +82,7 @@
                 [imageSize]="{width: '400px', height: '350px', space: 4}"
                 slideImage="1"></ng-image-slider>
             </div>
-        </div>
+        </div> -->
 
     </div>
     <div>

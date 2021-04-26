@@ -7,7 +7,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-4" *ngFor="let item of albums; index as i">
-            <p-card class="title text-center box" header="{{item.titulo}} {{i +1}}" subheader="{{item.descripcion}}" styleClass="p-card-shadow" (click)="getId(item)">
+            <p-card class="title text-center box" header="{{item.titulo}}" subheader="{{item.descripcion}}" styleClass="p-card-shadow" (click)="getId(item)">
                 <ng-template pTemplate="header">
                     <img  alt="Card" [src]="item.imagen">
                 </ng-template>

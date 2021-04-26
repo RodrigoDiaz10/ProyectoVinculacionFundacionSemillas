@@ -4,47 +4,38 @@ import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 @Component({
     selector: 'app-components',
     templateUrl: './components.component.html',
-    styles: [`
-    ngb-progressbar {
-        margin-top: 5rem;
-    }
-    `]
+    styleUrls: ['./components.component.scss']
+
 })
 
 export class ComponentsComponent implements OnInit {
 
-imageObject = [{
-        image: './assets/img/2.jpg',
-        thumbImage: './assets/img/2.jpg',
-        alt: 'alt of image',
-        title: '1'
-    },{
-        image: './assets/img/3.jpg',
-        thumbImage: './assets/img/3.jpg',
-        alt: 'alt of image',
-        title: '2'
-    },{
-        image: './assets/img/4.jpg',
-        thumbImage: './assets/img/4.jpg',
-        alt: 'alt of image',
-        title: '3'
-    },{
-        image: './assets/img/2.jpg',
-        thumbImage: './assets/img/2.jpg',
-        alt: 'alt of image',
-        title: '4'
-    },{
-        image: './assets/img/3.jpg',
-        thumbImage: './assets/img/3.jpg',
-        alt: 'alt of image',
-        title: '5'
-    },{
-        image: './assets/img/4.jpg',
-        thumbImage: './assets/img/4.jpg',
-        alt: 'alt of image',
-        title: '6'
-    }
-];
+    imageObject = [
+        {
+            image: './assets/img/3.jpg',
+            thumbImage: './assets/img/3.jpg',
+            alt: 'alt of image',
+            title: '2'
+        },
+        {
+            image: './assets/img/4.jpg',
+            thumbImage: './assets/img/4.jpg',
+            alt: 'alt of image',
+            title: '3'
+        },
+        {
+            image: './assets/img/3.jpg',
+            thumbImage: './assets/img/3.jpg',
+            alt: 'alt of image',
+            title: '5'
+        },
+        {
+            image: './assets/img/4.jpg',
+            thumbImage: './assets/img/4.jpg',
+            alt: 'alt of image',
+            title: '6'
+        }
+    ];
 
     page = 4;
     page1 = 5;

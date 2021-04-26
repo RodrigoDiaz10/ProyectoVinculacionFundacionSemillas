@@ -10,6 +10,7 @@ export class ImagenesComponent implements OnInit {
   id: number;
   currentIndex: any = -1;
   showFlag: any = false;
+  album: string;
 
   fotos = [{
     image: './assets/img/2.jpg',
@@ -56,9 +57,10 @@ export class ImagenesComponent implements OnInit {
   }
 
   initializar() {
-    if (this.route.snapshot.params.id.lenght) {
+    if (this.route.snapshot.params.id.lenght, this.route.snapshot.params.album.length) {
       this.id = this.route.snapshot.params.id;
-      console.log("Componente Imagenes id: ", this.id)
+      this.album = this.route.snapshot.params.album;
+      console.log("Componente Imagenes id: ", this.id, this.album)
     }
   }
 
