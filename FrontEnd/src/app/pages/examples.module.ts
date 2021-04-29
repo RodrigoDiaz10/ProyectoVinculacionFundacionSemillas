@@ -11,6 +11,7 @@ import { GaleriaComponent } from './galeria/galeria.component';
 import { ImagenesComponent } from './galeria/imagenes/imagenes.component';
 import {CardModule} from 'primeng/card';
 import { NgImageFullscreenViewModule } from 'ng-image-fullscreen-view';
+import {MatSelectModule} from '@angular/material/select';
 
 @NgModule({
     imports: [
@@ -19,6 +20,7 @@ import { NgImageFullscreenViewModule } from 'ng-image-fullscreen-view';
         NgbModule,
         CardModule,
         NgImageFullscreenViewModule,
+        MatSelectModule,
     ],
     declarations: [
         LandingComponent,
