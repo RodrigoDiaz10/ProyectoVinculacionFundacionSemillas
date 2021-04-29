@@ -1,10 +1,13 @@
+.product-item {
+  .product-item-content {
+    border: 1px solid var(--surface-d);
+    margin: 0.3rem;
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
 
-.backimage {
-  // height: 100%;
-  // background-position: center;
-  // background-repeat: no-repeat;
-  // background-size: cover;
-  background-repeat:no-repeat;
-
-  background-size:cover;
+  .product-image {
+    width: 50%;
+  }
 }

@@ -2,17 +2,17 @@
 <div class="wrapper">
     <div class="card page-carousel">
         <ngb-carousel>
-            <ng-template ngbSlide  *ngFor="let item of imageObject; index as i">
-                <div class="page-header section-dark backimage"  [style.backgroundImage]="'url('+ item.image +')'">
-                <div class="carousel-caption">
-                    <p>Imagen {{i+1}}</p>
-                </div>
+            <ng-template ngbSlide *ngFor="let item of imageObject; index as i">
+                <div class="page-header section-dark backimage" [style.backgroundImage]="'url('+ item.image +')'">
+                    <div class="carousel-caption">
+                        <p>Imagen {{i+1}}</p>
+                    </div>
                 </div>
             </ng-template>
         </ngb-carousel>
     </div>
 
-<!-- Misión y Visión -->
+    <!-- Misión y Visión -->
     <div class="main">
         <div class="section section">
             <div class="container">
@@ -43,7 +43,7 @@
         </div>
     </div>
 
-<!-- Voluntarios -->
+    <!-- Voluntarios -->
     <div class="section  text-center" style="background-color:#0275d8;">
         <div class="container">
             <h2 class="title" style="color: aliceblue;">Voluntarios</h2>
@@ -71,19 +71,33 @@
             </div>
         </div>
     </div>
-<!-- Galeria -->
-    <!-- <div class="section  text-center">
-        <div class="container">
-            <h2 class="title">Galeria</h2>
-                <ng-image-slider #nav
-                [images]="imageObject"
-                [infinite]="true"
-                [autoSlide]="1"
-                [imageSize]="{width: '400px', height: '350px', space: 4}"
-                slideImage="1"></ng-image-slider>
-            </div>
-        </div> -->
 
+    <!-- Carrusel Patricinadores -->
+    <div class="section text-center">
+        <p-carousel [value]="partners" styleClass="custom-carousel" [numVisible]="3" [numScroll]="1" [circular]="true"
+            [autoplayInterval]="3000" [responsiveOptions]="responsiveOptions">
+            <ng-template pTemplate="header">
+                <div class="title">
+                    <h2> Patricinadores</h2>
+                </div>
+            </ng-template>
+            <ng-template let-product pTemplate="item">
+                <div class="product-item">
+                    <div class="product-item-content">
+                        <div class="p-mb-3">
+                            <img src="{{product.logo}}" [alt]="product.nombre" class="product-image" />
+                        </div>
+                        <div>
+                            <h4 class="p-mb-1">{{product.nombre}}</h4>
+                            <!-- <h5 class="p-mt-0 p-mb-3">${{product.id}}</h5> -->
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+        </p-carousel>
     </div>
-    <div>
+
+
+</div>
+<div>
 </div>
