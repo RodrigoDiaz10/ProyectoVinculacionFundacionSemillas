@@ -1,3 +1,119 @@
+.sidenav {
+    height: 100%; /* 100% Full-height */
+    width: 0; /* 0 width - change this with JavaScript */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Stay on top */
+    top: 0; /* Stay at the top */
+    left: 0;
+    background-color: #111; /* Black*/
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 60px; /* Place content 60px from the top */
+    transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+  }
+  
+  /* The navigation menu links */
+  .sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+  }
+  
+  /* When you mouse over the navigation links, change their color */
+  .sidenav a:hover {
+    color: #f1f1f1;
+  }
+  
+  /* Position and style the close button (top right corner) */
+  .sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+  }
+
+
+
+
+
+
+.pb-2 {
+    padding-bottom: .5rem!important;
+}
+.my-2 {
+    margin-top: .5rem!important;
+    margin-bottom: .5rem!important;
+}
+
+
+::-webkit-scrollbar-track::before {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0); 
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0); 
+}
+@media (min-width: 992px){
+.bd-toc {
+    grid-area: toc;
+    grid-template-areas:
+        "intro toc"
+        "content toc";
+    position: -webkit-sticky;
+    position: sticky;
+    top: 5rem;
+    right: 0;
+    z-index: 2;
+    height:150px;
+    bottom: 5rem;
+    /*height: calc(100vh - 7rem);esta linea es la calve*/
+    overflow-y:scroll;
+    
+}
+.options{
+width: 10%;
+}
+::-webkit-scrollbar {
+    width: 12px;
+    height: auto;
+    
+}
+}
+.bd-toc {
+    grid-area: toc;
+}
+.bd-toc li {
+    margin-bottom: .25rem;
+}
+li {
+    display: list-item;
+    text-align: -webkit-match-parent;
+}
+.bd-toc ul {
+    padding-left: 0;
+    list-style: none;
+}
+@media (min-width: 992px){
+.mb-lg-5 {
+    margin-bottom: 3rem!important;
+}
+}
+
+@media (min-width: 768px){
+.my-md-0 {
+    margin-top: 0!important;
+    margin-bottom: 0!important;
+}
+}
+
+
+
+
 .blog_item_img {
 	position: relative;
   }
@@ -6,8 +122,6 @@
     align-items: center;
     justify-content: center;
  } 
-
-  
   .blog_item_img .blog_item_date {
 	position: absolute;
 	bottom: -10px;

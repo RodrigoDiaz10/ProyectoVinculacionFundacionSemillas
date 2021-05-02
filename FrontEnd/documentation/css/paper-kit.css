@@ -4184,11 +4184,11 @@ textarea.form-control {
 
 .carousel-indicators li {
   background-color: #FFFFFF;
-  border: 0 none;
+  border: 0 none; 
 }
 
 .carousel-indicators .active {
-  background-color: #f5593d;
+  background-color: #34c517;
 }
 
 .page-carousel:hover .carousel-control.right,
