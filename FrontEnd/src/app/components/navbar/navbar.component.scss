@@ -1,0 +1,28 @@
+
+  .header .navbar {
+    background-color: #0b5a9c !important;
+  }
+  .navbar-brand img {
+    max-width: 11vw; /* find suitable value for you */
+    display: block;
+    width: 100%;
+  }
+
+  .box img{
+    width: 100%;
+    height: auto;
+    background-color: white;
+  }
+  @supports(object-fit: cover){
+      .box img{
+        height: 100%;
+        object-fit: cover;
+        object-position: center center;
+      }
+  }
+
+  @media screen and (max-width: 600px) {
+    .ocultar-div{
+    display:none;
+    }
+    }

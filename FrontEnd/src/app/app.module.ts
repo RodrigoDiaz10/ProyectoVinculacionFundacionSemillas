@@ -11,6 +11,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { ComponentsModule } from './components/components.module';
 import { ExamplesModule } from './pages/examples.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -27,6 +28,7 @@ import { ExamplesModule } from './pages/examples.module';
     ComponentsModule,
     ExamplesModule,
     AppRoutingModule,
+    BrowserAnimationsModule,
   ],
   providers: [{ provide: APP_BASE_HREF, useValue: '' }],
   bootstrap: [AppComponent]
