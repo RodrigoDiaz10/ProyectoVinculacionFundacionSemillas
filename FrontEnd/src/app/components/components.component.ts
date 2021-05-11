@@ -1,5 +1,6 @@
 import { Component, OnInit, Renderer2 } from '@angular/core';
 import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+import { PrimeNGConfig } from 'primeng/api';
 
 @Component({
     selector: 'app-components',
@@ -9,6 +10,7 @@ import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 })
 
 export class ComponentsComponent implements OnInit {
+
     responsiveOptions = [
         {
             breakpoint: '1024px',
@@ -26,6 +28,7 @@ export class ComponentsComponent implements OnInit {
             numScroll: 1
         }
     ];
+
     partners = [
         {
             "id": 1,
@@ -54,30 +57,59 @@ export class ComponentsComponent implements OnInit {
         }
     ];
 
+    voluntarios = [
+        {
+            "nombre": "Marcos",
+            "apellido": "Perez",
+            "imagen": "./assets/img/faces/clem-onojeghuo-3.jpg",
+            "cargo": "por definir"
+        },
+        {
+            "nombre": "Viviana",
+            "apellido": "Reyes",
+            "imagen": "./assets/img/faces/joe-gardner-2.jpg",
+            "cargo": "por definir"
+        },
+        {
+            "nombre": "Patricio",
+            "apellido": "Caicedo",
+            "imagen": "./assets/img/faces/erik-lucatero-2.jpg",
+            "cargo": "por definir"
+        },
+
+    ]
+
     imageObject = [
         {
-            image: './assets/img/3.jpg',
-            thumbImage: './assets/img/3.jpg',
+            image: './assets/img/carrusel1.jpeg',
+            thumbImage: './assets/img/carrusel1.jpeg',
+            alt: 'alt of image',
+            title: '1'
+        },
+        {
+            image: './assets/img/carrusel2.jpeg',
+            thumbImage: './assets/img/carrusel2.jpeg',
             alt: 'alt of image',
             title: '2'
         },
         {
-            image: './assets/img/4.jpg',
-            thumbImage: './assets/img/4.jpg',
+            image: './assets/img/carrusel3.jpeg',
+            thumbImage: './assets/img/carrusel3.jpeg',
             alt: 'alt of image',
             title: '3'
         },
         {
-            image: './assets/img/3.jpg',
-            thumbImage: './assets/img/3.jpg',
+            image: './assets/img/carrusel4.jpeg',
+            thumbImage: './assets/img/carrusel4.jpeg',
+            alt: 'alt of image',
+            title: '4'
+        }
+        ,
+        {
+            image: './assets/img/carrusel5.jpeg',
+            thumbImage: './assets/img/carrusel5.jpeg',
             alt: 'alt of image',
             title: '5'
-        },
-        {
-            image: './assets/img/4.jpg',
-            thumbImage: './assets/img/4.jpg',
-            alt: 'alt of image',
-            title: '6'
         }
     ];
 
@@ -88,33 +120,15 @@ export class ComponentsComponent implements OnInit {
     focus2;
     date: { year: number, month: number };
     model: NgbDateStruct;
-    voluntarios: any[];
-    constructor(private renderer: Renderer2) {
+    visibleSidebar1;
 
+    private _opened: boolean = false;
 
+    private _toggleSidebar() {
+        this._opened = !this._opened;
+    }
+    constructor(private renderer: Renderer2, private primengConfig: PrimeNGConfig) {
 
-
-        this.voluntarios = [
-            {
-                "nombre": "Marcos",
-                "apellido": "Perez",
-                "imagen": "./assets/img/faces/clem-onojeghuo-3.jpg",
-                "cargo": "por definir"
-            },
-            {
-                "nombre": "Viviana",
-                "apellido": "Reyes",
-                "imagen": "./assets/img/faces/joe-gardner-2.jpg",
-                "cargo": "por definir"
-            },
-            {
-                "nombre": "Patricio",
-                "apellido": "Caicedo",
-                "imagen": "./assets/img/faces/erik-lucatero-2.jpg",
-                "cargo": "por definir"
-            },
-
-        ]
     }
     isWeekend(date: NgbDateStruct) {
         const d = new Date(date.year, date.month - 1, date.day);
@@ -128,6 +142,7 @@ export class ComponentsComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.primengConfig.ripple = true;
         let input_group_focus = document.getElementsByClassName('form-control');
         let input_group = document.getElementsByClassName('input-group');
         for (let i = 0; i < input_group.length; i++) {

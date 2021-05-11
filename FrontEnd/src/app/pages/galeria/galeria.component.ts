@@ -4,14 +4,12 @@ import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 @Component({
   selector: 'app-galeria',
   templateUrl: './galeria.component.html',
-  styleUrls: ['./galeria.component.css']
+  styleUrls: ['./galeria.component.scss']
 })
 export class GaleriaComponent implements OnInit {
   selectedAlbum: any;
 
-  years = [
-    2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023
-  ]
+  years = [2015, 2016, 2017, 2018, 2019, 2020, 2021]
 
   albums = [{
     imagen: './assets/img/2.jpg',
