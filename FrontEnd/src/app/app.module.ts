@@ -10,7 +10,6 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { ComponentsModule } from './components/components.module';
-import { ExamplesModule } from './pages/examples.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
@@ -26,7 +25,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     FormsModule,
     RouterModule,
     ComponentsModule,
-    ExamplesModule,
     AppRoutingModule,
     BrowserAnimationsModule,
   ],

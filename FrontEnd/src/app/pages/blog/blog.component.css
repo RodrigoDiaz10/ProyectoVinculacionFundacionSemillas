@@ -1,39 +1,23 @@
-.sidenav {
-    height: 100%; /* 100% Full-height */
-    width: 0; /* 0 width - change this with JavaScript */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Stay on top */
-    top: 0; /* Stay at the top */
-    left: 0;
-    background-color: #111; /* Black*/
-    overflow-x: hidden; /* Disable horizontal scroll */
-    padding-top: 60px; /* Place content 60px from the top */
-    transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
-  }
-  
-  /* The navigation menu links */
-  .sidenav a {
-    padding: 8px 8px 8px 32px;
-    text-decoration: none;
-    font-size: 25px;
-    color: #818181;
-    display: block;
-    transition: 0.3s;
-  }
-  
-  /* When you mouse over the navigation links, change their color */
-  .sidenav a:hover {
-    color: #f1f1f1;
-  }
-  
-  /* Position and style the close button (top right corner) */
-  .sidenav .closebtn {
-    position: absolute;
-    top: 0;
-    right: 25px;
-    font-size: 36px;
-    margin-left: 50px;
-  }
+.card:not(.card-plain):hover {
+    box-shadow: 20px -10px 10px -7px rgba(250, 212, 0, 0.801);
+    transform: translateY(-25px);
+    -webkit-transform: translateY(-25px);
+    -ms-transform: translateY(-25px);
+    -moz-transform: translateY(-25px);
+    background: transparent;
+}
+.card {
+    border-radius: 12px;
+    box-shadow: 10px 6px 10px 4px rgba(23, 239, 0, 0.822);
+    background: transparent;
+}
+.active{
+    color: black;
+    text-decoration-style:solid;
+    background: linear-gradient(45deg, hsla(0, 0%, 100%, 1) 0%, hsla(144, 100%, 47%, 1) 100%);
+    /*background: linear-gradient(45deg, hsla(0, 0%, 100%, 1) 0%, hsla(144, 100%, 47%, 1) 100%);*/
+}
+
 
 
 
@@ -172,7 +156,7 @@ li {
   }
 .blog_details {
 	padding: 30px 0 20px 10px;
-	box-shadow: 0px 10px 20px 0px rgba(31, 31, 31, 0.3);
+	box-shadow: 0px 10px 20px 0px rgba(34, 206, 0, 0.3);
   }
   
   @media (min-width: 768px) {
