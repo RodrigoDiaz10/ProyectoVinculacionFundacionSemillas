@@ -2,8 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { LandingComponent } from './landing/landing.component';
-import { ProfileComponent } from './profile/profile.component';
 import { LoginComponent } from './login/login.component';
 import { BlogComponent } from './blog/blog.component';
 import { RegisterComponent } from './register/register.component';
@@ -15,6 +13,10 @@ import { MatSelectModule } from '@angular/material/select';
 import { HistoriasComponent } from './historias/historias.component';
 import { DialogModule } from 'primeng/dialog';
 import { ButtonModule } from 'primeng/button';
+import { VoluntariosComponent } from './voluntarios/voluntarios.component';
+import {InputTextModule} from 'primeng/inputtext';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
 
 @NgModule({
     imports: [
@@ -26,16 +28,18 @@ import { ButtonModule } from 'primeng/button';
         MatSelectModule,
         DialogModule,
         ButtonModule,
+        InputTextModule,
+        MatFormFieldModule,
+        MatInputModule,
     ],
     declarations: [
-        LandingComponent,
-        ProfileComponent,
         LoginComponent,
         BlogComponent,
         RegisterComponent,
         GaleriaComponent,
         ImagenesComponent,
-        HistoriasComponent
+        HistoriasComponent,
+        VoluntariosComponent
     ]
 })
 export class ExamplesModule { }
