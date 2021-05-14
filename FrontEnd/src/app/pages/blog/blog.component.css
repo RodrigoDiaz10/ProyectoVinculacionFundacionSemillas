@@ -14,7 +14,7 @@
 .active{
     color: black;
     text-decoration-style:solid;
-    background: linear-gradient(45deg, hsla(0, 0%, 100%, 1) 0%, hsla(144, 100%, 47%, 1) 100%);
+    background: linear-gradient(45deg, hsla(0, 0%, 100%, 1) 0%, hsla(58, 100%, 47%, 1) 100%);
     /*background: linear-gradient(45deg, hsla(0, 0%, 100%, 1) 0%, hsla(144, 100%, 47%, 1) 100%);*/
 }
 
