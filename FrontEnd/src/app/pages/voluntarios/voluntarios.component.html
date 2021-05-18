@@ -10,7 +10,7 @@
     </div>
 </section>
 
-<div style="background: linear-gradient(45deg,  hsla(0, 0%, 100%, 1) 20%, hsla(152, 100%, 47%, 1) 100%);">
+<div style="background: linear-gradient(45deg,  hsla(0, 0%, 100%, 1) 20%, rgba(128, 241, 193, 0.548) 100%);">
     <!-- <div class="margen"> -->
     <br>
     <br>
@@ -23,7 +23,6 @@
                 <strong> Forma Parte de Nuestro Voluntariado</strong>
             </div>
             <div class="parrafo">
-
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum alias voluptates amet autem
                     repudiandae architecto optio. Unde porro eveniet, magni quod sit dolore nulla laboriosam velit
                     tempora
@@ -50,12 +49,12 @@
                 Requisitos para unirte a nuestro Voluntariado
             </div>
             <h3>
-                <ul>
-                    <li>r1sdfdsfsdf</li>
-                    <li>rsdfdsfds1</li>
-                    <li>rsdfdsf1</li>
-                    <li>sdfsdfr1</li>
-                    <li>rsdfsdf1</li>
+                <ul class="requisitos">
+                    <li>requisito 1</li>
+                    <li>requisito 2</li>
+                    <li>requisito 3</li>
+                    <li>requisito 4</li>
+                    <li>requisito 5</li>
                 </ul>
             </h3>
         </div>
@@ -64,8 +63,8 @@
     </div>
     <br>
     <div class="col-md-12 butoncenter">
-        <button pButton pRipple type="button" (click)="showResponsiveDialog()" label="Inscribete"
-            class="p-button-warning"></button>
+        <button  pTooltip="Aquí puedes formar parte de nuestro Voluntariado" tooltipPosition="right" pButton pRipple type="button" (click)="showResponsiveDialog()" label="Inscribete"
+            class="p-button-rounded p-button-help"></button>
     </div>
 </div>
 
@@ -75,31 +74,31 @@
         <strong>Nombres Completos:</strong>
     </div>
     <mat-form-field class="example-full-width ">
-        <input type="text" matInput placeholder="Ingrese su">
+        <input type="text" matInput placeholder="Ingrese su Nombre Completo">
     </mat-form-field>
     <div>
         <div>
             <strong>Edad:</strong>
         </div>
         <mat-form-field class="example-full-width ">
-            <input type="number" matInput placeholder="Ingrese su">
+            <input type="number" matInput placeholder="Ingrese su Edad">
         </mat-form-field>
         <strong>Cédula de Identidad:</strong>
     </div>
     <mat-form-field class="example-full-width ">
-        <input type="text" matInput placeholder="Ingrese su">
+        <input type="text" matInput placeholder="Ingrese su Cédula de Identidad">
     </mat-form-field>
     <div>
         <strong>Teléfono:</strong>
     </div>
     <mat-form-field class="example-full-width ">
-        <input type="text" matInput placeholder="Ingrese su">
+        <input type="text" matInput placeholder="Ingrese su Teléfono">
     </mat-form-field>
     <div>
         <strong>Correo:</strong>
     </div>
     <mat-form-field class="example-full-width ">
-        <input type="email" matInput placeholder="Ingrese su">
+        <input type="email" matInput placeholder="Ingrese su Correo">
     </mat-form-field>
 
     <ng-template pTemplate="footer">

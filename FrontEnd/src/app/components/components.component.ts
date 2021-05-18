@@ -10,7 +10,6 @@ import { PrimeNGConfig } from 'primeng/api';
 })
 
 export class ComponentsComponent implements OnInit {
-
     responsiveOptions = [
         {
             breakpoint: '1024px',
@@ -128,7 +127,7 @@ export class ComponentsComponent implements OnInit {
         this._opened = !this._opened;
     }
     constructor(private renderer: Renderer2, private primengConfig: PrimeNGConfig) {
-
+        localStorage.setItem('logeado', "si");
     }
     isWeekend(date: NgbDateStruct) {
         const d = new Date(date.year, date.month - 1, date.day);
@@ -142,6 +141,7 @@ export class ComponentsComponent implements OnInit {
     }
 
     ngOnInit() {
+
         this.primengConfig.ripple = true;
         let input_group_focus = document.getElementsByClassName('form-control');
         let input_group = document.getElementsByClassName('input-group');

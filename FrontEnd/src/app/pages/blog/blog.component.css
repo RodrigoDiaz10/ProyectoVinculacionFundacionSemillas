@@ -1,5 +1,5 @@
 .card:not(.card-plain):hover {
-    box-shadow: 20px -10px 10px -7px rgba(250, 212, 0, 0.801);
+    box-shadow: 10px -6px 20px 14px rgba(250, 212, 0, 0.801);
     transform: translateY(-25px);
     -webkit-transform: translateY(-25px);
     -ms-transform: translateY(-25px);
@@ -8,20 +8,16 @@
 }
 .card {
     border-radius: 12px;
-    box-shadow: 10px 6px 10px 4px rgba(23, 239, 0, 0.822);
+    box-shadow: 20px -10px 10px -7px rgba(23, 239, 0, 0.822);
     background: transparent;
+    
 }
 .active{
     color: black;
     text-decoration-style:solid;
-    background: linear-gradient(45deg, hsla(0, 0%, 100%, 1) 0%, hsla(58, 100%, 47%, 1) 100%);
+    background: linear-gradient(45deg, hsla(0, 0%, 100%, 1) 0%, rgba(0, 92, 240, 0.582) 100%);
     /*background: linear-gradient(45deg, hsla(0, 0%, 100%, 1) 0%, hsla(144, 100%, 47%, 1) 100%);*/
 }
-
-
-
-
-
 
 
 .pb-2 {

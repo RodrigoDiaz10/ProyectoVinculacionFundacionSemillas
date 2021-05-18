@@ -17,6 +17,7 @@ import { VoluntariosComponent } from './voluntarios/voluntarios.component';
 import {InputTextModule} from 'primeng/inputtext';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
+import {TooltipModule} from 'primeng/tooltip';
 
 @NgModule({
     imports: [
@@ -31,6 +32,7 @@ import {MatInputModule} from '@angular/material/input';
         InputTextModule,
         MatFormFieldModule,
         MatInputModule,
+        TooltipModule,
     ],
     declarations: [
         LoginComponent,
