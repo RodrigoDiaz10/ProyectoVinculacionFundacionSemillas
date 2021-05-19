@@ -7,6 +7,26 @@
     display: block;
     width: 100%;
   }
+  .text-top {
+    float: left;
+  }
+
+  .nav-item .nav-link {
+    color: #F7C42D;
+    font-weight: bold;
+  }
+  
+  .nav-item .nav-link:hover {
+    background:transparent;
+    color: #343A40;
+  }
+  
+  /*color del título*/
+  
+  .navbar-brand {
+    color: #F7C42D
+  }
+  
 
   .box img{
     width: 100%;
