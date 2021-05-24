@@ -15,7 +15,7 @@ class UserSeeder extends Seeder
     public function run()
     {
         User::factory()
-        ->times(50)
+        ->times(5)
         ->create();
     }
 }

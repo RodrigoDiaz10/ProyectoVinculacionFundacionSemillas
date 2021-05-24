@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\blog;
-use App\Models\dateEvent;
+use App\Models\Blogs;
+use App\Models\Events;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -19,7 +19,7 @@ class BlogController extends Controller
     {
         return response()->json([
             'error'=>false,
-            'blog'=>blog::all()
+            'blogs'=>blogs::all()
         ],200 );
         }
 
@@ -49,28 +49,25 @@ class BlogController extends Controller
        }*/
        //after 
        /*
-        $blog = new blog;
-        $blog->title = $request->input('title');
-        $blog->description = $request->input('description');
-        $blog->image = $name;
-        $blog->link = $request->input('link');*/
+        $blogs = new blogs;
+        $blogs->title = $request->input('title');
+        $blogs->description = $request->input('description');
+        $blogs->image = $name;
+        $blogs->link = $request->input('link');*/
         //before
         
         $data = $request->json()->all();
         
-        $dataBlog = $data['blog'];
-        $dataDateEvent = $data['dateEvent'];
-        $dateEvent = DateEvent::findOrFail($dataDateEvent['id']);
+        $dataBlog = $data['blogs'];
 
-        $blog = new Blog();
-        $blog->title =  $dataBlog['title'];
-        $blog->description =  $dataBlog['description'];
-        $blog->image =  $dataBlog['image'];
-        $blog->link =  $dataBlog['link'];
-        $blog->dateEvents()->associate($dateEvent);
+        $blogs = new Blogs();
+        $blogs->title =  $dataBlog['title'];
+        $blogs->description =  $dataBlog['description'];
+        $blogs->image =  $dataBlog['image'];
+        $blogs->link =  $dataBlog['link'];
 
 
-        $blog->save();
+        $blogs->save();
         return response()->json([
             'data' => [
                 'Guardado'=>'Exitoso'
@@ -81,12 +78,12 @@ class BlogController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\blog  $blog
+     * @param  \App\Models\blogs  $blogs
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        $blog = blog::findOrFail($id);
+        $blogs = Blogs::findOrFail($id);
         return response()->json([
             'data' => [
                 'Message'=>'Encontrado'
@@ -97,10 +94,10 @@ class BlogController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\blog  $blog
+     * @param  \App\Models\blogs  $blogs
      * @return \Illuminate\Http\Response
      */
-    public function edit(blog $blog)
+    public function edit(blogs $blogs)
     {
        //
     }
@@ -109,29 +106,29 @@ class BlogController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\blog  $blog
+     * @param  \App\Models\blogs  $blogs
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
-      /* $blog = blog::find($id);
-       if(is_null($blog)){
+      /* $blogs = blogs::find($id);
+       if(is_null($blogs)){
            return response()->json(['message'=>'no encontrado'],404);
        }
-      $blog->update($request->all());
-      return response()->json(['message'=>$blog],202);*/
+      $blogs->update($request->all());
+      return response()->json(['message'=>$blogs],202);*/
         $data = $request->json()->all();
-        $blog = blog::findOrFail($id);
+        $blogs = Blogs::findOrFail($id);
         
         
-        $dataBlog = $data['blog'];
+        $dataBlog = $data['blogs'];
 
-        $blog->title =  $dataBlog['title'];
-        $blog->description =  $dataBlog['description'];
-        $blog->image =  $dataBlog['image'];
-        $blog->link =  $dataBlog['link'];
+        $blogs->title =  $dataBlog['title'];
+        $blogs->description =  $dataBlog['description'];
+        $blogs->image =  $dataBlog['image'];
+        $blogs->link =  $dataBlog['link'];
 
-        $blog->save();
+        $blogs->save();
         return response()->json([
             'data' => [
                 'Actualizado'=>'Exitoso'
@@ -143,13 +140,13 @@ class BlogController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\blog  $blog
+     * @param  \App\Models\blogs  $blogs
      * @return \Illuminate\Http\Response
      */
-    public function destroy(blog $blog,$id)
+    public function destroy(blogs $blogs,$id)
     {
-        $blog = blog::findOrFail($id);
-        $blog->delete();
+        $blogs = blogs::findOrFail($id);
+        $blogs->delete();
         return response()->json(['Message'=>'Eliminado'],201);
     }
 
@@ -161,8 +158,8 @@ class BlogController extends Controller
             $name = time().$file->getClientOriginalName();
             $file->move(public_path().'/images/',$name);
        }
-       $blog = new blog;
-       $blog -> image = $name;
-       $blog -> save();
+       $blogs = new blogs;
+       $blogs -> image = $name;
+       $blogs -> save();
     }
 }

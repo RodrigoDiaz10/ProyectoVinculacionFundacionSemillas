@@ -5,25 +5,24 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class dateEvent extends Model
+class Albums extends Model
 {
     use HasFactory;
-    
-    protected $table = 'dateEvents';
+    protected $table = 'images';
     public $timestamps = true;
 
     protected $fillable = [
-        'name',
+        'title',
         'description',
-        'place',
         'date',
-        'hour',
-        'delay',
     ];
-    
-    public function blog()
+
+    public function images()
     {
-        return $this->hasMany(Blog::class);
+        return $this->hasMany(Images::class);
     }
- 
+    public function event()
+    {
+        return $this->belongsTo(Events::class);
+    }
 }

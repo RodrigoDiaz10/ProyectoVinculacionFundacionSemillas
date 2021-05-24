@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class DateEvent extends Migration
+class Events extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class DateEvent extends Migration
      */
     public function up()
     {
-        Schema::create('dateEvents', function (Blueprint $table) {
+        Schema::create('events', function (Blueprint $table) {
             $table->id();
             $table->string('name',150)->notNullable();
             $table->string('description',300)->nullable();
@@ -21,6 +21,7 @@ class DateEvent extends Migration
             $table->timestamp('date')->nullable();
             $table->string('hour')->nullable();
             $table->string('delay')->nullable();
+            $table->foreignId('blogs_id')->constrained('blogs');
             $table->timestamps();
         });
     }
@@ -32,6 +33,6 @@ class DateEvent extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('dateEvents');
+        Schema::dropIfExists('events');
     }
 }
