@@ -58,10 +58,12 @@
   </div> 
 
 <!-- Modal -->
+<!--borra el tab index-->
  <div id="modalBlog" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
+        <mat-label *ngIf="formBlog.get('id')" style="font-size: medium;">{{formBlog.get('id')? 'Nueva Blog' : 'Actualizar Blog'}}</mat-label>
         <!--<h5 class="modal-title" id="exampleModalLabel">{{!this.blogsService.selectedBlog.id ? 'Nuevo Blog' : 'Actualizar Blog'}}</h5>-->
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
@@ -69,22 +71,52 @@
       </div>
       <div class="modal-body">
 
-          <form class="col col-lg-6 form-blog" enctype="multipart/form-data">
+          <form class="col col-lg-6 form-blog" [formGroup]="formBlog" class="col col-lg-6" enctype="multipart/form-data" (ngSubmit)="onSaveArchive()" enctype="multipart/form-data">
             <!--<input type="hidden" id="Id" name="id" class="form-control" [(ngModel)]="this.blogsService.selectedBlog.id">-->
               <div class="form-row">
                   <div class="form-group col-md-6">
-                      <label for="title">Título</label>
+                    <mat-form-field appearance="standard">
+                      <mat-label>Título</mat-label>
+                      <input matInput type="text" 
+                               formControlName="title"
+                               class="form-control" 
+                               id="title" 
+                               maxlength="20" 
+                               placeholder="Título" 
+                               name="title">
+                               <mat-hint align="end">{{formBlog.get('title').value.length}} / 20</mat-hint>
+                              <mat-error *ngIf="formBlog.get('title').errors && formBlog.get('title').touched">Este capo es requerido</mat-error> 
+                       </mat-form-field>
                       <!--<input type="text" [(ngModel)]="this.blogsService.selectedBlog.title" class="form-control" id="title" placeholder="Título" name="title">-->
                   </div>
               </div>
               <div class="form-group">
-                  <label for="description">Descripción</label> 
+                  <mat-form-field appearance="outline">
+                    <mat-label>Descripción</mat-label>
+                    <textarea matInput type="text" 
+                             formControlName="description"
+                             class="form-control" 
+                             id="description" 
+                             maxlength="90" 
+                             placeholder="description" 
+                             name="description">
+                      </textarea>
+                             <mat-hint align="end">{{formBlog.get('description').value.length}} / 90</mat-hint>
+                            <mat-error *ngIf="formBlog.get('description').errors && formBlog.get('description').touched">Este capo es requerido</mat-error> 
+                     </mat-form-field>
                   <!--<input type="text" [(ngModel)]="this.blogsService.selectedBlog.description" class="form-control" id="description" placeholder="Descripción" name="description">-->
               </div>
                                   
               <div class="form-row">
                   <div class="form-group col-md-4">
-                      <input accept="application/image/png,image/jpeg" #foto required id="fotos" multiple type="file" name="image" ><!--(change)="seleccionarArchivo($event)"-->
+                      <input accept="application/image/png,image/jpeg" 
+                              #foto 
+                              id="foto"
+                              class="form-control" 
+                              required id="foto" 
+                              formControlName="foto"
+                              multiple type="file" 
+                              name="foto"><!--(change)="seleccionarArchivo($event)"-->
                   </div>
               </div>
 
