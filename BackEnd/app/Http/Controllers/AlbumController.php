@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Events;
+use App\Models\Albums;
 use Illuminate\Http\Request;
 
 class AlbumController extends Controller
@@ -38,16 +39,16 @@ class AlbumController extends Controller
      
         $data = $request->json()->all();
         
-        $dataImages = $data['albums'];
+        $dataAlbums = $data['albums'];
         $dataEvents = $data['events'];
         $events = Events::findOrFail($dataEvents['id']);
        
 
         $albums = new Albums();
-        $albums->name =  $dataImages['name'];
-        $albums->type =  $dataImages['type'];
-        $albums->description =  $dataImages['description'];
-        $albums->event()->associate($events);
+        $albums->title =  $dataAlbums['title'];
+        $albums->description =  $dataAlbums['description'];
+        $albums->date =  $dataAlbums['date'];
+        $albums->events()->associate($events);
         $albums->save();
 
         return response()->json([
@@ -95,20 +96,22 @@ class AlbumController extends Controller
         $data = $request->json()->all();
         
         $albums = albums::findOrFail($id);
-        $dataImages = $data['albums'];
+        $dataAlbums = $data['albums'];
         $dataEvents = $data['events'];
         $events = Events::findOrFail($dataEvents['id']);
 
        
-        $albums->name =  $dataImages['name'];
-        $albums->description =  $dataImages['description'];
-        $albums->date =  $dataImages['date'];
-        $albums->event()->associate($events);
+        $albums->title =  $dataAlbums['title'];
+        $albums->description =  $dataAlbums['description'];
+        $albums->date =  $dataAlbums['date'];
+        $albums->events()->associate($events);
         $albums->save();
 
-        return response()->json(
-               $albums
-        );
+        return response()->json([
+            'data' => [
+                'Actualizado'=>'Exitoso'
+            ]
+        ], 201);    
         
     }
 

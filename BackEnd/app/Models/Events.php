@@ -33,7 +33,7 @@ class Events extends Model
     {
         return $this->hasMany(SponsorEvents::class);
     }
-    public function Albums()
+    public function albums()
     {
         return $this->hasMany(Albums::class);
     }
