@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { ClubService } from 'src/app/services/club.service';
+import { ClubService } from './../../services/club.service';
 
 @Component({
   selector: 'app-voluntarios-admin',
@@ -22,14 +22,16 @@ export class VoluntariosAdminComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  // resetForm(blogForm?: NgForm): void {
-  //   this.blogsService.selectedBlog = {
+  // resetForm(clubForm?: NgForm): void {
+  //   this.ClubService.selectedClub = {
   //     id: null,
-  //     title: '',
-  //     image: '',
+  //     name: '',
+  //     surname: '',
+  //     ci: '',
   //     description: '',
-  //     link: '',
-
+  //     address: '',
+  //     availability: '',
+  //     foto: '',
   //   };
   // }
 
@@ -38,12 +40,12 @@ export class VoluntariosAdminComponent implements OnInit {
     this.formKid = this.formBuilder.group({
       id: [null],//valor por defecto, 
       name: ['', [Validators.required, Validators.maxLength(20)]],
-      surname: ['', [Validators.required, Validators.maxLength(20)]],//pipe para fechas??
+      surname: ['', [Validators.required, Validators.maxLength(20)]],
       ci: ['', [Validators.required, Validators.maxLength(10)]],
       description: ['', [Validators.required, Validators.maxLength(200)]],
       address: ['', [Validators.required, Validators.maxLength(100)]],
       availability: ['', [Validators.required, Validators.maxLength(100)]],
-      foto: [null]//si es una validacicion tener un Validators
+      foto: [null]
 
     });
     this.formKid.get('foto').valueChanges.subscribe((value) => {

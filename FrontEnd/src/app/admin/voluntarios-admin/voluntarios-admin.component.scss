@@ -1,8 +1,12 @@
 .form-control:focus {
-    background-color: #FFFFFF;
+    background-color: #ffffff;
     border: none;
     box-shadow: none;
     outline: 0 !important;
+}
+
+mat-label {
+    color: #112A46;
 }
 
 mat-option {
@@ -34,6 +38,7 @@ mat-form-field {
     mat-form-field {
         position: relative;
         width: 350px;
+        background-color: #112A46;
     }
 }
 
