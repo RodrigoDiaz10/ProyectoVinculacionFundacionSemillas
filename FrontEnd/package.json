@@ -37,6 +37,7 @@
     "material-icons": "^0.6.0",
     "ng-image-fullscreen-view": "^2.0.0",
     "ng-image-slider": "^2.7.0",
+    "ngx-toastr": "^14.0.0",
     "popper.js": "1.16.1",
     "primeicons": "^4.1.0",
     "primeng": "^11.4.0",
