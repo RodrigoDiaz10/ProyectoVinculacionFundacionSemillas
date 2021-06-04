@@ -8,8 +8,10 @@ use Illuminate\Http\Request;
 
 class EventsController extends Controller
 {
-     public function index(){
-        //
+     public function index()
+     {
+        return response()->json(events::all()
+     );
     }
 
     public function show(){
