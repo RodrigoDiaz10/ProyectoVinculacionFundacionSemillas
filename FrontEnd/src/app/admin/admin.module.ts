@@ -25,7 +25,6 @@ import { MatRadioModule } from '@angular/material/radio';
     NinosAdminComponent,
     AlbumnesAdminComponent,
     VoluntariosAdminComponent,
-
   ],
   imports: [
     CommonModule,

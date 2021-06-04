@@ -4,6 +4,7 @@
     box-shadow: none;
     outline: 0 !important;
 }
+<<<<<<< HEAD
 
 mat-option {
     z-index: 1 !important;
@@ -11,6 +12,13 @@ mat-option {
 }
 
 form {
+=======
+mat-option{
+    z-index: 1 !important;
+    position: auto !important;
+}
+form{
+>>>>>>> master
     z-index: 2 !important;
 }
 
@@ -19,27 +27,50 @@ mat-form-field {
     width: 300px;
 }
 
+<<<<<<< HEAD
 .mat-radio-button~.mat-radio-button {
     margin-left: 16px;
 }
 
 @media screen and (max-width: 992px) {
+=======
+.mat-radio-button ~ .mat-radio-button {
+    margin-left: 16px;
+  }
+
+  @media screen and (max-width: 992px) {
+>>>>>>> master
     mat-form-field {
         position: relative;
         width: 180px;
     }
+<<<<<<< HEAD
 }
 
 @media screen and (max-width: 768px) {
+=======
+  }
+
+  @media screen and (max-width: 768px) {
+>>>>>>> master
     mat-form-field {
         position: relative;
         width: 350px;
     }
+<<<<<<< HEAD
 }
 
 @media screen and (max-width: 576px) {
+=======
+  }
+  @media screen and (max-width: 576px) {
+>>>>>>> master
     mat-form-field {
         position: relative;
         width: 250px;
     }
+<<<<<<< HEAD
 }
+=======
+  }
+>>>>>>> master
