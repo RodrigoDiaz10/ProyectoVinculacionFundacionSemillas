@@ -65,7 +65,7 @@ class AlbumController extends Controller
      * @param  \App\Models\albums  $albums
      * @return \Illuminate\Http\Response
      */
-    public function show(albums $albums)
+    public function show($id)
     {
         $albums = albums::findOrFail($id);
         return response()->json(
@@ -121,7 +121,7 @@ class AlbumController extends Controller
      * @param  \App\Models\albums  $albums
      * @return \Illuminate\Http\Response
      */
-    public function destroy(albums $albums,$id)
+    public function destroy($id)
     {
         $albums = albums::findOrFail($id);
         $albums->delete();
