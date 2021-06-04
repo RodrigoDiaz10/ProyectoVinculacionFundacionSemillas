@@ -1,11 +1,18 @@
 import { Injectable } from '@angular/core';
 import { Blog } from '../models/blog';
+import { Sponsor } from '../models/sponsors';
 import { HttpService } from './http.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BlogService {
+
+  public selectedField: Sponsor = {
+    nombre: '',
+    id: null,
+    foto: '',
+  };
 
   constructor(private http: HttpService) { }
 

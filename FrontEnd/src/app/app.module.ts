@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app.routing';
@@ -10,7 +10,9 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { ComponentsModule } from './components/components.module';
-import { ExamplesModule } from './pages/examples.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ExamplesModule } from './pages/interfaces.module';
+import { AdminModule} from './admin/admin.module';
 
 
 @NgModule({
@@ -22,13 +24,16 @@ import { ExamplesModule } from './pages/examples.module';
   imports: [
     BrowserModule,
     NgbModule,
-    FormsModule,
+    ReactiveFormsModule,
     RouterModule,
     ComponentsModule,
-    ExamplesModule,
     AppRoutingModule,
+    BrowserAnimationsModule,
+    ExamplesModule,
+    AdminModule,
+
   ],
-  providers: [{provide: APP_BASE_HREF, useValue:''}],
+  providers: [{ provide: APP_BASE_HREF, useValue: '' }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

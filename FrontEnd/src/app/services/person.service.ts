@@ -8,6 +8,23 @@ import { HttpService } from './http.service';
 })
 export class PersonService {
 
+
+  public selectedField: Person = {
+    name: '',
+    id: null,
+    image: '', 
+    surname: '', 
+    dateBirth: '',
+    ci: '',
+    motherName:'',
+    fatherName: '',
+    study: '',
+    houseAddress: '',
+    schoolName: '',
+    age: null 
+    
+  };
+
   constructor(private http: HttpService) { }
 
   public async eliminarPerson(idPerson) {

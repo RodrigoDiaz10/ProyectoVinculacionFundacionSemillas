@@ -1,0 +1,144 @@
+
+
+<br>
+<br>
+
+<div class="card" style="padding-top: 5%;">
+    <div class="card-body">
+      <h3 class="card-title" style="text-align: center;">Tabla Entrada de Patrocinadores</h3>
+        <button type="button" class="btn btn-outline-primary col-md-4 offset-md-4" data-toggle="modal" data-target="#modalBlog" >Agregar nuevo</button>
+      <br><br>
+        <table class="table">
+          
+            <thead class="thead-dark">
+              <tr  >
+                <th scope="col">#</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Foto</th>
+                <th scope="col">Editar</th>
+                <th scope="col">Eliminar</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let blog of datosArreglados;  let id=index">
+                <th scope="row">hkjhjk</th>
+                <td>kmgjhj</td> 
+                <td>kjhkk</td> 
+                <td>
+                  <button  type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#modalBlog">
+                    <mat-icon style="color:rgba(29, 29, 189, 0.938)">create</mat-icon>
+                  </button>
+                </td>
+                <td>
+                  <button type="button"   class="btn btn-outline-danger" data-toggle="modal" data-target="#modalDelete">
+                    <mat-icon style="color:rgb(206, 22, 22)">delete</mat-icon>
+                  </button>
+                </td>
+              </tr>
+              
+            </tbody>
+          </table>
+
+          <nav aria-label="..." class="row justify-content-md-center">
+            <ul class="pagination">
+              <li class="page-item disabled">
+                <a class="page-link" href="#" tabindex="-1">Anterior</a>
+              </li>
+              <li class="page-item"><a class="page-link" href="#">1</a></li>
+              <li class="page-item active">
+                <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="page-item"><a class="page-link" href="#">3</a></li>
+              <li class="page-item">
+                <a class="page-link" href="#">Siguiente</a>
+              </li>
+            </ul>
+          </nav>
+    </div>
+  </div> 
+
+<!-- Modal -->
+ <div id="modalBlog" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <mat-label *ngIf="formSponsor.get('id')" style="font-size: medium;">{{formSponsor.get('id')? 'Nueva Sponsor' : 'Actualizar Sponsoe'}}</mat-label>
+        <!--<h5 class="modal-title" id="exampleModalLabel">{{!this.blogsService.selectedBlog.id ? 'Nuevo Blog' : 'Actualizar Blog'}}</h5>-->
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+          <form [formGroup]="formSponsor" class="col col-lg-12" enctype="multipart/form-data" (ngSubmit)="onSaveArchive()">
+            <!--<input type="hidden" id="Id" name="id" class="form-control" [(ngModel)]="this.blogsService.selectedBlog.id">-->
+              <div class="form-row">
+                  <div class=" col-lg-6 col-md-6">
+                      <!--<label for="title">Nombre</label>
+      --- linea comentada  <input type="text" [(ngModel)]="this.blogsService.selectedBlog.title" class="form-control" id="title" placeholder="Título" name="title">
+                      <input matInput type="text" 
+                             formControlName="nombre"
+                             class="form-control" 
+                             id="title" 
+                             placeholder="Nombre" 
+                             name="title">-->
+
+                      <mat-form-field appearance="standard">
+                        <mat-label>Nombre del Sponsor</mat-label>
+                        <input matInput type="text" 
+                               formControlName="nombre"
+                               class="form-control" 
+                               id="nombre" 
+                               maxlength="20" 
+                               placeholder="Nombre" 
+                               name="nombre">
+                              <mat-hint align="end">{{formSponsor.get('nombre').value.length}} / 20</mat-hint>
+                              <mat-error *ngIf="formSponsor.get('nombre').errors && formSponsor.get('nombre').touched">Este capo es requerido</mat-error> 
+                       </mat-form-field>
+                  </div>
+              </div>
+              
+                                  
+              <div class="form-row">
+                  <div class="form-group col-lg-6">
+                      <input accept="application/image/png,image/jpeg" 
+                             #foto 
+                             id="foto"
+                             class="form-control" 
+                             required id="foto" 
+                             formControlName="foto"
+                             multiple type="file" 
+                             name="foto" ><!--(change)="seleccionarArchivo($event)"-->
+                  </div>
+              </div>
+
+
+              <button type="submit" class="btn btn-primary">Guardar</button>
+          </form>
+      </div>
+    </div>
+  </div>
+</div> 
+
+
+<!-- Modal -->
+<div class="modal fade" id="modalDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Alerta</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Desea Borrar el Auspiciante?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <button type="button" (click)="acceptD()" class="btn btn-danger">Borrar</button>
+      </div>
+    </div>
+  </div>
+</div>  
+
