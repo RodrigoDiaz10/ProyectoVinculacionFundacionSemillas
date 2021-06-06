@@ -46,7 +46,8 @@ export class NinosAdminComponent implements OnInit {
       motherName:['',[Validators.required,Validators.maxLength(70)]],
       fatherName:['',[Validators.required,Validators.maxLength(70)]],
       study:[null],
-      schoolName:['',[Validators.required,Validators.maxLength(70)]]
+      schoolName:['',[Validators.required,Validators.maxLength(70)]],
+      age:[null,[Validators.required]]
 
     });
  
@@ -75,6 +76,17 @@ export class NinosAdminComponent implements OnInit {
     console.log(this.formKid.value);
     this.formKid.markAllAsTouched()
 
+    if(this.formKid.valid){// is es valido da true
+      //nuevo
+      if(this.formKid.controls['id'].value== null){
+       this._kidServices.agregarPerson(this.formKid.value);
+      }
+      
+    } else{
+      //actualizar
+      //this._libraryServices.editField(formarchive.value.id, formarchive.value);
+      this.formKid.markAllAsTouched()//activar los errores que hay
+    }
   }
 
 }

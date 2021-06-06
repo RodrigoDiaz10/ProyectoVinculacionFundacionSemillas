@@ -15,6 +15,7 @@ import { NinosAdminComponent } from './admin/ninos-admin/ninos-admin.component';
 import { PatrocinadoresAdminComponent } from './admin/patrocinadores-admin/patrocinadores-admin.component';
 import { VoluntariosAdminComponent } from './admin/voluntarios-admin/voluntarios-admin.component';
 
+import { AuthGuard } from './guards/auth.guard';
 
 
 
@@ -29,7 +30,7 @@ const routes: Routes = [
   { path: 'voluntarios', component: VoluntariosComponent }, 
   { path: 'albumAdmin', component: AlbumnesAdminComponent }, 
   { path: 'blogAdmin', component: BlogAdminComponent }, 
-  { path: 'ninosAdmin', component: NinosAdminComponent }, 
+  { path: 'ninosAdmin', component: NinosAdminComponent,  canActivate: [AuthGuard] },// 
   { path: 'patrocinadoresAdmin', component: PatrocinadoresAdminComponent }, 
   { path: 'voluntariosAdmin', component: VoluntariosAdminComponent }, 
 

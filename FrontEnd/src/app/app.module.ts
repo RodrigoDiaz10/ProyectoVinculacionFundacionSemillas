@@ -6,6 +6,8 @@ import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app.routing';
 import { APP_BASE_HREF } from '@angular/common';
 
+import { HttpClientModule } from '@angular/common/http';
+
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -31,6 +33,7 @@ import { AdminModule} from './admin/admin.module';
     BrowserAnimationsModule,
     ExamplesModule,
     AdminModule,
+    HttpClientModule, 
 
   ],
   providers: [{ provide: APP_BASE_HREF, useValue: '' }],

@@ -279,6 +279,22 @@
                           multiple type="file" 
                           name="foto"><!--(change)="seleccionarArchivo($event)"-->
               </div>
+              <div class="form-group col-md-6">
+                <!--<label for="schoolName">Nombre de la Escuela</label>
+                <input type="text" class="form-control" id="schoolName" name="schoolName">-->
+
+                <mat-form-field appearance="standard">
+                  <mat-label>Edad</mat-label>
+                  <input matInput type="number" 
+                         formControlName="age"
+                         class="form-control" 
+                         id="age" 
+                         maxlength="2" 
+                         placeholder="Edad del Niño" 
+                         name="age">
+                        <mat-error *ngIf="formKid.get('age').errors && formKid.get('age').touched">Este capo es requerido</mat-error> 
+                 </mat-form-field>
+            </div>
           </div>
   
   

@@ -12,19 +12,19 @@
                 </div>
               </div>
               <div class="card-body">
-                <form>
+                <form id="login-form" #lForm="ngForm" [formGroup]="loginForm" (ngSubmit)="login()" novalidate>
                   <div class="input-group form-group">
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="fas fa-user"></i></span>
                     </div>
-                    <input type="text" class="form-control" placeholder="Usuario">
+                    <input id="email" name="email" type="text" formControlName="email" placeholder="Usuario">
                     
                   </div>
                   <div class="input-group form-group">
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="fas fa-key"></i></span>
                     </div>
-                    <input type="password" class="form-control" placeholder="Contraseña">
+                    <input id="password" name="password" type="password" formControlName="password" placeholder="Contraseña">
                   </div>
                   <!-- <div class="row align-items-center remember">
                     <input type="checkbox">Recordarme

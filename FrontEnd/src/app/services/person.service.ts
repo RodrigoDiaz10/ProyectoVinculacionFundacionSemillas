@@ -28,23 +28,23 @@ export class PersonService {
   constructor(private http: HttpService) { }
 
   public async eliminarPerson(idPerson) {
-    return await this.http.delete("/api/person?id=".concat(idPerson));
+    return await this.http.delete("/child?id=".concat(idPerson));
   }
 
   public async agregarPerson(person: Person) {
-    return await this.http.post("/api/person", person);
+    return await this.http.post("/child", person);
   }
 
   public async obtenerPerson() {
-    return await this.http.get("/api/person");
+    return await this.http.get("/child");
   }
 
   public async obtenerPorId(idPerson){
-    return await this.http.get("/api/person/?id=".concat(idPerson));
+    return await this.http.get("/child/?id=".concat(idPerson));
   }
 
   public async modificarPerson(person: Person) {
-    return await this.http.update("/api/person",person);
+    return await this.http.update("/child",person);
   }
   //TODO
   //AGREGAR  EL UPDATE

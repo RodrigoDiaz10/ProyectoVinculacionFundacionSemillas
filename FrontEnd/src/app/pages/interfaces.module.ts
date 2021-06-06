@@ -20,6 +20,9 @@ import {MatInputModule} from '@angular/material/input';
 import {TooltipModule} from 'primeng/tooltip';
 import {MatDialogModule} from '@angular/material/dialog';
 
+
+import { ReactiveFormsModule } from '@angular/forms';
+
 @NgModule({
     imports: [
         CommonModule,
@@ -34,7 +37,8 @@ import {MatDialogModule} from '@angular/material/dialog';
         MatFormFieldModule,
         MatInputModule,
         TooltipModule,
-        MatDialogModule
+        MatDialogModule,
+        ReactiveFormsModule
     ],
     declarations: [
         LoginComponent,
