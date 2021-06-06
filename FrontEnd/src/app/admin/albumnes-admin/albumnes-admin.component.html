@@ -1,1 +1,177 @@
-<p>albumnes-admin works!</p>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<div class="card">
+    <div class="card-body">
+        <h3 class="card-title" style="text-align: center;">Administrador de Álbumes</h3>
+        <button type="button" class="btn btn-outline-primary col-md-4 offset-md-4" (click)="modalCrear()">Agregar nuevo
+            Álbum</button>
+        <br><br>
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Titulo</th>
+                    <!-- <th scope="col">Imagen</th> -->
+                    <th scope="col">Descripción</th>
+                    <th scope="col">Año</th>
+                    <th scope="col">Opciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let alb of albums; index as i">
+                    <th scope="row">{{i+1}}</th>
+                    <td>{{alb.title}}</td>
+                    <td>{{alb.description}}</td>
+                    <td>{{alb.date | date: 'yyyy'}}</td>
+                    <td>
+                        <button type="button" class="btn btn-outline-primary" (click)="getAlbum(alb.id)">Editar</button>
+                        <button type="button" class="btn btn-outline-danger" (click)="getIdEliminar(alb.id)"
+                            data-toggle="modal" data-target="#modalDelete"><i
+                                class="far fa-trash-alt">Eliminar</i></button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Paginador -->
+        <nav aria-label="..." class="row justify-content-md-center">
+            <ul class="pagination">
+                <li class="page-item disabled">
+                    <a class="page-link" href="#" tabindex="-1">Anterior</a>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item active">
+                    <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item">
+                    <a class="page-link" href="#">Siguiente</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>
+
+<!-- Modal Editar -->
+<p-dialog header="Modificar Álbum" [(visible)]="displayResponsiveModificar" [breakpoints]="{'960px': '75vw'}"
+    [style]="{width: '50vw'}" [baseZIndex]="10000" [draggable]="false" [resizable]="false" [modal]="true"
+    *ngIf="albumseleccionado">
+    <form [formGroup]="modifAlbum" (ngSubmit)="modificarAlbum()">
+        <div class="form-group">
+            <label for="title">Título</label>
+            <input type="text" [(ngModel)]="albumseleccionado.title" formControlName="title" class="form-control"
+                [ngClass]="{ 'is-invalid': submitted &amp;&amp; modifAlbum.controls.title.errors }" />
+            <div *ngIf="submitted &amp;&amp; modifAlbum.controls.title.errors" class="text-danger">
+                <div *ngIf="modifAlbum.controls.title.errors.required">Título es requerido</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="description">Descripción</label>
+            <input type="text" [(ngModel)]="albumseleccionado.description" formControlName="description"
+                class="form-control"
+                [ngClass]="{ 'is-invalid': submitted &amp;&amp; modifAlbum.controls.description.errors }" />
+            <div *ngIf="submitted &amp;&amp; modifAlbum.controls.description.errors" class="text-danger">
+                <div *ngIf="modifAlbum.controls.description.errors.required">La Descripción es requerida
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="event">Evento</label>
+            <select formControlName="event" class="form-control" [(ngModel)]="albumseleccionado.events_id">
+                <option *ngFor="let v of eventos" value="{{v.id}}">{{v.name}}</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="date">Año</label>
+            <input type="date" formControlName="date" class="form-control" [(ngModel)]="albumseleccionado.date"
+                [ngClass]="{ 'is-invalid': submitted &amp;&amp; modifAlbum.controls.date.errors }" />
+            <div *ngIf="submitted &amp;&amp; modifAlbum.controls.date.errors" class="text-danger">
+                <div *ngIf="modifAlbum.controls.date.errors.required">El año es requerido</div>
+            </div>
+        </div>
+    </form>
+    <ng-template pTemplate="footer">
+        <div class="centro">
+            <button class="btn btn-primary" (click)="modificarAlbum()">Modificar</button>
+        </div>
+    </ng-template>
+</p-dialog>
+
+
+<!-- Modal Eliminar-->
+<div class="modal fade" id="modalDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Alerta</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ¿Desea Borrar el Álbum?
+            </div>
+            <div class="modal-footer">
+                <!-- <button type="button" (click)="deleteAlbum(idEliminar)" data-dismiss="modal" class="btn btn-danger">
+                    <h2>Si</h2>
+                </button>
+                <button type="button" data-dismiss="modal" class="btn btn-primary">
+                    <h2>No</h2>
+                </button> -->
+                <button type="button" class="btn btn-danger" (click)="deleteAlbum(idEliminar)"
+                    data-dismiss="modal">Sí</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">No</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Crear Álbum -->
+<p-dialog header="Header" [(visible)]="displayResponsiveCrear" [breakpoints]="{'960px': '75vw'}"
+    [style]="{width: '50vw'}" [baseZIndex]="10000" [draggable]="false" [resizable]="false" [modal]="true">
+    <form [formGroup]="registerAlbum" (ngSubmit)="crearAlbum()">
+        <div class="form-group">
+            <label for="title">Título</label>
+            <input type="text" formControlName="title" class="form-control"
+                [ngClass]="{ 'is-invalid': submitted &amp;&amp; registerAlbum.controls.title.errors }" />
+            <div *ngIf="submitted &amp;&amp; registerAlbum.controls.title.errors" class="text-danger">
+                <div *ngIf="registerAlbum.controls.title.errors.required">Título es requerido</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="description">Descripción</label>
+            <input type="text" formControlName="description" class="form-control"
+                [ngClass]="{ 'is-invalid': submitted &amp;&amp; registerAlbum.controls.description.errors }" />
+            <div *ngIf="submitted &amp;&amp; registerAlbum.controls.description.errors" class="text-danger">
+                <div *ngIf="registerAlbum.controls.description.errors.required">La Descripción es requerida
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="event">Evento</label>
+            <select formControlName="event" class="form-control">
+                <option *ngFor="let v of eventos" value="{{v.id}}">{{v.name}}</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="description">Año</label>
+            <input type="date" formControlName="date" class="form-control"
+                [ngClass]="{ 'is-invalid': submitted &amp;&amp; registerAlbum.controls.date.errors }" />
+            <div *ngIf="submitted &amp;&amp; registerAlbum.controls.date.errors" class="text-danger">
+                <div *ngIf="registerAlbum.controls.date.errors.required">El año es requerido</div>
+            </div>
+        </div>
+        <div class="centro">
+            <button class="btn btn-primary">Crear</button>
+        </div>
+    </form>
+</p-dialog>

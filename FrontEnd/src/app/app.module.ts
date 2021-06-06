@@ -5,9 +5,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app.routing';
 import { APP_BASE_HREF } from '@angular/common';
-
-import { HttpClientModule } from '@angular/common/http';
-
+import { AlbumService } from './services/album.service';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -15,6 +13,8 @@ import { ComponentsModule } from './components/components.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ExamplesModule } from './pages/interfaces.module';
 import { AdminModule} from './admin/admin.module';
+import { ToastrModule } from 'ngx-toastr';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -33,10 +33,15 @@ import { AdminModule} from './admin/admin.module';
     BrowserAnimationsModule,
     ExamplesModule,
     AdminModule,
-    HttpClientModule, 
+    ToastrModule.forRoot({
+      timeOut: 3000,
+      positionClass: 'toast-top-right',
+      preventDuplicates: true,
+    }),
+    HttpClientModule,
 
   ],
-  providers: [{ provide: APP_BASE_HREF, useValue: '' }],
+  providers: [AlbumService,{ provide: APP_BASE_HREF, useValue: '' }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

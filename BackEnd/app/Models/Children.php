@@ -5,10 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class person extends Model
+class Children extends Model
 {
     use HasFactory;
-    protected $table = 'person';
+    protected $table = 'children';
     public $timestamps = true;
 
     protected $fillable = [
@@ -23,6 +23,7 @@ class person extends Model
         'houseAddress',
         'schoolName',
         'image',
+        'state',
     ];
 
     public function setName($value)

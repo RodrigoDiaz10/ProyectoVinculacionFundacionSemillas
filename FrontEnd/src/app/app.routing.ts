@@ -9,7 +9,7 @@ import { RegisterComponent } from './pages/register/register.component';
 import { GaleriaComponent } from './pages/galeria/galeria.component';
 import { ImagenesComponent } from './pages/galeria/imagenes/imagenes.component';
 import { VoluntariosComponent } from './pages/voluntarios/voluntarios.component';
-import {AlbumnesAdminComponent  } from './admin/albumnes-admin/albumnes-admin.component';
+import { AlbumnesAdminComponent } from './admin/albumnes-admin/albumnes-admin.component';
 import { BlogAdminComponent } from './admin/blog-admin/blog-admin.component';
 import { NinosAdminComponent } from './admin/ninos-admin/ninos-admin.component';
 import { PatrocinadoresAdminComponent } from './admin/patrocinadores-admin/patrocinadores-admin.component';
@@ -25,14 +25,14 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'blog', component: BlogComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'galeria', component: GaleriaComponent }, 
-  { path: 'imagenes/:id/:album', component: ImagenesComponent }, 
-  { path: 'voluntarios', component: VoluntariosComponent }, 
-  { path: 'albumAdmin', component: AlbumnesAdminComponent }, 
-  { path: 'blogAdmin', component: BlogAdminComponent }, 
-  { path: 'ninosAdmin', component: NinosAdminComponent,  canActivate: [AuthGuard] },// 
-  { path: 'patrocinadoresAdmin', component: PatrocinadoresAdminComponent }, 
-  { path: 'voluntariosAdmin', component: VoluntariosAdminComponent }, 
+  { path: 'galeria', component: GaleriaComponent },
+  { path: 'imagenes/:id/:album', component: ImagenesComponent },
+  { path: 'clubAmigos', component: VoluntariosComponent },
+  { path: 'albumAdmin', component: AlbumnesAdminComponent },
+  { path: 'blogAdmin', component: BlogAdminComponent },
+  { path: 'ninosAdmin', component: NinosAdminComponent, canActivate: [AuthGuard]  },
+  { path: 'patrocinadoresAdmin', component: PatrocinadoresAdminComponent },
+  { path: 'clubAdmin', component: VoluntariosAdminComponent },
 
 ];
 

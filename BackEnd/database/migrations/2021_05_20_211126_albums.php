@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Blog extends Migration
+class Albums extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class Blog extends Migration
      */
     public function up()
     {
-        Schema::create('blog', function (Blueprint $table) {
+        Schema::create('albums', function (Blueprint $table) {
             $table->id();
             $table->string('title',200)->notNullable();
             $table->string('description',300)->nullable();
-            $table->string('image')->nullable();
-            $table->string('link')->nullable();
+            $table->timestamp('date')->nullable();
+            $table->foreignId('events_id')->constrained('events');
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ class Blog extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('blog');
+        Schema::dropIfExists('albums');
     }
 }

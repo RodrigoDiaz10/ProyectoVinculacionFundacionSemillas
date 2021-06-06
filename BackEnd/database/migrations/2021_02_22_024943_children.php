@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Person extends Migration
+class Children extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class Person extends Migration
      */
     public function up()
     {
-        Schema::create('person', function (Blueprint $table) {
+        Schema::create('children', function (Blueprint $table) {
             $table->id();
             $table->string('name',160)->notNullable();
             $table->string('surname',160)->notNullable();
@@ -26,6 +26,7 @@ class Person extends Migration
             $table->string('houseAddress',200)->nullable();
             $table->string('schoolName',200)->nullable();
             $table->string('Image')->nullable();
+            $table->string('state')->nullable();
             $table->timestamps();
         });
     }
@@ -37,6 +38,6 @@ class Person extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('person');
+        Schema::dropIfExists('children');
     }
 }
