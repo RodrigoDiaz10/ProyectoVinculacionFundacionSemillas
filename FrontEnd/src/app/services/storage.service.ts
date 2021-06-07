@@ -7,28 +7,26 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class StorageService {
-
+  private localStorageService;
+  private currentSession: Session = null;
   constructor(
     private router: Router
   ) {
     this.localStorageService = localStorage;
     this.currentSession = this.loadSessionData();
-   }
-
-
-   private localStorageService;
-   private currentSession : Session = null;
-
+    console.log("localstorage: ", localStorage)
+  }
 
 
   setCurrentSession(session: Session): void {
     this.currentSession = session;
     this.localStorageService.setItem('currentUser', JSON.stringify(session));
+    this.localStorageService.setItem('logeado', "si");
   }
 
-  loadSessionData(): Session{
+  loadSessionData(): Session {
     var sessionStr = this.localStorageService.getItem('currentUser');
-    return (sessionStr) ? <Session> JSON.parse(sessionStr) : null;
+    return (sessionStr) ? <Session>JSON.parse(sessionStr) : null;
   }
 
   getCurrentSession(): Session {
@@ -54,7 +52,7 @@ export class StorageService {
     return (session && session.token) ? session.token : null;
   };
 
-  logout(): void{
+  logout(): void {
     this.removeCurrentSession();
     this.router.navigate(['/login']);
   }

@@ -1,267 +1,241 @@
-html 
+<!-- <div *ngIf="logeado; else templateName">
+  logeado como administrador
+</div>
+
+<ng-template #templateName>
+  no logeado
+</ng-template> -->
+
 <br>
-  
-  <div class="card" style="padding-top: 5%;">
-    <div class="card-body">
-      <h3 class="card-title" style="text-align: center;">Tabla Administrativa</h3>
-      <button type="button" class="btn btn-outline-primary col-md-4 offset-md-4" data-toggle="modal"
-        data-target="#modalBlog" >Agregar nuevo</button>
-      <br><br>
-      <table class="table">
-  
-        <thead class="thead-dark">
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Nombres</th>
-            <th scope="col">Apellidos</th>
-            <th scope="col">Editar</th>
-            <th scope="col">Eliminar</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let person of datosArreglados;  let id=index">
-            <th scope="row">kjkjk</th>
-            <td>jhjhjhj</td>
-            <td>nbvjgv jm</td>
-            <td>
-              <button type="button" (click)="onPreUpdatePerson(person)" class="btn btn-outline-primary"
-                data-toggle="modal" data-target="#modalBlog">
-                <i class="far fa-edit"></i>
-              </button>
-            </td>
-            <td>
-              <button (click)="borrar(person.id)" type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#delete">
-                <i class="far fa-trash-alt"></i>
-              </button>
-            </td>
-          </tr>
-  
-        </tbody>
-      </table>
-  
-      <nav aria-label="..." class="row justify-content-md-center">
-        <ul class="pagination">
-          <li class="page-item disabled">
-            <a class="page-link" href="#" tabindex="-1">Previous</a>
-          </li>
-          <li class="page-item"><a class="page-link" href="#">1</a></li>
-          <li class="page-item active">
-            <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
-          </li>
-          <li class="page-item"><a class="page-link" href="#">3</a></li>
-          <li class="page-item">
-            <a class="page-link" href="#">Next</a>
-          </li>
-        </ul>
-      </nav>
-    </div>
+
+<div class="card" style="padding-top: 5%;">
+  <div class="card-body">
+    <h3 class="card-title" style="text-align: center;">Tabla Administrativa</h3>
+    <button type="button" class="btn btn-outline-primary col-md-4 offset-md-4" data-toggle="modal"
+      data-target="#modalBlog">Agregar nuevo</button>
+    <br><br>
+    <table class="table">
+
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Nombres</th>
+          <th scope="col">Apellidos</th>
+          <th scope="col">Editar</th>
+          <th scope="col">Eliminar</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let person of datosArreglados;  let id=index">
+          <th scope="row">kjkjk</th>
+          <td>jhjhjhj</td>
+          <td>nbvjgv jm</td>
+          <td>
+            <button type="button" (click)="onPreUpdatePerson(person)" class="btn btn-outline-primary"
+              data-toggle="modal" data-target="#modalBlog">
+              <i class="far fa-edit"></i>
+            </button>
+          </td>
+          <td>
+            <button (click)="borrar(person.id)" type="button" class="btn btn-outline-danger" data-toggle="modal"
+              data-target="#delete">
+              <i class="far fa-trash-alt"></i>
+            </button>
+          </td>
+        </tr>
+
+      </tbody>
+    </table>
+
+    <nav aria-label="..." class="row justify-content-md-center">
+      <ul class="pagination">
+        <li class="page-item disabled">
+          <a class="page-link" href="#" tabindex="-1">Previous</a>
+        </li>
+        <li class="page-item"><a class="page-link" href="#">1</a></li>
+        <li class="page-item active">
+          <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li>
+        <li class="page-item">
+          <a class="page-link" href="#">Next</a>
+        </li>
+      </ul>
+    </nav>
   </div>
-  
-  
-  <!-- Modal -->
-  <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <!--<h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>-->
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          Desea descartar este campo?
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
-          <button type="button" (click)="acceptD()" class="btn btn-danger" data-dismiss="modal">Borrar</button>
-        </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <!--<h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>-->
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Desea descartar este campo?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
+        <button type="button" (click)="acceptD()" class="btn btn-danger" data-dismiss="modal">Borrar</button>
       </div>
     </div>
-  </div> 
-  
-  
-  <!-- Modal -->
+  </div>
+</div>
 
-  <div id="modalBlog" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <mat-label *ngIf="formKid.get('id')" style="font-size: medium;font-weight: bold;">{{formKid.get('id')? 'Nueva Niño' : 'Actualizar Niño'}}</mat-label>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-  
-          <form class="col col-12 form-person" [formGroup]="formKid"enctype="multipart/form-data" (ngSubmit)="onSaveArchive()">
-            <input type="hidden" id="Id" name="id" class="form-control">
-  
-  
-            <div class="form-row">
-              <div class="form-group col-md-6 col-lg-6">
-                  <mat-form-field appearance="standard">
-                    <mat-label>Nombres</mat-label>
-                    <input matInput type="text" 
-                           formControlName="name"
-                           style="text-transform:uppercase"
-                           class="form-control" 
-                           id="name" 
-                           maxlength="20" 
-                           placeholder="Nombres" 
-                           name="name">
-                          <mat-hint align="end">{{formKid.get('name').value.length}} / 20</mat-hint>
-                          <mat-error *ngIf="formKid.get('name').errors && formKid.get('name').touched">Este capo es requerido</mat-error> 
-                   </mat-form-field>
-              </div>
-              <div class="form-group col-md-6">
-                  <mat-form-field appearance="standard">
-                    <mat-label>Apellidos</mat-label>
-                    <input matInput type="text" 
-                           formControlName="surname"
-                           style="text-transform:uppercase"
-                           class="form-control" 
-                           id="surname" 
-                           maxlength="20" 
-                           placeholder="Apellidos" 
-                           name="surname">
-                          <mat-hint align="end">{{formKid.get('surname').value.length}} / 20</mat-hint>
-                          <mat-error *ngIf="formKid.get('surname').errors && formKid.get('surname').touched">Este capo es requerido</mat-error> 
-                   </mat-form-field>
-              </div>
+
+<!-- Modal -->
+
+<div id="modalBlog" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <mat-label *ngIf="formKid.get('id')" style="font-size: medium;font-weight: bold;">{{formKid.get('id')? 'Nueva
+          Niño' : 'Actualizar Niño'}}</mat-label>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <form class="col col-12 form-person" [formGroup]="formKid" enctype="multipart/form-data"
+          (ngSubmit)="onSaveArchive()">
+          <input type="hidden" id="Id" name="id" class="form-control">
+
+
+          <div class="form-row">
+            <div class="form-group col-md-6 col-lg-6">
+              <mat-form-field appearance="standard">
+                <mat-label>Nombres</mat-label>
+                <input matInput type="text" formControlName="name" style="text-transform:uppercase" class="form-control"
+                  id="name" maxlength="20" placeholder="Nombres" name="name">
+                <mat-hint align="end">{{formKid.get('name').value.length}} / 20</mat-hint>
+                <mat-error *ngIf="formKid.get('name').errors && formKid.get('name').touched">Este capo es requerido
+                </mat-error>
+              </mat-form-field>
             </div>
-            <div class="form-row">
-              <div class="form-group col-md-6">
-                  <mat-form-field appearance="standard">
-                    <mat-label>Fecha de Nacimiento</mat-label>
-                    <input matInput type="date" 
-                           formControlName="dateBirth"
-                           class="form-control" 
-                           id="dateBirth" 
-                           maxlength="20" 
-                           placeholder="Fecha de Nacimiento" 
-                           name="dateBirth">
-                          <mat-hint align="end">{{formKid.get('dateBirth').value.length}} / 20</mat-hint>
-                          <mat-error *ngIf="formKid.get('dateBirth').errors && formKid.get('dateBirth').touched">Este capo es requerido</mat-error> 
-                   </mat-form-field>
-              </div>
-              <div class="form-group col-md-6">
-                <!--<label for="ci">Cédula</label>
+            <div class="form-group col-md-6">
+              <mat-form-field appearance="standard">
+                <mat-label>Apellidos</mat-label>
+                <input matInput type="text" formControlName="surname" style="text-transform:uppercase"
+                  class="form-control" id="surname" maxlength="20" placeholder="Apellidos" name="surname">
+                <mat-hint align="end">{{formKid.get('surname').value.length}} / 20</mat-hint>
+                <mat-error *ngIf="formKid.get('surname').errors && formKid.get('surname').touched">Este capo es
+                  requerido</mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <mat-form-field appearance="standard">
+                <mat-label>Fecha de Nacimiento</mat-label>
+                <input matInput type="date" formControlName="dateBirth" class="form-control" id="dateBirth"
+                  maxlength="20" placeholder="Fecha de Nacimiento" name="dateBirth">
+                <mat-hint align="end">{{formKid.get('dateBirth').value.length}} / 20</mat-hint>
+                <mat-error *ngIf="formKid.get('dateBirth').errors && formKid.get('dateBirth').touched">Este capo es
+                  requerido</mat-error>
+              </mat-form-field>
+            </div>
+            <div class="form-group col-md-6">
+              <!--<label for="ci">Cédula</label>
                 <input type="text" class="form-control" id="ci"
                   placeholder="Cédula" name="ci"> -->
 
-                  <mat-form-field appearance="standard">
-                    <mat-label>Cédula</mat-label>
-                    <input matInput type="text" 
-                           formControlName="ci"
-                           class="form-control" 
-                           id="ci" 
-                           maxlength="10" 
-                           placeholder="Cédula" 
-                           name="ci">
-                          <mat-hint align="end">{{formKid.get('ci').value.length}} / 10</mat-hint>
-                          <mat-error *ngIf="formKid.get('ci').errors && formKid.get('ci').touched">Este capo es requerido</mat-error> 
-                   </mat-form-field>
-              </div>
+              <mat-form-field appearance="standard">
+                <mat-label>Cédula</mat-label>
+                <input matInput type="text" formControlName="ci" class="form-control" id="ci" maxlength="10"
+                  placeholder="Cédula" name="ci">
+                <mat-hint align="end">{{formKid.get('ci').value.length}} / 10</mat-hint>
+                <mat-error *ngIf="formKid.get('ci').errors && formKid.get('ci').touched">Este capo es requerido
+                </mat-error>
+              </mat-form-field>
             </div>
-            <div class="form-group">
-                <mat-form-field appearance="standard">
-                  <mat-label>Direccion de domicilio</mat-label>
-                  <textarea matInput type="text" 
-                         formControlName="houseAddress"
-                         class="form-control" 
-                         id="houseAddress" 
-                         maxlength="70" 
-                         placeholder="1234 Main St" 
-                         name="houseAddress">
+          </div>
+          <div class="form-group">
+            <mat-form-field appearance="standard">
+              <mat-label>Direccion de domicilio</mat-label>
+              <textarea matInput type="text" formControlName="houseAddress" class="form-control" id="houseAddress"
+                maxlength="70" placeholder="1234 Main St" name="houseAddress">
                   </textarea>
-                        <mat-hint align="end">{{formKid.get('houseAddress').value.length}} / 70</mat-hint>
-                        <mat-error *ngIf="formKid.get('houseAddress').errors && formKid.get('houseAddress').touched">Este capo es requerido</mat-error> 
-                 </mat-form-field>
-            </div>
-            <div class="form-row">
-              <div class="form-group col-md-6">
-                  <mat-form-field appearance="standard">
-                    <mat-label>Nombres de la Madre</mat-label>
-                    <input matInput type="text" 
-                           formControlName="motherName"
-                           class="form-control" 
-                           style="text-transform:uppercase" 
-                           id="motherName" 
-                           maxlength="70" 
-                           placeholder="Nombres de la Madre" 
-                           name="motherName">
-                          <mat-hint align="end">{{formKid.get('motherName').value.length}} / 70</mat-hint>
-                          <mat-error *ngIf="formKid.get('motherName').errors && formKid.get('motherName').touched">Este capo es requerido</mat-error> 
-                   </mat-form-field>
+              <mat-hint align="end">{{formKid.get('houseAddress').value.length}} / 70</mat-hint>
+              <mat-error *ngIf="formKid.get('houseAddress').errors && formKid.get('houseAddress').touched">Este capo es
+                requerido</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <mat-form-field appearance="standard">
+                <mat-label>Nombres de la Madre</mat-label>
+                <input matInput type="text" formControlName="motherName" class="form-control"
+                  style="text-transform:uppercase" id="motherName" maxlength="70" placeholder="Nombres de la Madre"
+                  name="motherName">
+                <mat-hint align="end">{{formKid.get('motherName').value.length}} / 70</mat-hint>
+                <mat-error *ngIf="formKid.get('motherName').errors && formKid.get('motherName').touched">Este capo es
+                  requerido</mat-error>
+              </mat-form-field>
 
-              </div>
-              <div class="form-group col-md-6">
-                <!--<label for="fatherName">Nombres del Padre</label>
+            </div>
+            <div class="form-group col-md-6">
+              <!--<label for="fatherName">Nombres del Padre</label>
                 <input type="text" class="form-control"
                   id="fatherName" placeholder="Nombres Padre" 
                   name="fatherName" style="text-transform:uppercase" >-->
 
-                  <mat-form-field appearance="standard">
-                    <mat-label>Nombres del Padre</mat-label>
-                    <input matInput type="text" 
-                           formControlName="fatherName"
-                           class="form-control" 
-                           style="text-transform:uppercase" 
-                           id="fatherName" 
-                           maxlength="70" 
-                           placeholder="Nombres del Padre" 
-                           name="fatherName">
-                          <mat-hint align="end">{{formKid.get('fatherName').value.length}} / 70</mat-hint>
-                          <mat-error *ngIf="formKid.get('fatherName').errors && formKid.get('fatherName').touched">Este capo es requerido</mat-error> 
-                   </mat-form-field>
-              </div>
+              <mat-form-field appearance="standard">
+                <mat-label>Nombres del Padre</mat-label>
+                <input matInput type="text" formControlName="fatherName" class="form-control"
+                  style="text-transform:uppercase" id="fatherName" maxlength="70" placeholder="Nombres del Padre"
+                  name="fatherName">
+                <mat-hint align="end">{{formKid.get('fatherName').value.length}} / 70</mat-hint>
+                <mat-error *ngIf="formKid.get('fatherName').errors && formKid.get('fatherName').touched">Este capo es
+                  requerido</mat-error>
+              </mat-form-field>
             </div>
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                    <!--<label for="study">Está Estudiando?</label>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <!--<label for="study">Está Estudiando?</label>
                     <select id="study" class="form-control" name="study">
                         <option >Opciones</option>
                         <option value="1">Sí</option>
                         <option value="2">No</option>
                     </select>-->
 
-                      <mat-label>Está estudiando?</mat-label><br>
-                      <!--PROBARLE ESTA CPN LOS DATOS COPIADOS DE ARRIBA-->
-                      <mat-radio-group aria-label="Select an option"
-                                      [(value)]="selected" formControlName="study"
-                                      id="study"
-                                      required
-                                      name="study">
-                        <mat-radio-button value="1">Sí</mat-radio-button>
-                        <mat-radio-button value="2">No</mat-radio-button>
-                      </mat-radio-group>
-                      <!--FIN HASTA AQUI-->
-  
+              <mat-label>Está estudiando?</mat-label><br>
+              <!--PROBARLE ESTA CPN LOS DATOS COPIADOS DE ARRIBA-->
+              <mat-radio-group aria-label="Select an option" [(value)]="selected" formControlName="study" id="study"
+                required name="study">
+                <mat-radio-button value="1">Sí</mat-radio-button>
+                <mat-radio-button value="2">No</mat-radio-button>
+              </mat-radio-group>
+              <!--FIN HASTA AQUI-->
 
-                    
-                    
-                </div>
-                <div class="form-group col-md-6">
-                    <!--<label for="schoolName">Nombre de la Escuela</label>
+
+
+
+            </div>
+            <div class="form-group col-md-6">
+              <!--<label for="schoolName">Nombre de la Escuela</label>
                     <input type="text" class="form-control" id="schoolName" name="schoolName">-->
 
-                    <mat-form-field appearance="standard">
-                      <mat-label>Nombre de la Escuela</mat-label>
-                      <input matInput type="text" 
-                             formControlName="schoolName"
-                             class="form-control" 
-                             style="text-transform:uppercase" 
-                             id="schoolName" 
-                             maxlength="20" 
-                             placeholder="Nombre de la Escuela" 
-                             name="schoolName">
-                            <mat-hint align="end">{{formKid.get('schoolName').value.length}} / 20</mat-hint>
-                            <mat-error *ngIf="formKid.get('schoolName').errors && formKid.get('schoolName').touched">Este capo es requerido</mat-error> 
-                     </mat-form-field>
-                </div>
+              <mat-form-field appearance="standard">
+                <mat-label>Nombre de la Escuela</mat-label>
+                <input matInput type="text" formControlName="schoolName" class="form-control"
+                  style="text-transform:uppercase" id="schoolName" maxlength="20" placeholder="Nombre de la Escuela"
+                  name="schoolName">
+                <mat-hint align="end">{{formKid.get('schoolName').value.length}} / 20</mat-hint>
+                <mat-error *ngIf="formKid.get('schoolName').errors && formKid.get('schoolName').touched">Este capo es
+                  requerido</mat-error>
+              </mat-form-field>
             </div>
-            <!--<div class="form-row">
+          </div>
+          <!--<div class="form-row">
               <div class="form-group col-md-6">
                 <label for="dateBirth">Edad</label>
                 <input type="text" class="form-control"
@@ -269,39 +243,30 @@ html
               </div>
               {{ showAge }}
             </div>-->
-            <div class="form-row">
-              <div class="form-group col-md-6">
-                  <input accept="application/image/png,image/jpeg" 
-                          #foto 
-                          id="foto"
-                          class="form-control" 
-                          required id="foto" 
-                          formControlName="foto"
-                          multiple type="file" 
-                          name="foto"><!--(change)="seleccionarArchivo($event)"-->
-              </div>
-              <div class="form-group col-md-6">
-                <!--<label for="schoolName">Nombre de la Escuela</label>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <input accept="application/image/png,image/jpeg" #foto id="foto" class="form-control" required id="foto"
+                formControlName="foto" multiple type="file" name="foto">
+              <!--(change)="seleccionarArchivo($event)"-->
+            </div>
+            <div class="form-group col-md-6">
+              <!--<label for="schoolName">Nombre de la Escuela</label>
                 <input type="text" class="form-control" id="schoolName" name="schoolName">-->
 
-                <mat-form-field appearance="standard">
-                  <mat-label>Edad</mat-label>
-                  <input matInput type="number" 
-                         formControlName="age"
-                         class="form-control" 
-                         id="age" 
-                         maxlength="2" 
-                         placeholder="Edad del Niño" 
-                         name="age">
-                        <mat-error *ngIf="formKid.get('age').errors && formKid.get('age').touched">Este capo es requerido</mat-error> 
-                 </mat-form-field>
+              <mat-form-field appearance="standard">
+                <mat-label>Edad</mat-label>
+                <input matInput type="number" formControlName="age" class="form-control" id="age" maxlength="2"
+                  placeholder="Edad del Niño" name="age">
+                <mat-error *ngIf="formKid.get('age').errors && formKid.get('age').touched">Este capo es requerido
+                </mat-error>
+              </mat-form-field>
             </div>
           </div>
-  
-  
-  
-            <button type="submit" [disabled]="formKid.invalid" class="btn btn-primary">Guardar</button>
-          </form>
-        </div>
+
+
+
+          <button type="submit" [disabled]="formKid.invalid" class="btn btn-primary">Guardar</button>
+        </form>
       </div>
     </div>
+  </div>

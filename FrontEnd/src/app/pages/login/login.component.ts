@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   serverErrors = [];
 
-  constructor(private auth: AuthService, private router: Router) { }
+  constructor(private auth: AuthService, private router: Router, private storage: StorageService) { }
 
   ngOnInit() {
     this.loginForm = new FormGroup({
@@ -26,61 +26,49 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  get email(){ return this.loginForm.get('email'); }
-  get password(){ return this.loginForm.get('password'); }
+//   get email(){ return this.loginForm.get('email'); }
+//   get password(){ return this.loginForm.get('password'); }
 
-  login(){
-    console.log(this.loginForm, "si llega ");
-    this.auth.logIn(this.loginForm).subscribe(
-      (response) => { 
-        console.log(response.token, "si llega ");
-        //localStorage.removeItem('token');
-        localStorage.setItem('token', response.token);
-        this.router.navigate(['/ninosAdmin']);
-      },
-      (error) => { 
-        localStorage.removeItem('token');
-        this.serverErrors = error.error;
-        console.log(this.serverErrors);
-      }
-    );
-  }
+//   login(){
+//     console.log(this.loginForm, "si llega ");
+//     this.auth.logIn(this.loginForm).subscribe(
+//       (response) => { 
+//         console.log(response.token, "si llega ");
+//         //localStorage.removeItem('token');
+//         localStorage.setItem('token', response.token);
+//         this.router.navigate(['/ninosAdmin']);
+//       },
+//       (error) => { 
+//         localStorage.removeItem('token');
+//         this.serverErrors = error.error;
+//         console.log(this.serverErrors);
+//       }
+//     );
+//   }
 
 
-/** public submitted: Boolean = false;
+ public submitted: Boolean = false;
   public error: {code: number, message: string} = null;
-  loginForm: FormGroup;
-  constructor(
-              private formBuilder: FormBuilder,
-              public _authServices: AuthService,
-              private storageService: StorageService,
-              private router: Router
-             ) { 
-              this.buildFormArchive();
-             }
+//   loginForm: FormGroup;
+//   constructor(
+//               private formBuilder: FormBuilder,
+//               public _authServices: AuthService,
+//               private storageService: StorageService,
+//               private router: Router
+//              ) { 
+//               this.buildFormArchive();
+//              }
 
-  ngOnInit(): void {
-  }
-
-  buildFormArchive(){
-    this.loginForm=this.formBuilder.group({
-      //id:[null],//valor por defecto, 
-      email:['',[Validators.required]],
-      password:['',[Validators.required, Validators.maxLength(20)]],//pipe para fechas??
-      //foto:[null],//si es una validacicion tener un Validators
-
-
-    });
-  }
 
   public submitLogin(): void {
     
     this.submitted = true;
     this.error = null;
     if(this.loginForm){
-      console.log("si llega");
-      console.log(this.loginForm)
-      this._authServices.login(new LoginObject(this.loginForm.value)).subscribe(
+      // console.log("si llega");
+      // console.log(this.loginForm)
+      //     this.auth.logIn(this.loginForm).subscribe(
+      this.auth.logIn(this.loginForm).subscribe(
         data => this.correctLogin(data),
         error => {
           this.error = error;
@@ -90,8 +78,8 @@ export class LoginComponent implements OnInit {
   }
 
   private correctLogin(data: Session){
-    this.storageService.setCurrentSession(data);
+    this.storage.setCurrentSession(data);
     this.router.navigate(['/ninosAdmin']);
-  }*/
+  }
   
 }

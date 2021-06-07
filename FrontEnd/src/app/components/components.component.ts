@@ -56,28 +56,6 @@ export class ComponentsComponent implements OnInit {
         }
     ];
 
-    voluntarios = [
-        {
-            "nombre": "Marcos",
-            "apellido": "Perez",
-            "imagen": "./assets/img/faces/clem-onojeghuo-3.jpg",
-            "cargo": "por definir"
-        },
-        {
-            "nombre": "Viviana",
-            "apellido": "Reyes",
-            "imagen": "./assets/img/faces/joe-gardner-2.jpg",
-            "cargo": "por definir"
-        },
-        {
-            "nombre": "Patricio",
-            "apellido": "Caicedo",
-            "imagen": "./assets/img/faces/erik-lucatero-2.jpg",
-            "cargo": "por definir"
-        },
-
-    ]
-
     imageObject = [
         {
             image: './assets/img/carrusel1.jpeg',
@@ -127,7 +105,6 @@ export class ComponentsComponent implements OnInit {
         this._opened = !this._opened;
     }
     constructor(private renderer: Renderer2, private primengConfig: PrimeNGConfig) {
-        localStorage.setItem('logeado', "si");
     }
     isWeekend(date: NgbDateStruct) {
         const d = new Date(date.year, date.month - 1, date.day);
@@ -153,7 +130,6 @@ export class ComponentsComponent implements OnInit {
                 input_group[i].classList.remove('input-group-focus');
             });
         }
-        console.log("voluntarios: ", this.voluntarios)
     }
 
 }
