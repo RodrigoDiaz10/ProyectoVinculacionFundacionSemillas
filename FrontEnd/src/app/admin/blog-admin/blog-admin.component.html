@@ -20,15 +20,15 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let blog of datosArreglados;  let id=index">
-                <th scope="row">hkjhjk</th>
-                <td>kmgjhj</td> 
-                <td>kjhkk</td> 
+              <tr *ngFor="let bl of blogs;  index as i">
+                <th scope="row">{{i+1}}</th>
+                <td>{{bl.title}}</td> 
+                <td>{{bl.description}}</td> 
                 <td>
                   <button  type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#modalBlog">
                     <i class="far fa-edit"></i>
                   </button>
-                </td>
+                </td> 
                 <td>
                   <button type="button"   class="btn btn-outline-danger" data-toggle="modal" data-target="#modalDelete">
                     <i class="far fa-trash-alt"></i>
@@ -72,7 +72,7 @@
       <div class="modal-body">
 
           <form class="col col-lg-6 form-blog" [formGroup]="formBlog" class="col col-lg-6" enctype="multipart/form-data" (ngSubmit)="onSaveArchive()" enctype="multipart/form-data">
-            <!--<input type="hidden" id="Id" name="id" class="form-control" [(ngModel)]="this.blogsService.selectedBlog.id">-->
+            <input type="hidden" id="Id" name="id" class="form-control" [(ngModel)]="this.blogsService.selectedBlog.id"><!---->
               <div class="form-row">
                   <div class="form-group col-md-6">
                     <mat-form-field appearance="standard">
@@ -108,7 +108,7 @@
               </div>
                                   
               <div class="form-row">
-                  <div class="form-group col-md-4">
+                  <div class="form-group col-md-12">
                       <input accept="application/image/png,image/jpeg" 
                               #foto 
                               id="foto"
