@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { ClubService } from './../../services/club.service';
+import { ToastrService } from 'ngx-toastr';
+// @ViewChild('closebutton') closebutton;
 
 @Component({
   selector: 'app-voluntarios-admin',
@@ -8,69 +11,176 @@ import { ClubService } from './../../services/club.service';
   styleUrls: ['./voluntarios-admin.component.scss']
 })
 export class VoluntariosAdminComponent implements OnInit {
+  modifClub: FormGroup;
+  registerClub: FormGroup;
+  clubs: any;
+  clubseleccionado: any;
+  displayResponsiveCrear: boolean;
+  displayResponsiveModificar: boolean;
+  idEliminar: number;
+  // eventos: any;
+  submitted = false;
 
-  formKid: FormGroup;
-  selected = '';
+  constructor(private formBuilder: FormBuilder, private router: Router, private restService: ClubService, private toastr: ToastrService) {
+    this.modifClub = this.formBuilder.group({
 
-  constructor(
-    private formBuilder: FormBuilder,
-    public _kidServices: ClubService
-  ) {
-    this.buildFormArchive();
-    this.formKid.patchValue(this._kidServices.selectedField);
+      name: ["", Validators.required],
+      surname: ["", Validators.required],
+      ci: ["", Validators.required],
+      description: ["", Validators.required],
+      address: ["", Validators.required],
+      //event: ["", Validators.required],
+    });
+    this.registerClub = this.formBuilder.group({
+      name: ["", Validators.required],
+      surname: ["", Validators.required],
+      ci: ["", Validators.required],
+      description: ["", Validators.required],
+      address: ["", Validators.required],
+      //event: ["", Validators.required],
+    });
   }
 
   ngOnInit(): void {
+    this.getClubs();
+    //this.getEventos();
   }
-  // resetForm(clubForm?: NgForm): void {
-  //   this.ClubService.selectedClub = {
-  //     id: null,
-  //     name: '',
-  //     surname: '',
-  //     ci: '',
-  //     description: '',
-  //     address: '',
-  //     availability: '',
-  //     foto: '',
-  //   };
+  // seteo de objeto enviar
+  crearClub() {
+    this.displayResponsiveCrear = false;
+    this.submitted = true;
+
+    if (this.registerClub.invalid) {
+      console.log("modificado: exitosamente");
+      return;
+    }
+
+    //Objeto json que se envia al back
+    let objetoCrear = {
+      "volunteers": {
+        "name": this.registerClub.value.name,
+        "surname": this.registerClub.value.surname,
+        "CI": this.registerClub.value.ci,
+        "description": this.registerClub.value.description,
+        "address": this.registerClub.value.address,
+        "availability": null,
+        "image": null,
+        "state": null
+      }
+      // "events": {
+      //   "id": this.registerClub.value.event
+      // }
+    }
+    console.log("valores crear: ", objetoCrear)
+    this.restService.add(objetoCrear, "/volunteer").subscribe(
+      res => {
+        this.toastr.success('Club creado Exitosamente');
+        console.log("creado exitosamente", res)
+        this.resetForm();
+        this.getClubs();
+      },
+      err => {
+        console.log("error crear", err)
+      }
+    );
+  }
+  // Obtengo todos los clubs 
+  getClubs() {
+    this.restService.get("/volunteer").subscribe((data) => {
+      this.clubs = data;
+      console.log("clubs: ", this.clubs);
+    });
+  }
+  mensaje() {
+    console.log("exitosamente",);
+  }
+
+  // Seteo del objeto modificar 
+  modificarClub() {
+    this.displayResponsiveModificar = false;
+    this.submitted = true;
+    // console.log("hola");
+    if (this.modifClub.invalid) {
+      return;
+    }
+    //Objeto json que se envia al back
+    let objetoModificar = {
+      "volunteers": {
+        "name": this.modifClub.value.name,
+        "surname": this.modifClub.value.surname,
+        "CI": this.modifClub.value.ci,
+        "description": this.modifClub.value.description,
+        "address": this.modifClub.value.address,
+        "availability": null,
+        "image": null,
+        "state": null
+      }
+      // "events": {
+      //   "id": this.modifClub.value.event
+      // }
+    }
+    // console.log("objetoModificar: ", objetoModificar)
+    this.restService.updateData(objetoModificar, "/volunteer/" + this.clubseleccionado.id).subscribe(
+      res => {
+        this.toastr.success('Club modificado Exitosamente');
+        console.log("modificado: exitosamente", res);
+        this.getClubs();
+      },
+      err => {
+        console.log("error: modificar", err)
+      }
+    );
+  }
+
+  // Obtener club por Id
+  getClub(id: number) {
+    this.modalModificar();
+    this.restService.get("/volunteer/" + id).subscribe((data) => {
+      this.clubseleccionado = data;
+      console.log("club seleccionado: ", this.clubseleccionado);
+    });
+  }
+
+  getIdEliminar(id) {
+    this.idEliminar = id;
+    console.log("this.idEliminar = id: ", this.idEliminar = id)
+  }
+
+  // Servicio para eliminar objeto
+  deleteClub(id) {
+    console.log("id a eliminar:")
+    this.restService.delete("/volunteer/" + id).subscribe(
+      res => {
+        this.toastr.success('Eliminado Exitosamente');
+
+        console.log("eliminado: exitosamente", res);
+        this.getClubs();
+      },
+      err => {
+        console.log("error: eliminar", err)
+      }
+    );
+  }
+
+  //Obtengo todos los eventos
+  // getEventos() {
+  //   this.restService.get("/event").subscribe((data) => {
+  //     this.eventos = data;
+  //     console.log("eventos: ", this.eventos);
+  //   });
   // }
 
 
-  buildFormArchive() {
-    this.formKid = this.formBuilder.group({
-      id: [null],//valor por defecto, 
-      name: ['', [Validators.required, Validators.maxLength(20)]],
-      surname: ['', [Validators.required, Validators.maxLength(20)]],
-      ci: ['', [Validators.required, Validators.maxLength(10)]],
-      description: ['', [Validators.required, Validators.maxLength(200)]],
-      address: ['', [Validators.required, Validators.maxLength(100)]],
-      availability: ['', [Validators.required, Validators.maxLength(100)]],
-      foto: [null]
-
-    });
-    this.formKid.get('foto').valueChanges.subscribe((value) => {
-      if (value !== null && value !== '') {
-        this.imgToBase64((document.querySelector('input[type="file"]') as HTMLInputElement).files[0])
-      }
-      console.log(this.formKid.get('foto').value);
-    })
+  //Despliege de Modales
+  modalModificar() {
+    this.displayResponsiveModificar = true;
   }
 
-  private imgToBase64(file: any) {
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = this.toBase64.bind(this);
-      reader.readAsBinaryString(file);
-    }
-  }
-  toBase64(e) {
-    console.log('data:image/png;base64,' + btoa(e.target.result));
+  modalCrear() {
+    this.displayResponsiveCrear = true;
   }
 
-  onSaveArchive(): void {
-    console.log(this.formKid.value);
-    this.formKid.markAllAsTouched()
-
+  resetForm() {
+    this.registerClub.reset();
   }
-
 }

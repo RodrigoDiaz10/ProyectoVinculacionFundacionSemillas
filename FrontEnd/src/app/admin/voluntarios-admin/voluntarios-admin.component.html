@@ -1,13 +1,16 @@
 <br>
-
-<div class="card" style="padding-top: 5%;">
+<br>
+<br>
+<br>
+<br>
+<br>
+<div class="card">
   <div class="card-body">
-    <h3 class="card-title" style="text-align: center;">Tabla Administrativa Club de Amigos</h3>
-    <button type="button" class="btn btn-outline-primary col-md-4 offset-md-4" data-toggle="modal"
-      data-target="#modalBlog">Agregar nuevo</button>
+    <h3 class="card-title" style="text-align: center;">Administrador de Club de Amigos</h3>
+    <button type="button" class="btn btn-outline-primary col-md-4 offset-md-4" (click)="modalCrear()">Agregar nuevo
+      Club</button>
     <br><br>
     <table class="table">
-
       <thead class="thead-dark">
         <tr>
           <th scope="col">#</th>
@@ -17,36 +20,31 @@
           <th scope="col">Descripción</th>
           <th scope="col">Dirección</th>
           <th scope="col">Imagen</th>
-          <th scope="col">Editar</th>
-          <th scope="col">Eliminar</th>
+          <th scope="col">Opciones</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let club of datosArreglados;  let id=index">
-          <th scope="row">kjkjk</th>
-          <td>jhjhjhj</td>
-          <td>nbvjgv jm</td>
+        <tr *ngFor="let alb of clubs; index as i">
+          <th scope="row">{{i+1}}</th>
+          <td>{{alb.name}}</td>
+          <td>{{alb.surname}}</td>
+          <td>{{alb.ci}}</td>
+          <td>{{alb.description}}</td>
+          <td>{{alb.address}}</td>
           <td>
-            <button type="button" (click)="onPreUpdateClub(club)" class="btn btn-outline-primary" data-toggle="modal"
-              data-target="#modalBlog">
-              <i class="far fa-edit"></i>
-            </button>
-          </td>
-          <td>
-            <button (click)="borrar(club.id)" type="button" class="btn btn-outline-danger" data-toggle="modal"
-              data-target="#delete">
-              <i class="far fa-trash-alt"></i>
-            </button>
+            <button type="button" class="btn btn-outline-primary" (click)="getClub(alb.id)">Editar</button>
+            <button type="button" class="btn btn-outline-danger" (click)="getIdEliminar(alb.id)" data-toggle="modal"
+              data-target="#modalDelete"><i class="far fa-trash-alt">Eliminar</i></button>
           </td>
         </tr>
-
       </tbody>
     </table>
 
+    <!-- Paginador -->
     <nav aria-label="..." class="row justify-content-md-center">
       <ul class="pagination">
         <li class="page-item disabled">
-          <a class="page-link" href="#" tabindex="-1">Previous</a>
+          <a class="page-link" href="#" tabindex="-1">Anterior</a>
         </li>
         <li class="page-item"><a class="page-link" href="#">1</a></li>
         <li class="page-item active">
@@ -54,133 +52,163 @@
         </li>
         <li class="page-item"><a class="page-link" href="#">3</a></li>
         <li class="page-item">
-          <a class="page-link" href="#">Next</a>
+          <a class="page-link" href="#">Siguiente</a>
         </li>
       </ul>
     </nav>
   </div>
 </div>
 
-<!-- Modal -->
-<div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+
+
+<!-- Modal Editar -->
+<p-dialog header="Modificar Club" [(visible)]="displayResponsiveModificar" [breakpoints]="{'960px': '75vw'}"
+  [style]="{width: '50vw'}" [baseZIndex]="10000" [draggable]="false" [resizable]="false" [modal]="true"
+  *ngIf="clubseleccionado">
+  <form [formGroup]="modifClub" (ngSubmit)="modificarClub()">
+    <div class="form-group">
+      <label for="name">Nombres</label>
+      <input type="text" [(ngModel)]="clubseleccionado.name" formControlName="name" class="form-control"
+        [ngClass]="{ 'is-invalid': submitted &amp;&amp; modifClub.controls.name.errors }" />
+      <div *ngIf="submitted &amp;&amp; modifClub.controls.name.errors" class="text-danger">
+        <div *ngIf="modifClub.controls.name.errors.required">Nombres son requerido</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="surname">Apellidos</label>
+      <input type="text" [(ngModel)]="clubseleccionado.surname" formControlName="surname" class="form-control"
+        [ngClass]="{ 'is-invalid': submitted &amp;&amp; modifClub.controls.surname.errors }" />
+      <div *ngIf="submitted &amp;&amp; modifClub.controls.surname.errors" class="text-danger">
+        <div *ngIf="modifClub.controls.surname.errors.required">Apillidos son requerido</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="ci">Cédula</label>
+      <input type="text" [(ngModel)]="clubseleccionado.ci" formControlName="ci" class="form-control"
+        [ngClass]="{ 'is-invalid': submitted &amp;&amp; modifClub.controls.ci.errors }" />
+      <div *ngIf="submitted &amp;&amp; modifClub.controls.ci.errors" class="text-danger">
+        <div *ngIf="modifClub.controls.ci.errors.required">Cédula requerida
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="description">Descripción</label>
+      <input type="text" [(ngModel)]="clubseleccionado.description" formControlName="description" class="form-control"
+        [ngClass]="{ 'is-invalid': submitted &amp;&amp; modifClub.controls.description.errors }" />
+      <div *ngIf="submitted &amp;&amp; modifClub.controls.description.errors" class="text-danger">
+        <div *ngIf="modifClub.controls.description.errors.required">La Descripción es requerida
+        </div>
+      </div>
+    </div>
+
+    <!-- <div class="form-group">
+      <label for="event">Evento</label>
+      <select formControlName="event" class="form-control" [(ngModel)]="clubseleccionado.events_id">
+        <option *ngFor="let v of eventos" value="{{v.id}}">{{v.name}}</option>
+      </select>
+    </div> -->
+    <div class="form-group">
+      <label for="address">Dirección</label>
+      <input type="text" [(ngModel)]="clubseleccionado.address" formControlName="address" class="form-control"
+        [ngClass]="{ 'is-invalid': submitted &amp;&amp; modifClub.controls.address.errors }" />
+      <div *ngIf="submitted &amp;&amp; modifClub.controls.address.errors" class="text-danger">
+        <div *ngIf="modifClub.controls.address.errors.required">La Descripción es requerida
+        </div>
+      </div>
+    </div>
+  </form>
+  <ng-template pTemplate="footer">
+    <div class="centro">
+      <button class="btn btn-primary" (click)="modificarClub()">Modificar</button>
+    </div>
+  </ng-template>
+</p-dialog>
+
+
+<!-- Modal Eliminar-->
+<div class="modal fade" id="modalDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
   aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <!--<h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>-->
+        <h5 class="modal-title" id="exampleModalLongTitle">Alerta</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        Desea descartar este campo?
+        ¿Desea Borrar el Club?
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
-        <button type="button" (click)="acceptD()" class="btn btn-danger" data-dismiss="modal">Borrar</button>
+        <!-- <button type="button" (click)="deleteClub(idEliminar)" data-dismiss="modal" class="btn btn-danger">
+                    <h2>Si</h2>
+                </button>
+                <button type="button" data-dismiss="modal" class="btn btn-primary">
+                    <h2>No</h2>
+                </button> -->
+        <button type="button" class="btn btn-danger" (click)="deleteClub(idEliminar)" data-dismiss="modal">Sí</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal">No</button>
       </div>
     </div>
   </div>
 </div>
-
-
-<!-- Modal -->
-
-<div id="modalBlog" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <mat-label *ngIf="formKid.get('id')" style="font-size: medium;font-weight: bold;">
-          {{formKid.get('id')? 'Club de Amigos' : 'Actualizar Club'}}</mat-label>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form class="col col-12 form-person" [formGroup]="formKid" enctype="multipart/form-data"
-          (ngSubmit)="onSaveArchive()">
-          <input type="hidden" id="Id" name="id" class="form-control">
-          <div class="form-row">
-            <div class="form-group col-md-6 col-lg-6">
-              <mat-form-field appearance="standard">
-                <mat-label>Nombres</mat-label>
-                <input matInput type="text" formControlName="name" style="text-transform:uppercase" class="form-control"
-                  id="name" maxlength="20" placeholder="Nombres" name="name">
-                <mat-hint align="end">{{formKid.get('name').value.length}} / 20</mat-hint>
-                <mat-error *ngIf="formKid.get('name').errors && formKid.get('name').touched">Este capo es requerido
-                </mat-error>
-              </mat-form-field>
-            </div>
-            <div class="form-group col-md-6">
-              <mat-form-field appearance="standard">
-                <mat-label>Apellidos</mat-label>
-                <input matInput type="text" formControlName="surname" style="text-transform:uppercase"
-                  class="form-control" id="surname" maxlength="20" placeholder="Apellidos" name="surname">
-                <mat-hint align="end">{{formKid.get('surname').value.length}} / 20</mat-hint>
-                <mat-error *ngIf="formKid.get('surname').errors && formKid.get('surname').touched">Este capo es
-                  requerido</mat-error>
-              </mat-form-field>
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="form-group col-md-6">
-              <mat-form-field appearance="standard">
-                <mat-label>Cédula</mat-label>
-                <input matInput type="namber" formControlName="ci" class="form-control" id="ci" maxlength="10"
-                  placeholder="Cédula" name="ci">
-                <mat-hint align="end">{{formKid.get('ci').value.length}} / 10</mat-hint>
-                <mat-error *ngIf="formKid.get('ci').errors && formKid.get('ci').touched">Este capo es requerido
-                </mat-error>
-              </mat-form-field>
-            </div>
-            <div class="form-group col-md-6">
-              <mat-form-field appearance="standard">
-                <mat-label>Dirección</mat-label>
-                <input matInput type="text" formControlName="address" style="text-transform:uppercase"
-                  class="form-control" id="address" maxlength="50" placeholder="Apellidos" name="address">
-                <mat-hint align="end">{{formKid.get('address').value.length}} / 50</mat-hint>
-                <mat-error *ngIf="formKid.get('address').errors && formKid.get('address').touched">Este capo es
-                  requerido</mat-error>
-              </mat-form-field>
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="form-group col-md-6">
-              <mat-form-field appearance="standard">
-                <mat-label>Descripción </mat-label>
-                <textarea matInput type="text" formControlName="description" rows="5" class="form-control"
-                  id="description" maxlength="200" placeholder="Descripción" name="description">
-                  </textarea>
-                <mat-hint align="end">{{formKid.get('description').value.length}} / 200</mat-hint>
-                <mat-error *ngIf="formKid.get('description').errors && formKid.get('description').touched">Este capo es
-                  requerido</mat-error>
-              </mat-form-field>
-            </div>
-            <div class="form-group col-md-6 col-lg-6">
-              <mat-form-field appearance="standard">
-                <mat-label>Disponibilidad </mat-label>
-                <textarea matInput type="text" formControlName="availability" rows="5" class="form-control"
-                  id="availability" maxlength="70" placeholder="Disponibilidad" name="availability">
-                  </textarea>
-                <mat-hint align="end">{{formKid.get('availability').value.length}} / 70</mat-hint>
-                <mat-error *ngIf="formKid.get('availability').errors && formKid.get('availability').touched">Este capo
-                  es
-                  requerido</mat-error>
-              </mat-form-field>
-            </div>
-          </div>
-          <div class="form-row">
-          </div>
-          <div class="form-row">
-            <div class="form-group col-md-4">
-              <input accept="application/image/png,image/jpeg" #foto id="foto" class="form-control" required id="foto"
-                formControlName="foto" multiple type="file" name="foto">
-              <!-- (change)="seleccionarArchivo($event)" -->
-            </div>
-          </div>
-          <button type="submit" [disabled]="formKid.invalid" class="btn btn-primary">Guardar</button>
-        </form>
+<!-- Modal Crear Club -->
+<p-dialog header="Crear Club de Amigos" [(visible)]="displayResponsiveCrear" [breakpoints]="{'960px': '75vw'}"
+  [style]="{width: '50vw'}" [baseZIndex]="10000" [draggable]="false" [resizable]="false" [modal]="true">
+  <form [formGroup]="registerClub">
+    <div class="form-group">
+      <label for="name">Nombres</label>
+      <input type="text" formControlName="name" class="form-control"
+        [ngClass]="{ 'is-invalid': submitted &amp;&amp; registerClub.controls.name.errors }" />
+      <div *ngIf="submitted &amp;&amp; registerClub.controls.name.errors" class="text-danger">
+        <div *ngIf="registerClub.controls.name.errors.required">Nombre es requerido</div>
       </div>
     </div>
-  </div>
+    <div class="form-group">
+      <label for="surname">Apellidos</label>
+      <input type="text" formControlName="surname" class="form-control"
+        [ngClass]="{ 'is-invalid': submitted &amp;&amp; registerClub.controls.surname.errors }" />
+      <div *ngIf="submitted &amp;&amp; registerClub.controls.surname.errors" class="text-danger">
+        <div *ngIf="registerClub.controls.surname.errors.required">Apellido es requerido</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="CI">Cédula</label>
+      <input type="text" formControlName="ci" class="form-control"
+        [ngClass]="{ 'is-invalid': submitted &amp;&amp; registerClub.controls.ci.errors }" />
+      <div *ngIf="submitted &amp;&amp; registerClub.controls.ci.errors" class="text-danger">
+        <div *ngIf="registerClub.controls.ci.errors.required">Cédula es requerido</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="description">Descripción</label>
+      <input type="text" formControlName="description" class="form-control"
+        [ngClass]="{ 'is-invalid': submitted &amp;&amp; registerClub.controls.description.errors }" />
+      <div *ngIf="submitted &amp;&amp; registerClub.controls.description.errors" class="text-danger">
+        <div *ngIf="registerClub.controls.description.errors.required">La Descripción es requerida
+        </div>
+      </div>
+    </div>
+
+    <!-- <div class="form-group">
+      <label for="event">Evento</label>
+      <select formControlName="event" class="form-control">
+        <option *ngFor="let v of eventos" value="{{v.id}}">{{v.name}}</option>
+      </select>
+    </div> -->
+
+    <div class="form-group">
+      <label for="description">Dirección</label>
+      <input type="address" formControlName="address" class="form-control"
+        [ngClass]="{ 'is-invalid': submitted &amp;&amp; registerClub.controls.address.errors }" />
+      <div *ngIf="submitted &amp;&amp; registerClub.controls.address.errors" class="text-danger">
+        <div *ngIf="registerClub.controls.address.errors.required">La dirección es requerido</div>
+      </div>
+    </div>
+    <div class="centro">
+      <button class="btn btn-primary" (click)="crearClub()">Crear</button>
+
+    </div>
+
+  </form>
+</p-dialog>

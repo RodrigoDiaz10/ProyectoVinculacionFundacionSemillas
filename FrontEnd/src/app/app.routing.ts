@@ -30,9 +30,10 @@ const routes: Routes = [
   { path: 'clubAmigos', component: VoluntariosComponent },
   { path: 'albumAdmin', component: AlbumnesAdminComponent },
   { path: 'blogAdmin', component: BlogAdminComponent },
-  { path: 'ninosAdmin', component: NinosAdminComponent, canActivate: [AuthGuard]  },
+  { path: 'ninosAdmin', component: NinosAdminComponent, canActivate: [AuthGuard] },
   { path: 'patrocinadoresAdmin', component: PatrocinadoresAdminComponent },
   { path: 'clubAdmin', component: VoluntariosAdminComponent },
+
 
 ];
 
