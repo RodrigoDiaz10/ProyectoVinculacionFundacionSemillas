@@ -1,5 +1,5 @@
 export interface Sponsor{
     id?: number;
-    nombre?: string;
-    foto?: string;
+    name?: string; 
+    image?: string;
 }

@@ -25,13 +25,15 @@ export class BlogAdminComponent implements OnInit {
       id:[null],//valor por defecto, 
       title:['',[Validators.required, Validators.maxLength(20)]],
       description:['',[Validators.required, Validators.maxLength(80)]],
-      foto:[null]//si es una validacicion tener un Validators
+      image:[null],//si es una validacicion tener un Validators
+      link:[null]
     });
     this.registerBlog = this.formBuilder.group({
       id:[null],//valor por defecto, 
       title:['',[Validators.required, Validators.maxLength(20)]],
       description:['',[Validators.required, Validators.maxLength(80)]],
-      foto:[null]//si es una validacicion tener un Validators
+      image:[null],//si es una validacicion tener un Validators
+      link:[null]
     });
   }
 
@@ -51,13 +53,14 @@ export class BlogAdminComponent implements OnInit {
       "blogs": {
         "title": this.registerBlog.value.title,
         "description": this.registerBlog.value.description,
-        "foto": this.registerBlog.value.foto
+        "image": this.registerBlog.value.image,
+        "link": this.registerBlog.value.link
       }/*,
       "events": {
         "id": this.registerBlog.value.event
       }*/
     }
-    // console.log("valores crear: ", objetoCrear)
+    console.log("valores crear: ", objetoCrear)
     this._blogServices.add(objetoCrear, "/blog").subscribe(
       res => {
         this.toastr.success('Blog creado Exitosamente');
@@ -93,7 +96,8 @@ export class BlogAdminComponent implements OnInit {
       "blogs": {
         "title": this.modifBlog.value.title,
         "description": this.modifBlog.value.description,
-        "foto": this.modifBlog.value.foto
+        "image": this.modifBlog.value.image,
+        "link": this.registerBlog.value.link
       }/*,
       "events": {
         "id": this.modifBlog.value.event

@@ -23,13 +23,15 @@ export class PatrocinadoresAdminComponent implements OnInit {
   constructor(private formBuilder: FormBuilder, private router: Router, private restService: SponsorService, private toastr: ToastrService) {
     this.modifSponsor = this.formBuilder.group({
       id:[null],//valor por defecto, 
-      nombre:['',[Validators.required, Validators.maxLength(20)]],
-      foto:[null]//si es una validacicion tener un Validators
+      name:['',[Validators.required, Validators.maxLength(20)]],
+      image:[null],//si es una validacicion tener un Validators
+      description:[null]
     });
     this.registerSponsor = this.formBuilder.group({
       id:[null],//valor por defecto, 
-      nombre:['',[Validators.required, Validators.maxLength(20)]],
-      foto:[null]//si es una validacicion tener un Validators
+      name:['',[Validators.required, Validators.maxLength(20)]],
+      image:[null],//si es una validacicion tener un Validators
+      description:[null]
     });
   }
 
@@ -37,7 +39,7 @@ export class PatrocinadoresAdminComponent implements OnInit {
     this.getSponsors();
   }
 // seteo de objeto enviar
-  crearAlbum() {
+crearSponsor() {
     this.displayResponsiveCrear = false;
     this.submitted = true;
     if (this.registerSponsor.invalid) {
@@ -47,12 +49,13 @@ export class PatrocinadoresAdminComponent implements OnInit {
     let objetoCrear = {
       "sponsors": {
         "id": this.registerSponsor.value.id,
-        "nombre": this.registerSponsor.value.nombre,
-        "foto": this.registerSponsor.value.foto
+        "name": this.registerSponsor.value.name,
+        "image": this.registerSponsor.value.image,
+        "description": this.registerSponsor.value.description
       }
     }
-    // console.log("valores crear: ", objetoCrear)
-    this.restService.add(objetoCrear, "/album").subscribe(
+     console.log("valores crear: ", objetoCrear)
+    this.restService.add(objetoCrear, "/sponsor").subscribe(
       res => {
         this.toastr.success('Album creado Exitosamente');
         console.log("creado exitosamente", res)
@@ -69,7 +72,7 @@ export class PatrocinadoresAdminComponent implements OnInit {
 
   // Obtengo todos los albumnes
   getSponsors() {
-    this.restService.get("/album").subscribe((data) => {
+    this.restService.get("/sponsor").subscribe((data) => {
       this.sponsors = data;
       console.log("albumnes: ", this.sponsors);
     });
@@ -86,12 +89,13 @@ export class PatrocinadoresAdminComponent implements OnInit {
     let objetoModificar = {
       "sponsors": {
         "id": this.modifSponsor.value.id,
-        "nombre": this.modifSponsor.value.nombre,
-        "foto": this.modifSponsor.value.foto
+        "name": this.modifSponsor.value.name,
+        "image": this.modifSponsor.value.image,
+        "description": this.registerSponsor.value.description
       }
     }
     // console.log("objetoModificar: ", objetoModificar)
-    this.restService.updateData(objetoModificar, "/album/" + this.sponsorseleccionado.id).subscribe(
+    this.restService.updateData(objetoModificar, "/sponsor/" + this.sponsorseleccionado.id).subscribe(
       res => {
         this.toastr.success('Álbum modificado Exitosamente');
         console.log("modificado: exitosamente", res);
@@ -106,7 +110,7 @@ export class PatrocinadoresAdminComponent implements OnInit {
   // Obtener album por Id
   getAlbum(id: number) {
     this.modalModificar();
-    this.restService.get("/album/" + id).subscribe((data) => {
+    this.restService.get("/sponsor/" + id).subscribe((data) => {
       this.sponsorseleccionado = data;
       console.log("album seleccionado: ", this.sponsorseleccionado);
     });
@@ -120,7 +124,7 @@ export class PatrocinadoresAdminComponent implements OnInit {
   // Servicio para eliminar objeto
   deleteAlbum(id) {
     console.log("id a eliminar:")
-    this.restService.delete("/album/" + id).subscribe(
+    this.restService.delete("/sponsor/" + id).subscribe(
       res => {
         this.toastr.success('Eliminado Exitosamente');
 

@@ -17,11 +17,9 @@ class BlogController extends Controller
      */
     public function index()
     {
-        return response()->json([
-            'error'=>false,
-            'blogs'=>blogs::all()
-        ],200 );
-        }
+        return response()->json( blogs::all()
+    );
+}
 
     /**
      * Show the form for creating a new resource.
@@ -84,11 +82,9 @@ class BlogController extends Controller
     public function show($id)
     {
         $blogs = Blogs::findOrFail($id);
-        return response()->json([
-            'data' => [
-                'Message'=>'Encontrado'
-            ]
-        ], 201);  
+        return response()->json(
+              $blogs
+       );    
     }
 
     /**

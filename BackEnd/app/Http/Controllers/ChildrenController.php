@@ -52,7 +52,7 @@ class ChildrenController extends Controller
         $children->study =  $dataPerson['study'];
         $children->houseAddress =  $dataPerson['houseAddress'];
         $children->schoolName = $dataPerson['schoolName'];
-        $children->Image =  $dataPerson['image'];
+        $children->image =  $dataPerson['image'];
         $children->save();
 
         return response()->json([
@@ -88,7 +88,7 @@ class ChildrenController extends Controller
      * @param  \App\Models\children  $children
      * @return \Illuminate\Http\Response
      */
-    public function show(children $children)
+    public function show($id)
     {
         $children = children::findOrFail($id);
         return response()->json(

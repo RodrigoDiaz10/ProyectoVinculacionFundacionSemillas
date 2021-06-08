@@ -6,7 +6,7 @@
 <div class="card" style="padding-top: 5%;">
     <div class="card-body">
       <h3 class="card-title" style="text-align: center;">Tabla Entrada de Blogs</h3>
-        <button type="button" class="btn btn-outline-primary col-md-4 offset-md-4" data-toggle="modal" data-target="#modalBlog" >Agregar nuevo</button>
+        <button type="button" class="btn btn-outline-primary col-md-4 offset-md-4" (click)="modalCrear()"  >Agregar nuevo</button>
       <br><br>
         <table class="table">
           
@@ -14,29 +14,26 @@
               <tr  >
                 <th scope="col">#</th>
                 <th scope="col">Titulo</th>
-                <th scope="col">Fecha</th>
+                <th scope="col">Descripcion</th>
                 <th scope="col">Editar</th>
                 <th scope="col">Eliminar</th>
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let bl of blogs;  index as i">
-                <th scope="row">{{i+1}}</th>
-                <td>{{bl.title}}</td> 
-                <td>{{bl.description}}</td> 
-                <td>
-                  <button  type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#modalBlog">
-                    <i class="far fa-edit"></i>
-                  </button>
-                </td> 
-                <td>
-                  <button type="button"   class="btn btn-outline-danger" data-toggle="modal" data-target="#modalDelete">
-                    <i class="far fa-trash-alt"></i>
-                  </button>
-                </td>
+              <tr *ngFor="let lb of blogs; index as i">
+                  <th scope="row">{{i+1}}</th>
+                  <td>{{lb.title}}</td>
+                  <td>{{lb.description}}</td>
+                  <td>
+                      <button type="button" class="btn btn-outline-primary" (click)="getBlog(lb.id)">
+                        <mat-icon style="color:rgba(29, 29, 189, 0.938)">create</mat-icon>
+                      </button>
+                      <button type="button" class="btn btn-outline-danger" (click)="getIdEliminar(lb.id)">
+                        <mat-icon style="color:rgb(206, 22, 22)">delete</mat-icon>
+                      </button>
+                  </td>
               </tr>
-              
-            </tbody>
+          </tbody>
           </table>
 
           <nav aria-label="..." class="row justify-content-md-center">
@@ -58,97 +55,99 @@
   </div> 
 
 <!-- Modal -->
-<!--borra el tab index-->
- <div id="modalBlog" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <mat-label *ngIf="formBlog.get('id')" style="font-size: medium;">{{formBlog.get('id')? 'Nueva Blog' : 'Actualizar Blog'}}</mat-label>
-        <!--<h5 class="modal-title" id="exampleModalLabel">{{!this.blogsService.selectedBlog.id ? 'Nuevo Blog' : 'Actualizar Blog'}}</h5>-->
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-
-          <form class="col col-lg-6 form-blog" [formGroup]="formBlog" class="col col-lg-6" enctype="multipart/form-data" (ngSubmit)="onSaveArchive()" enctype="multipart/form-data">
-            <input type="hidden" id="Id" name="id" class="form-control" [(ngModel)]="this.blogsService.selectedBlog.id"><!---->
-              <div class="form-row">
-                  <div class="form-group col-md-6">
-                    <mat-form-field appearance="standard">
-                      <mat-label>Título</mat-label>
-                      <input matInput type="text" 
-                               formControlName="title"
-                               class="form-control" 
-                               id="title" 
-                               maxlength="20" 
-                               placeholder="Título" 
-                               name="title">
-                               <mat-hint align="end">{{formBlog.get('title').value.length}} / 20</mat-hint>
-                              <mat-error *ngIf="formBlog.get('title').errors && formBlog.get('title').touched">Este capo es requerido</mat-error> 
-                       </mat-form-field>
-                      <!--<input type="text" [(ngModel)]="this.blogsService.selectedBlog.title" class="form-control" id="title" placeholder="Título" name="title">-->
-                  </div>
-              </div>
-              <div class="form-group">
-                  <mat-form-field appearance="outline">
-                    <mat-label>Descripción</mat-label>
-                    <textarea matInput type="text" 
-                             formControlName="description"
-                             class="form-control" 
-                             id="description" 
-                             maxlength="90" 
-                             placeholder="description" 
-                             name="description">
-                      </textarea>
-                             <mat-hint align="end">{{formBlog.get('description').value.length}} / 90</mat-hint>
-                            <mat-error *ngIf="formBlog.get('description').errors && formBlog.get('description').touched">Este capo es requerido</mat-error> 
-                     </mat-form-field>
-                  <!--<input type="text" [(ngModel)]="this.blogsService.selectedBlog.description" class="form-control" id="description" placeholder="Descripción" name="description">-->
-              </div>
-                                  
-              <div class="form-row">
-                  <div class="form-group col-md-12">
-                      <input accept="application/image/png,image/jpeg" 
-                              #foto 
-                              id="foto"
-                              class="form-control" 
-                              required id="foto" 
-                              formControlName="foto"
-                              multiple type="file" 
-                              name="foto"><!--(change)="seleccionarArchivo($event)"-->
-                  </div>
-              </div>
+<!-- Modal Editar -->
+<p-dialog header="Modificar Álbum" [(visible)]="displayResponsiveModificar" [breakpoints]="{'960px': '75vw'}"
+    [style]="{width: '50vw'}" [baseZIndex]="10000" [draggable]="false" [resizable]="false" [modal]="true"
+    *ngIf="blogseleccionado">
+    <form [formGroup]="modifBlog" (ngSubmit)="modificarAlbum()">
+        <div class="form-group">
+            <label for="title">Título</label>
+            <input type="text" [(ngModel)]="blogseleccionado.title" formControlName="title" class="form-control"
+                [ngClass]="{ 'is-invalid': submitted &amp;&amp; modifBlog.controls.title.errors }" />
+            <div *ngIf="submitted &amp;&amp; modifBlog.controls.title.errors" class="text-danger">
+                <div *ngIf="modifBlog.controls.title.errors.required">Título es requerido</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="description">Descripción</label>
+            <input type="text" [(ngModel)]="blogseleccionado.description" formControlName="description"
+                class="form-control"
+                [ngClass]="{ 'is-invalid': submitted &amp;&amp; modifBlog.controls.description.errors }" />
+            <div *ngIf="submitted &amp;&amp; modifBlog.controls.description.errors" class="text-danger">
+                <div *ngIf="modifBlog.controls.description.errors.required">La Descripción es requerida
+                </div>
+            </div>
+        </div>
 
 
-              <button type="submit" class="btn btn-primary">Guardar</button>
-          </form>
-      </div>
+    </form>
+    <ng-template pTemplate="footer">
+        <div class="centro">
+            <button class="btn btn-primary" (click)="modificarBlog()">Modificar</button>
+        </div>
+    </ng-template>
+</p-dialog>
+
+
+<!-- Modal Eliminar-->
+<div class="modal fade" id="modalDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Alerta</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ¿Desea Borrar el Blog?
+            </div>
+            <div class="modal-footer">
+                <!-- <button type="button" (click)="deleteAlbum(idEliminar)" data-dismiss="modal" class="btn btn-danger">
+                    <h2>Si</h2>
+                </button>
+                <button type="button" data-dismiss="modal" class="btn btn-primary">
+                    <h2>No</h2>
+                </button> -->
+                <button type="button" class="btn btn-danger" (click)="deleteBlog(idEliminar)"
+                    data-dismiss="modal">Sí</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">No</button>
+            </div>
+        </div>
     </div>
-  </div>
-</div> 
+</div>
+
+<!-- Modal Crear Álbum -->
+<p-dialog header="Header" [(visible)]="displayResponsiveCrear" [breakpoints]="{'960px': '75vw'}"
+    [style]="{width: '50vw'}" [baseZIndex]="10000" [draggable]="false" [resizable]="false" [modal]="true">
+    <form [formGroup]="registerBlog" (ngSubmit)="crearBlog()">
+        <div class="form-group">
+            <label for="title">Título</label>
+            <input type="text" formControlName="title" class="form-control"
+                [ngClass]="{ 'is-invalid': submitted &amp;&amp; registerBlog.controls.title.errors }" />
+            <div *ngIf="submitted &amp;&amp; registerBlog.controls.title.errors" class="text-danger">
+                <div *ngIf="registerBlog.controls.title.errors.required">Título es requerido</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="description">Descripción</label>
+            <input type="text" formControlName="description" class="form-control"
+                [ngClass]="{ 'is-invalid': submitted &amp;&amp; registerBlog.controls.description.errors }" />
+            <div *ngIf="submitted &amp;&amp; registerBlog.controls.description.errors" class="text-danger">
+                <div *ngIf="registerBlog.controls.description.errors.required">La Descripción es requerida
+                </div>
+            </div>
+        </div>
 
 
-<!-- Modal -->
-<div class="modal fade" id="modalDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Alerta</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        Desea Borrar el Blog?
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-        <button type="button" (click)="acceptD()" class="btn btn-danger">Borrar</button>
-      </div>
-    </div>
-  </div>
-</div>  
+        <div class="centro">
+            <button class="btn btn-primary">Crear</button>
+        </div>
+    </form>
+</p-dialog>
+
+
 
 
 

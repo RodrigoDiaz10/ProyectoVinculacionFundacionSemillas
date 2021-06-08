@@ -25,12 +25,12 @@ export class NinosAdminComponent implements OnInit {
       id:[null],//valor por defecto, 
       name:['',[Validators.required, Validators.maxLength(20)]],
       surname:['',[Validators.required, Validators.maxLength(20)]],//pipe para fechas??
-      foto:[null],//si es una validacicion tener un Validators
+      image:[null],//si es una validacicion tener un Validators
       dateBirth:[null],
-      ci:[null],
+      CI:[null],
       houseAddress:['',[Validators.required,Validators.maxLength(70)]],
-      motherName:['',[Validators.required,Validators.maxLength(70)]],
-      fatherName:['',[Validators.required,Validators.maxLength(70)]],
+      mothersName:['',[Validators.required,Validators.maxLength(70)]],
+      fathersName:['',[Validators.required,Validators.maxLength(70)]],
       study:[null],
       schoolName:['',[Validators.required,Validators.maxLength(70)]],
       age:[null,[Validators.required]]
@@ -39,12 +39,12 @@ export class NinosAdminComponent implements OnInit {
       id:[null],//valor por defecto, 
       name:['',[Validators.required, Validators.maxLength(20)]],
       surname:['',[Validators.required, Validators.maxLength(20)]],//pipe para fechas??
-      foto:[null],//si es una validacicion tener un Validators
+      image:[null],//si es una validacicion tener un Validators
       dateBirth:[null],
-      ci:[null],
+      CI:[null],
       houseAddress:['',[Validators.required,Validators.maxLength(70)]],
-      motherName:['',[Validators.required,Validators.maxLength(70)]],
-      fatherName:['',[Validators.required,Validators.maxLength(70)]],
+      mothersName:['',[Validators.required,Validators.maxLength(70)]],
+      fathersName:['',[Validators.required,Validators.maxLength(70)]],
       study:[null],
       schoolName:['',[Validators.required,Validators.maxLength(70)]],
       age:[null,[Validators.required]]
@@ -66,19 +66,19 @@ export class NinosAdminComponent implements OnInit {
       "children": {
         "id": this.registerChild.value.id,
         "name": this.registerChild.value.name,
-        "surenam": this.registerChild.value.surenam,
-        "foto": this.registerChild.value.foto,
+        "surname": this.registerChild.value.surname,
+        "image": this.registerChild.value.image,
         "dateBirth": this.registerChild.value.dateBirth,
-        "ci": this.registerChild.value.ci,
+        "CI": this.registerChild.value.CI,
         "houseAddress": this.registerChild.value.houseAddress,
-        "motherName": this.registerChild.value.motherName,
-        "fatherName": this.registerChild.value.fatherName,
+        "mothersName": this.registerChild.value.mothersName,
+        "fathersName": this.registerChild.value.fathersName,
         "study": this.registerChild.value.study,
         "schoolName": this.registerChild.value.schoolName,
         "age": this.registerChild.value.age,
-      }
+      } 
     }
-    // console.log("valores crear: ", objetoCrear)
+     console.log("valores crear: ", objetoCrear)
     this.restService.add(objetoCrear, "/child").subscribe(
       res => {
         this.toastr.success('Niño creado Exitosamente');
@@ -111,20 +111,20 @@ export class NinosAdminComponent implements OnInit {
     }
     //Objeto json que se envia al back
     let objetoModificar = {
-      "children": {
-        "id": this.registerChild.value.id,
-        "name": this.registerChild.value.name,
-        "surenam": this.registerChild.value.surenam,
-        "foto": this.registerChild.value.foto,
-        "dateBirth": this.registerChild.value.dateBirth,
-        "ci": this.registerChild.value.ci,
-        "houseAddress": this.registerChild.value.houseAddress,
-        "motherName": this.registerChild.value.motherName,
-        "fatherName": this.registerChild.value.fatherName,
-        "study": this.registerChild.value.study,
-        "schoolName": this.registerChild.value.schoolName,
-        "age": this.registerChild.value.age,
-      }
+      
+        "id": this.modifChild.value.id,
+        "name": this.modifChild.value.name,
+        "surname": this.modifChild.value.surname,
+        "image": this.modifChild.value.image,
+        "dateBirth": this.modifChild.value.dateBirth,
+        "CI": this.modifChild.value.CI,
+        "houseAddress": this.modifChild.value.houseAddress,
+        "mothersName": this.modifChild.value.mothersName,
+        "fathersName": this.modifChild.value.fathersName,
+        "study": this.modifChild.value.study,
+        "schoolName": this.modifChild.value.schoolName,
+        "age": this.modifChild.value.age,
+      
     }
     // console.log("objetoModificar: ", objetoModificar)
     this.restService.updateData(objetoModificar, "/child/" + this.childseleccionado.id).subscribe(
@@ -193,14 +193,16 @@ export class NinosAdminComponent implements OnInit {
   /*selected = '';
 
   constructor(
-              private formBuilder: FormBuilder,
-              public _kidServices: PersonService
-              ) { 
-                this.buildFormArchive();
-                this.formKid.patchValue(this._kidServices.selectedField);
-              }
+    private formBuilder: FormBuilder,
+    public _kidServices: PersonService
+  ) {
+    this.buildFormArchive();
+    this.formKid.patchValue(this._kidServices.selectedField);
+  }
 
   ngOnInit(): void {
+    this.logeado = localStorage.getItem('logeado');
+    console.log("logeado admin: ", this.logeado);
   }
   // resetForm(blogForm?: NgForm): void {
   //   this.blogsService.selectedBlog = {
@@ -209,32 +211,32 @@ export class NinosAdminComponent implements OnInit {
   //     image: '',
   //     description: '',
   //     link: '',
-     
+
   //   };
   // }
 
 
-  buildFormArchive(){
-    this.formKid=this.formBuilder.group({
-      id:[null],//valor por defecto, 
-      name:['',[Validators.required, Validators.maxLength(20)]],
-      surname:['',[Validators.required, Validators.maxLength(20)]],//pipe para fechas??
-      foto:[null],//si es una validacicion tener un Validators
-      dateBirth:[null],
-      ci:[null],
-      houseAddress:['',[Validators.required,Validators.maxLength(70)]],
-      motherName:['',[Validators.required,Validators.maxLength(70)]],
-      fatherName:['',[Validators.required,Validators.maxLength(70)]],
-      study:[null],
-      schoolName:['',[Validators.required,Validators.maxLength(70)]],
-      age:[null,[Validators.required]]
+  buildFormArchive() {
+    this.formKid = this.formBuilder.group({
+      id: [null],//valor por defecto, 
+      name: ['', [Validators.required, Validators.maxLength(20)]],
+      surname: ['', [Validators.required, Validators.maxLength(20)]],//pipe para fechas??
+      foto: [null],//si es una validacicion tener un Validators
+      dateBirth: [null],
+      ci: [null],
+      houseAddress: ['', [Validators.required, Validators.maxLength(70)]],
+      motherName: ['', [Validators.required, Validators.maxLength(70)]],
+      fatherName: ['', [Validators.required, Validators.maxLength(70)]],
+      study: [null],
+      schoolName: ['', [Validators.required, Validators.maxLength(70)]],
+      age: [null, [Validators.required]]
 
     });
- 
 
 
-    this.formKid.get('foto').valueChanges.subscribe((value)=>{
-      if(value !== null && value !== ''){
+
+    this.formKid.get('foto').valueChanges.subscribe((value) => {
+      if (value !== null && value !== '') {
         this.imgToBase64((document.querySelector('input[type="file"]') as HTMLInputElement).files[0])
       }
       console.log(this.formKid.get('foto').value);
@@ -252,17 +254,17 @@ export class NinosAdminComponent implements OnInit {
     console.log('data:image/png;base64,' + btoa(e.target.result));
   }
 
-  onSaveArchive(): void{
+  onSaveArchive(): void {
     console.log(this.formKid.value);
     this.formKid.markAllAsTouched()
 
-    if(this.formKid.valid){// is es valido da true
+    if (this.formKid.valid) {// is es valido da true
       //nuevo
-      if(this.formKid.controls['id'].value== null){
-       this._kidServices.agregarPerson(this.formKid.value);
+      if (this.formKid.controls['id'].value == null) {
+        this._kidServices.agregarPerson(this.formKid.value);
       }
-      
-    } else{
+
+    } else {
       //actualizar
       //this._libraryServices.editField(formarchive.value.id, formarchive.value);
       this.formKid.markAllAsTouched()//activar los errores que hay
