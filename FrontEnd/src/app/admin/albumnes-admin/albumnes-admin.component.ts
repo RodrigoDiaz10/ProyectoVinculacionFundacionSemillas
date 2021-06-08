@@ -40,7 +40,7 @@ export class AlbumnesAdminComponent implements OnInit {
     this.getAlbums();
     this.getEventos();
   }
-// seteo de objeto enviar
+  // seteo de objeto enviar
   crearAlbum() {
     this.displayResponsiveCrear = false;
     this.submitted = true;
@@ -72,7 +72,7 @@ export class AlbumnesAdminComponent implements OnInit {
     );
   }
 
- 
+
 
   // Obtengo todos los albumnes
   getAlbums() {
@@ -152,7 +152,7 @@ export class AlbumnesAdminComponent implements OnInit {
   }
 
 
-//Despliege de Modales
+  //Despliege de Modales
   modalModificar() {
     this.displayResponsiveModificar = true;
   }

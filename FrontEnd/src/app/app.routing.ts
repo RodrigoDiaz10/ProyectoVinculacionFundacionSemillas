@@ -34,6 +34,7 @@ const routes: Routes = [
   { path: 'patrocinadoresAdmin', component: PatrocinadoresAdminComponent , canActivate: [AuthGuard]},
   { path: 'clubAdmin', component: VoluntariosAdminComponent, canActivate: [AuthGuard] },
 
+
 ];
 
 @NgModule({
