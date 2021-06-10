@@ -61,7 +61,7 @@ class SponsorsController extends Controller
      * @param  \App\Models\sponsors  $sponsors
      * @return \Illuminate\Http\Response
      */
-    public function show(sponsors $sponsors)
+    public function show($id)
     {
         $sponsors = sponsors::findOrFail($id);
         return response()->json(
@@ -89,6 +89,7 @@ class SponsorsController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $data = $request->json()->all();
 
         $sponsors = sponsors::findOrFail($id);
         $dataSponsors = $data['sponsors'];
@@ -110,7 +111,7 @@ class SponsorsController extends Controller
      * @param  \App\Models\sponsors  $sponsors
      * @return \Illuminate\Http\Response
      */
-    public function destroy(sponsors $sponsors,$id)
+    public function destroy($id)
     {
         $sponsors = sponsors::findOrFail($id);
         $sponsors->delete();

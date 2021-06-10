@@ -93,7 +93,7 @@ class VolunteersController extends Controller
      */
     public function update(Request $request, $id)
     {
-
+        $data = $request->json()->all();
         $volunteers = volunteers::findOrFail($id);
         $dataVolunteers = $data['volunteers'];
 
