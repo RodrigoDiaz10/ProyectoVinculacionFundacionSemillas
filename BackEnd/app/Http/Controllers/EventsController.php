@@ -48,8 +48,6 @@ class EventsController extends Controller
         $events = blog::findOrFail($id);
         $dataEvents = $data['events'];
        
-
-        
         $events->name =  $dataEvents['name'];
         $events->description =  $dataEvents['description'];
         $events->place =  $dataEvents['place'];
