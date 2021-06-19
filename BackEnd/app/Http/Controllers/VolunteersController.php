@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\Volunteers;
 use Illuminate\Http\Request;
 
@@ -13,8 +14,9 @@ class VolunteersController extends Controller
      */
     public function index()
     {
-        return response()->json( volunteers::all()
-       );
+        return response()->json(
+            volunteers::all()
+        );
     }
 
     /**
@@ -35,9 +37,9 @@ class VolunteersController extends Controller
      */
     public function store(Request $request)
     {
-     
+
         $data = $request->json()->all();
-        
+
         $dataVolunteers = $data['volunteers'];
 
         $volunteers = new Volunteers();
@@ -52,11 +54,10 @@ class VolunteersController extends Controller
         $volunteers->save();
 
         return response()->json([
-        'data' => [
-            'Guardado'=>'Exitoso'
-        ]
-    ], 201);        
-
+            'data' => [
+                'Guardado' => 'Exitoso'
+            ]
+        ], 201);
     }
 
     /**
@@ -65,12 +66,12 @@ class VolunteersController extends Controller
      * @param  \App\Models\volunteers  $volunteers
      * @return \Illuminate\Http\Response
      */
-    public function show(volunteers $volunteers)
+    public function show($id)
     {
         $volunteers = volunteers::findOrFail($id);
         return response()->json(
-              $volunteers
-       );
+            $volunteers
+        );
     }
 
     /**
@@ -81,7 +82,7 @@ class VolunteersController extends Controller
      */
     public function edit(volunteers $volunteers)
     {
-      //
+        //
     }
 
     /**
@@ -93,6 +94,7 @@ class VolunteersController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $data = $request->json()->all();
 
         $volunteers = volunteers::findOrFail($id);
         $dataVolunteers = $data['volunteers'];
@@ -108,9 +110,8 @@ class VolunteersController extends Controller
         $volunteers->save();
 
         return response()->json(
-               $volunteers
+            $volunteers
         );
-        
     }
 
     /**
@@ -119,10 +120,10 @@ class VolunteersController extends Controller
      * @param  \App\Models\volunteers  $volunteers
      * @return \Illuminate\Http\Response
      */
-    public function destroy(volunteers $volunteers,$id)
+    public function destroy(volunteers $volunteers, $id)
     {
         $volunteers = volunteers::findOrFail($id);
         $volunteers->delete();
-        return response()->json(['message'=>'voluntario quitado', 'volunteers'=>$volunteers],200);
+        return response()->json(['message' => 'voluntario quitado', 'volunteers' => $volunteers], 200);
     }
 }
