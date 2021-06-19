@@ -39,20 +39,7 @@ class BlogController extends Controller
      */
     public function store(Request $request)
     {
-       //path image save
-        /*if($request->hasFile('image')){
-            $file = $request->file('image');
-            $name = time().$file->getClientOriginalName();
-            $file->move(public_path().'/images/',$name);
-       }*/
-       //after 
-       /*
-        $blogs = new blogs;
-        $blogs->title = $request->input('title');
-        $blogs->description = $request->input('description');
-        $blogs->image = $name;
-        $blogs->link = $request->input('link');*/
-        //before
+      
         
         $data = $request->json()->all();
         
@@ -107,12 +94,7 @@ class BlogController extends Controller
      */
     public function update(Request $request, $id)
     {
-      /* $blogs = blogs::find($id);
-       if(is_null($blogs)){
-           return response()->json(['message'=>'no encontrado'],404);
-       }
-      $blogs->update($request->all());
-      return response()->json(['message'=>$blogs],202);*/
+     
         $data = $request->json()->all();
         $blogs = Blogs::findOrFail($id);
         

@@ -60,26 +60,7 @@ class ChildrenController extends Controller
             'Guardado'=>'Exitoso'
         ]
     ], 201);        
-/*
-        $children = new children;
-        $children->name = $request->input('name');
-        $children->surname = $request->input('surname');
-        $children->dateBirth = $request->input('dateBirth');
-        $children->age = $request->input('age');
-        $children->CI = $request->input('CI');
-        $children->mothersName = $request->input('mothersName');
-        $children->fathersName = $request->input('fathersName');
-        $children->study = $request->input('study');
-        $children->houseAddress = $request->input('houseAddress');
-        $children->schoolName = $request->input('schoolName');
-        $children->image = $request->input('image');
 
-        $children->save();
-        return response()->json(
-                $children
-       );
-
-*/
     }
 
     /**

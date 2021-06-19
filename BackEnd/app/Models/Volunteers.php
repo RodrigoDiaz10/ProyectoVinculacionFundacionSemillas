@@ -15,6 +15,7 @@ class Volunteers extends Model
         'description',
         'address',
         'availability',
+        'telefonNumber',
         'image',
         'state',
     ];

@@ -49,6 +49,7 @@ class VolunteersController extends Controller
         $volunteers->description =  $dataVolunteers['description'];
         $volunteers->address =  $dataVolunteers['address'];
         $volunteers->availability =  $dataVolunteers['availability'];
+        $volunteers->telefonNumber =  $dataVolunteers['telefonNumber'];
         $volunteers->image =  $dataVolunteers['image'];
         $volunteers->state =  $dataVolunteers['state'];
         $volunteers->save();
@@ -95,7 +96,10 @@ class VolunteersController extends Controller
     public function update(Request $request, $id)
     {
         $data = $request->json()->all();
+<<<<<<< HEAD
 
+=======
+>>>>>>> 2746eb47bedc618f999a62aae9b0726ac0d5bdab
         $volunteers = volunteers::findOrFail($id);
         $dataVolunteers = $data['volunteers'];
 
@@ -105,6 +109,7 @@ class VolunteersController extends Controller
         $volunteers->description =  $dataVolunteers['description'];
         $volunteers->address =  $dataVolunteers['address'];
         $volunteers->availability =  $dataVolunteers['availability'];
+        $volunteers->telefonNumber =  $dataVolunteers['telefonNumber'];
         $volunteers->image =  $dataVolunteers['image'];
         $volunteers->state =  $dataVolunteers['state'];
         $volunteers->save();
