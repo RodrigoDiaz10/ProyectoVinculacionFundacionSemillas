@@ -22,26 +22,26 @@ export class BlogAdminComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder, private router: Router, private _blogServices: BlogService, private toastr: ToastrService) {
     this.modifBlog = this.formBuilder.group({
-      id:[null],//valor por defecto, 
-      title:['',[Validators.required, Validators.maxLength(20)]],
-      description:['',[Validators.required, Validators.maxLength(80)]],
-      image:[null],//si es una validacicion tener un Validators
-      link:[null]
+      id: [null],//valor por defecto, 
+      title: ['', [Validators.required, Validators.maxLength(20)]],
+      description: ['', [Validators.required, Validators.maxLength(80)]],
+      image: [null],//si es una validacicion tener un Validators
+      link: [null]
     });
     this.registerBlog = this.formBuilder.group({
-      id:[null],//valor por defecto, 
-      title:['',[Validators.required, Validators.maxLength(20)]],
-      description:['',[Validators.required, Validators.maxLength(80)]],
-      image:[null],//si es una validacicion tener un Validators
-      link:[null]
+      id: [null],//valor por defecto, 
+      title: ['', [Validators.required, Validators.maxLength(20)]],
+      description: ['', [Validators.required, Validators.maxLength(80)]],
+      image: [null],//si es una validacicion tener un Validators
+      link: [null]
     });
   }
 
   ngOnInit(): void {
     this.getBlogs();
-    
+
   }
-// seteo de objeto enviar
+  // seteo de objeto enviar
   crearBlog() {
     this.displayResponsiveCrear = false;
     this.submitted = true;
@@ -73,9 +73,6 @@ export class BlogAdminComponent implements OnInit {
       }
     );
   }
-
- 
-
   // Obtengo todos los blogs
   getBlogs() {
     this._blogServices.get("/blog").subscribe((data) => {
@@ -149,7 +146,7 @@ export class BlogAdminComponent implements OnInit {
 
 
 
-//Despliege de Modales
+  //Despliege de Modales
   modalModificar() {
     this.displayResponsiveModificar = true;
   }
@@ -161,7 +158,7 @@ export class BlogAdminComponent implements OnInit {
   resetForm() {
     this.registerBlog.reset();
   }
-  
+
   /* formBlog: FormGroup;
 
   constructor(private formBuilder: FormBuilder,

@@ -19,19 +19,8 @@ const http = {
 })
 export class ClubService {
 
-  // public selectedField: Club = {
-  //   id: null,
-  //   name: '',
-  //   surname: '',
-  //   ci: '',
-  //   description: '',
-  //   address: '',
-  //   availability: '',
-  //   image: '',
-
-  // };
-
   constructor(private http: HttpClient) { }
+
   add(objeto, url: String): Observable<any> {
     return this.http.post(API_URL_FORM + url, objeto).map((res) => res);
   }

@@ -69,40 +69,42 @@
 </div>
 
 <!-- Modal Crear Club -->
-
-<p-dialog header="Registro Club de Amigos" [(visible)]="displayResponsiveCrear" [breakpoints]="{'960px': '75vw'}"
+<p-dialog header="Crear Club de Amigos" [(visible)]="displayResponsiveCrear" [breakpoints]="{'960px': '75vw'}"
     [style]="{width: '50vw'}" [baseZIndex]="10000" [draggable]="false" [resizable]="false" [modal]="true">
-    <form [formGroup]="registerClub" (ngSubmit)="crearClub()">
-        <div class="form-group">
-            <label for="name">Nombre</label>
-            <input type="text" formControlName="name" class="form-control"
-                [ngClass]="{ 'is-invalid': submitted &amp;&amp; registerClub.controls.name.errors }" />
-            <div *ngIf="submitted &amp;&amp; registerClub.controls.name.errors" class="text-danger">
-                <div *ngIf="registerClub.controls.name.errors.required">Nombre es requerido</div>
+    <form [formGroup]="registerClub">
+        <div class="form-row">
+            <div class="form-group col-md-6 col-lg-6">
+                <label for="name">Nombre</label>
+                <input type="text" formControlName="name" class="form-control"
+                    [ngClass]="{ 'is-invalid': submitted &amp;&amp; registerClub.controls.name.errors }" />
+                <div *ngIf="submitted &amp;&amp; registerClub.controls.name.errors" class="text-danger">
+                    <div *ngIf="registerClub.controls.name.errors.required">Nombre es requerido</div>
+                </div>
+            </div>
+            <div class="form-group col-md-6 col-lg-6">
+                <label for="surname">Apellido</label>
+                <input type="text" formControlName="surname" class="form-control"
+                    [ngClass]="{ 'is-invalid': submitted &amp;&amp; registerClub.controls.surname.errors }" />
+                <div *ngIf="submitted &amp;&amp; registerClub.controls.surname.errors" class="text-danger">
+                    <div *ngIf="registerClub.controls.surname.errors.required">Apellido es obligatorio</div>
+                </div>
             </div>
         </div>
-        <div class="form-group">
-            <label for="surname">Apellidos</label>
-            <input type="text" formControlName="surname" class="form-control"
-                [ngClass]="{ 'is-invalid': submitted &amp;&amp; registerClub.controls.surname.errors }" />
-            <div *ngIf="submitted &amp;&amp; registerClub.controls.surname.errors" class="text-danger">
-                <div *ngIf="registerClub.controls.surname.errors.required">Apellido es requerido</div>
+        <div class="form-row">
+            <div class="form-group col-md-6 col-lg-6">
+                <label for="CI">Cédula</label>
+                <input type="number" formControlName="CI" class="form-control"
+                    [ngClass]="{ 'is-invalid': submitted &amp;&amp; registerClub.controls.CI.errors }" />
+                <div *ngIf="submitted &amp;&amp; registerClub.controls.CI.errors" class="text-danger">
+                    <div *ngIf="registerClub.controls.CI.errors.required">Cédula es requerido</div>
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <label for="ci">Cédula</label>
-            <input type="text" formControlName="ci" class="form-control"
-                [ngClass]="{ 'is-invalid': submitted &amp;&amp; registerClub.controls.ci.errors }" />
-            <div *ngIf="submitted &amp;&amp; registerClub.controls.ci.errors" class="text-danger">
-                <div *ngIf="registerClub.controls.ci.errors.required">Cédula es requerido</div>
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="description">Descripción</label>
-            <input type="text" formControlName="description" class="form-control"
-                [ngClass]="{ 'is-invalid': submitted &amp;&amp; registerClub.controls.description.errors }" />
-            <div *ngIf="submitted &amp;&amp; registerClub.controls.description.errors" class="text-danger">
-                <div *ngIf="registerClub.controls.description.errors.required">La Descripción es requerida
+            <div class="form-group col-md-6 col-lg-6">
+                <label for="address">Dirección</label>
+                <input type="text" formControlName="address" class="form-control"
+                    [ngClass]="{ 'is-invalid': submitted &amp;&amp; registerClub.controls.address.errors }" />
+                <div *ngIf="submitted &amp;&amp; registerClub.controls.address.errors" class="text-danger">
+                    <div *ngIf="registerClub.controls.address.errors.required">La dirección es requerido</div>
                 </div>
             </div>
         </div>
@@ -114,17 +116,38 @@
       </select>
     </div> -->
 
+        <div class="form-row">
+            <div class="form-group col-md-6 col-lg-6">
+                <label for="availability">Disponibilidad</label>
+                <input type="text" formControlName="availability" class="form-control"
+                    [ngClass]="{ 'is-invalid': submitted &amp;&amp; registerClub.controls.availability.errors }" />
+                <div *ngIf="submitted &amp;&amp; registerClub.controls.availability.errors" class="text-danger">
+                    <div *ngIf="registerClub.controls.availability.errors.required">Disponibilidad requerido</div>
+                </div>
+            </div>
+            <div class="form-group col-md-6 col-lg-6">
+                <label for="telefonNumber">Número Telefónico</label>
+                <input type="number" formControlName="telefonNumber" class="form-control"
+                    [ngClass]="{ 'is-invalid': submitted &amp;&amp; registerClub.controls.telefonNumber.errors }" />
+                <div *ngIf="submitted &amp;&amp; registerClub.controls.telefonNumber.errors" class="text-danger">
+                    <div *ngIf="registerClub.controls.telefonNumber.errors.required">Número de teléfono requerido</div>
+                </div>
+            </div>
+        </div>
         <div class="form-group">
-            <label for="description">Dirección</label>
-            <input type="address" formControlName="address" class="form-control"
-                [ngClass]="{ 'is-invalid': submitted &amp;&amp; registerClub.controls.address.errors }" />
-            <div *ngIf="submitted &amp;&amp; registerClub.controls.address.errors" class="text-danger">
-                <div *ngIf="registerClub.controls.address.errors.required">La dirección es requerido</div>
+            <label for="description">Descripción</label>
+            <input type="text" formControlName="description" class="form-control"
+                [ngClass]="{ 'is-invalid': submitted &amp;&amp; registerClub.controls.description.errors }" />
+            <div *ngIf="submitted &amp;&amp; registerClub.controls.description.errors" class="text-danger">
+                <div *ngIf="registerClub.controls.description.errors.required">La Descripción es requerida
+                </div>
             </div>
         </div>
         <div class="centro">
             <button class="btn btn-primary" (click)="crearClub()">Crear</button>
+
         </div>
+
     </form>
 </p-dialog>
 

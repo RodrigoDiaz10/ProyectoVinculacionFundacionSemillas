@@ -37,11 +37,8 @@ class VolunteersController extends Controller
      */
     public function store(Request $request)
     {
-
         $data = $request->json()->all();
-
         $dataVolunteers = $data['volunteers'];
-
         $volunteers = new Volunteers();
         $volunteers->name =  $dataVolunteers['name'];
         $volunteers->surname =  $dataVolunteers['surname'];
@@ -53,7 +50,6 @@ class VolunteersController extends Controller
         $volunteers->image =  $dataVolunteers['image'];
         $volunteers->state =  $dataVolunteers['state'];
         $volunteers->save();
-
         return response()->json([
             'data' => [
                 'Guardado' => 'Exitoso'
@@ -69,7 +65,7 @@ class VolunteersController extends Controller
      */
     public function show($id)
     {
-        $volunteers = volunteers::findOrFail($id);
+        $volunteers = Volunteers::findOrFail($id);
         return response()->json(
             $volunteers
         );
@@ -96,13 +92,8 @@ class VolunteersController extends Controller
     public function update(Request $request, $id)
     {
         $data = $request->json()->all();
-<<<<<<< HEAD
-
-=======
->>>>>>> 2746eb47bedc618f999a62aae9b0726ac0d5bdab
-        $volunteers = volunteers::findOrFail($id);
+        $volunteers = Volunteers::findOrFail($id);
         $dataVolunteers = $data['volunteers'];
-
         $volunteers->name =  $dataVolunteers['name'];
         $volunteers->surname =  $dataVolunteers['surname'];
         $volunteers->CI =  $dataVolunteers['CI'];
@@ -113,10 +104,11 @@ class VolunteersController extends Controller
         $volunteers->image =  $dataVolunteers['image'];
         $volunteers->state =  $dataVolunteers['state'];
         $volunteers->save();
-
-        return response()->json(
-            $volunteers
-        );
+        return response()->json([
+            'data' => [
+                'Actualizado' => 'Exitoso'
+            ]
+        ], 201);
     }
 
     /**
@@ -129,6 +121,6 @@ class VolunteersController extends Controller
     {
         $volunteers = volunteers::findOrFail($id);
         $volunteers->delete();
-        return response()->json(['message' => 'voluntario quitado', 'volunteers' => $volunteers], 200);
+        return response()->json(['message' => 'Club de amigo eliminado', 'volunteers' => $volunteers], 200);
     }
 }
