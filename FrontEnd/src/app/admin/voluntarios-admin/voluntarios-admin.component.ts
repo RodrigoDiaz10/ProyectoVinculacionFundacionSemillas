@@ -1,9 +1,8 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
+import { Router } from '@angular/router';
 import { ClubService } from './../../services/club.service';
 import { ToastrService } from 'ngx-toastr';
-// @ViewChild('closebutton') closebutton;
 
 @Component({
   selector: 'app-voluntarios-admin',
@@ -18,26 +17,30 @@ export class VoluntariosAdminComponent implements OnInit {
   displayResponsiveCrear: boolean;
   displayResponsiveModificar: boolean;
   idEliminar: number;
-  // eventos: any;
+  //eventos: any;
   submitted = false;
 
   constructor(private formBuilder: FormBuilder, private router: Router, private restService: ClubService, private toastr: ToastrService) {
     this.modifClub = this.formBuilder.group({
-
-      name: ["", Validators.required],
-      surname: ["", Validators.required],
-      ci: ["", Validators.required],
-      description: ["", Validators.required],
-      address: ["", Validators.required],
+      id: [null],//valor por defecto,
+      name: ['', Validators.required],
+      surname: ['', Validators.required],
+      CI: ['', Validators.required],
+      address: ['', Validators.required],
+      availability: ['', Validators.required],
+      telefonNumber: ['', Validators.required],
+      description: ['', Validators.required],
       //event: ["", Validators.required],
     });
     this.registerClub = this.formBuilder.group({
-      name: ["", Validators.required],
-      surname: ["", Validators.required],
-      ci: ["", Validators.required],
-      description: ["", Validators.required],
-      address: ["", Validators.required],
-      //event: ["", Validators.required],
+      name: ['', Validators.required],
+      surname: ['', Validators.required],
+      CI: ['', Validators.required],
+      address: ['', Validators.required],
+      availability: ['', Validators.required],
+      telefonNumber: ['', Validators.required],
+      description: ['', Validators.required],
+      //event: [', Validators.required],
     });
   }
 
@@ -49,21 +52,19 @@ export class VoluntariosAdminComponent implements OnInit {
   crearClub() {
     this.displayResponsiveCrear = false;
     this.submitted = true;
-
     if (this.registerClub.invalid) {
-      console.log("modificado: exitosamente");
       return;
     }
-
     //Objeto json que se envia al back
     let objetoCrear = {
       "volunteers": {
         "name": this.registerClub.value.name,
         "surname": this.registerClub.value.surname,
-        "CI": this.registerClub.value.ci,
+        "CI": this.registerClub.value.CI,
         "description": this.registerClub.value.description,
         "address": this.registerClub.value.address,
-        "availability": null,
+        "telefonNumber": this.registerClub.value.telefonNumber,
+        "availability": this.registerClub.value.availability,
         "image": null,
         "state": null
       }
@@ -91,9 +92,9 @@ export class VoluntariosAdminComponent implements OnInit {
       console.log("clubs: ", this.clubs);
     });
   }
-  mensaje() {
-    console.log("exitosamente",);
-  }
+  // mensaje() {
+  //   console.log("exitosamente",);
+  // }
 
   // Seteo del objeto modificar 
   modificarClub() {
@@ -108,10 +109,11 @@ export class VoluntariosAdminComponent implements OnInit {
       "volunteers": {
         "name": this.modifClub.value.name,
         "surname": this.modifClub.value.surname,
-        "CI": this.modifClub.value.ci,
+        "CI": this.modifClub.value.CI,
         "description": this.modifClub.value.description,
         "address": this.modifClub.value.address,
-        "availability": null,
+        "telefonNumber": this.modifClub.value.telefonNumber,
+        "availability": this.modifClub.value.availability,
         "image": null,
         "state": null
       }

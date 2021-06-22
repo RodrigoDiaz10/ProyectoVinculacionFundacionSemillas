@@ -22,39 +22,39 @@ export class NinosAdminComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder, private router: Router, private restService: PersonService, private toastr: ToastrService) {
     this.modifChild = this.formBuilder.group({
-      id:[null],//valor por defecto, 
-      name:['',[Validators.required, Validators.maxLength(20)]],
-      surname:['',[Validators.required, Validators.maxLength(20)]],//pipe para fechas??
-      image:[null],//si es una validacicion tener un Validators
-      dateBirth:[null],
-      CI:[null],
-      houseAddress:['',[Validators.required,Validators.maxLength(70)]],
-      mothersName:['',[Validators.required,Validators.maxLength(70)]],
-      fathersName:['',[Validators.required,Validators.maxLength(70)]],
-      study:[null],
-      schoolName:['',[Validators.required,Validators.maxLength(70)]],
-      age:[null,[Validators.required]]
+      id: [null],//valor por defecto, 
+      name: ['', [Validators.required, Validators.maxLength(20)]],
+      surname: ['', [Validators.required, Validators.maxLength(20)]],//pipe para fechas??
+      image: [null],//si es una validacicion tener un Validators
+      dateBirth: [null],
+      CI: [null],
+      houseAddress: ['', [Validators.required, Validators.maxLength(70)]],
+      mothersName: ['', [Validators.required, Validators.maxLength(70)]],
+      fathersName: ['', [Validators.required, Validators.maxLength(70)]],
+      study: [null],
+      schoolName: ['', [Validators.required, Validators.maxLength(70)]],
+      age: [null, [Validators.required]]
     });
     this.registerChild = this.formBuilder.group({
-      id:[null],//valor por defecto, 
-      name:['',[Validators.required, Validators.maxLength(20)]],
-      surname:['',[Validators.required, Validators.maxLength(20)]],//pipe para fechas??
-      image:[null],//si es una validacicion tener un Validators
-      dateBirth:[null],
-      CI:[null],
-      houseAddress:['',[Validators.required,Validators.maxLength(70)]],
-      mothersName:['',[Validators.required,Validators.maxLength(70)]],
-      fathersName:['',[Validators.required,Validators.maxLength(70)]],
-      study:[null],
-      schoolName:['',[Validators.required,Validators.maxLength(70)]],
-      age:[null,[Validators.required]]
+      id: [null],//valor por defecto, 
+      name: ['', [Validators.required, Validators.maxLength(20)]],
+      surname: ['', [Validators.required, Validators.maxLength(20)]],//pipe para fechas??
+      image: [null],//si es una validacicion tener un Validators
+      dateBirth: [null],
+      CI: [null],
+      houseAddress: ['', [Validators.required, Validators.maxLength(70)]],
+      mothersName: ['', [Validators.required, Validators.maxLength(70)]],
+      fathersName: ['', [Validators.required, Validators.maxLength(70)]],
+      study: [null],
+      schoolName: ['', [Validators.required, Validators.maxLength(70)]],
+      age: [null, [Validators.required]]
     });
   }
 
   ngOnInit(): void {
     this.getChildren();
   }
-// seteo de objeto enviar
+  // seteo de objeto enviar
   crearChild() {
     this.displayResponsiveCrear = false;
     this.submitted = true;
@@ -76,9 +76,9 @@ export class NinosAdminComponent implements OnInit {
         "study": this.registerChild.value.study,
         "schoolName": this.registerChild.value.schoolName,
         "age": this.registerChild.value.age,
-      } 
+      }
     }
-     console.log("valores crear: ", objetoCrear)
+    console.log("valores crear: ", objetoCrear)
     this.restService.add(objetoCrear, "/child").subscribe(
       res => {
         this.toastr.success('Niño creado Exitosamente');
@@ -92,7 +92,7 @@ export class NinosAdminComponent implements OnInit {
     );
   }
 
- 
+
 
   // Obtengo todos los niños
   getChildren() {
@@ -111,20 +111,20 @@ export class NinosAdminComponent implements OnInit {
     }
     //Objeto json que se envia al back
     let objetoModificar = {
-      
-        "id": this.modifChild.value.id,
-        "name": this.modifChild.value.name,
-        "surname": this.modifChild.value.surname,
-        "image": this.modifChild.value.image,
-        "dateBirth": this.modifChild.value.dateBirth,
-        "CI": this.modifChild.value.CI,
-        "houseAddress": this.modifChild.value.houseAddress,
-        "mothersName": this.modifChild.value.mothersName,
-        "fathersName": this.modifChild.value.fathersName,
-        "study": this.modifChild.value.study,
-        "schoolName": this.modifChild.value.schoolName,
-        "age": this.modifChild.value.age,
-      
+
+      "id": this.modifChild.value.id,
+      "name": this.modifChild.value.name,
+      "surname": this.modifChild.value.surname,
+      "image": this.modifChild.value.image,
+      "dateBirth": this.modifChild.value.dateBirth,
+      "CI": this.modifChild.value.CI,
+      "houseAddress": this.modifChild.value.houseAddress,
+      "mothersName": this.modifChild.value.mothersName,
+      "fathersName": this.modifChild.value.fathersName,
+      "study": this.modifChild.value.study,
+      "schoolName": this.modifChild.value.schoolName,
+      "age": this.modifChild.value.age,
+
     }
     // console.log("objetoModificar: ", objetoModificar)
     this.restService.updateData(objetoModificar, "/child/" + this.childseleccionado.id).subscribe(
@@ -170,15 +170,15 @@ export class NinosAdminComponent implements OnInit {
   }
 
   //Obtengo todos los eventos
- /* getEventos() {
-    this.restService.get("/event").subscribe((data) => {
-      this.eventos = data;
-      console.log("eventos: ", this.eventos);
-    });
-  }*/
+  /* getEventos() {
+     this.restService.get("/event").subscribe((data) => {
+       this.eventos = data;
+       console.log("eventos: ", this.eventos);
+     });
+   }*/
 
 
-//Despliege de Modales
+  //Despliege de Modales
   modalModificar() {
     this.displayResponsiveModificar = true;
   }

@@ -17,9 +17,10 @@ class BlogController extends Controller
      */
     public function index()
     {
-        return response()->json( blogs::all()
-    );
-}
+        return response()->json(
+            blogs::all()
+        );
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -28,7 +29,7 @@ class BlogController extends Controller
      */
     public function create()
     {
-    //
+        //
     }
 
     /**
@@ -39,25 +40,19 @@ class BlogController extends Controller
      */
     public function store(Request $request)
     {
-      
-        
         $data = $request->json()->all();
-        
         $dataBlog = $data['blogs'];
-
         $blogs = new Blogs();
         $blogs->title =  $dataBlog['title'];
         $blogs->description =  $dataBlog['description'];
         $blogs->image =  $dataBlog['image'];
         $blogs->link =  $dataBlog['link'];
-
-
         $blogs->save();
         return response()->json([
             'data' => [
-                'Guardado'=>'Exitoso'
+                'Guardado' => 'Exitoso'
             ]
-        ], 201);  
+        ], 201);
     }
 
     /**
@@ -70,8 +65,8 @@ class BlogController extends Controller
     {
         $blogs = Blogs::findOrFail($id);
         return response()->json(
-              $blogs
-       );    
+            $blogs
+        );
     }
 
     /**
@@ -82,7 +77,7 @@ class BlogController extends Controller
      */
     public function edit(blogs $blogs)
     {
-       //
+        //
     }
 
     /**
@@ -94,25 +89,19 @@ class BlogController extends Controller
      */
     public function update(Request $request, $id)
     {
-     
         $data = $request->json()->all();
         $blogs = Blogs::findOrFail($id);
-        
-        
         $dataBlog = $data['blogs'];
-
         $blogs->title =  $dataBlog['title'];
         $blogs->description =  $dataBlog['description'];
         $blogs->image =  $dataBlog['image'];
         $blogs->link =  $dataBlog['link'];
-
         $blogs->save();
         return response()->json([
             'data' => [
-                'Actualizado'=>'Exitoso'
+                'Actualizado' => 'Exitoso'
             ]
-        ], 201); 
-        
+        ], 201);
     }
 
     /**
@@ -121,23 +110,23 @@ class BlogController extends Controller
      * @param  \App\Models\blogs  $blogs
      * @return \Illuminate\Http\Response
      */
-    public function destroy(blogs $blogs,$id)
+    public function destroy(blogs $blogs, $id)
     {
         $blogs = blogs::findOrFail($id);
         $blogs->delete();
-        return response()->json(['Message'=>'Eliminado'],201);
+        return response()->json(['Message' => 'Eliminado'], 201);
     }
 
     public function imageStore(Request $request)
-    { 
+    {
         //falta probar
-       if($request->hasFile('image')){
+        if ($request->hasFile('image')) {
             $file = $request->file('image');
-            $name = time().$file->getClientOriginalName();
-            $file->move(public_path().'/images/',$name);
-       }
-       $blogs = new blogs;
-       $blogs -> image = $name;
-       $blogs -> save();
+            $name = time() . $file->getClientOriginalName();
+            $file->move(public_path() . '/images/', $name);
+        }
+        $blogs = new blogs;
+        $blogs->image = $name;
+        $blogs->save();
     }
 }
