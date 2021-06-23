@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
+import { AlbumService } from './../../services/album.service';
 
 @Component({
   selector: 'app-galeria',
@@ -8,59 +9,22 @@ import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 })
 export class GaleriaComponent implements OnInit {
   selectedAlbum: any;
+  directorioImagenes: any = 'http://127.0.0.1:8000/storage/posts/';
 
-  years = [2015, 2016, 2017, 2018, 2019, 2020, 2021]
+  // years = [2015, 2016, 2017, 2018, 2019, 2020, 2021]
 
-  albums = [{
-    imagen: './assets/img/2.jpg',
-    titulo: 'Viaje 1',
-    id: 1,
-    descripcion: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquid ex ea commodi consequat. Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
-    year: 2020
-  }, {
-    imagen: './assets/img/3.jpg',
-    titulo: 'Viaje 2',
-    id: 2,
-    descripcion: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquid ex ea commodi consequat. Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
-    year: 2019
-  },
-  {
-    imagen: './assets/img/4.jpg',
-    titulo: 'Viaje 3',
-    id: 3,
-    descripcion: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquid ex ea commodi consequat. Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
-    year: 2018
-  },
-  {
-    imagen: './assets/img/2.jpg',
-    titulo: 'Viaje 4',
-    id: 4,
-    descripcion: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquid ex ea commodi consequat. Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
-    year: 2020
-  }, {
-    imagen: './assets/img/3.jpg',
-    titulo: 'Viaje 5',
-    id: 5,
-    descripcion: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquid ex ea commodi consequat. Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
-    year: 2021
+  albums: any;
+  constructor(private router: Router, private restService: AlbumService) {
   }
-    ,
-  {
-    imagen: './assets/img/4.jpg',
-    titulo: 'Viaje 6',
-    id: 6,
-    descripcion: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquid ex ea commodi consequat. Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
-    year: 2021
-  }
-  ];
-  constructor(private router: Router) { }
 
   ngOnInit(): void {
+    this.getAlbums();
   }
 
   getId(item) {
+    // console.log("item: ", item);
     let id = item.id;
-    let album = item.titulo;
+    let album = item.title;
     console.log("galeria: ", id + "  || ", album)
     this.router.navigate(['/imagenes', id, album], { skipLocationChange: true });
   }
@@ -71,6 +35,12 @@ export class GaleriaComponent implements OnInit {
     this.albums = this.albums.filter(albums => albums.year === value);
 
     console.log("album final: ", this.albums);
+  }
 
+  getAlbums() {
+    this.restService.get("/album").subscribe((data) => {
+      this.albums = data;
+      console.log("albumnes galeria: ", this.albums);
+    });
   }
 }

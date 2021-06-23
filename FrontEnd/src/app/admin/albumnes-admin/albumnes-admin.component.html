@@ -1,3 +1,4 @@
+<p-confirmDialog [style]="{ width: '50vw' }" appendToBody="true"></p-confirmDialog>
 <br>
 <br>
 <br>
@@ -25,13 +26,22 @@
                 <tr *ngFor="let alb of albums; index as i">
                     <th scope="row">{{i+1}}</th>
                     <td>{{alb.title}}</td>
+                    <!-- <td>{{directorioImagenes}}</td> -->
+
+                    <!-- <td><img [src]="directorioImagenes+alb.image" alt="Error al cargar imagen"></td> -->
                     <td>{{alb.description}}</td>
                     <td>{{alb.date | date: 'yyyy'}}</td>
                     <td>
-                        <button type="button" class="btn btn-outline-primary" (click)="getAlbum(alb.id)">Editar</button>
-                        <button type="button" class="btn btn-outline-danger" (click)="getIdEliminar(alb.id)"
-                            data-toggle="modal" data-target="#modalDelete"><i
-                                class="far fa-trash-alt">Eliminar</i></button>
+                        <button  type="button" class="btn btn-outline-primary" (click)="getAlbum(alb.id)" pTooltip="Modificar" tooltipPosition="top">
+                            <mat-icon style="color:rgba(29, 29, 189, 0.938)">create</mat-icon>
+                          </button>
+                          <button type="button"   class="btn btn-outline-danger" (click)="deleteAlbum(alb.id)" pTooltip="Eliminar" tooltipPosition="top">
+                            <mat-icon style="color:rgb(206, 22, 22)">delete</mat-icon>
+                          </button>
+                          <button type="button"  class="btn btn-outline-success" (click)="agregarImagenes(alb)" pTooltip="Agregar Imágenes" tooltipPosition="top">
+                            <mat-icon style="color:rgb(5, 117, 70)">file_copy</mat-icon>
+                          </button>
+                      
                     </td>
                 </tr>
             </tbody>
@@ -103,36 +113,6 @@
     </ng-template>
 </p-dialog>
 
-
-<!-- Modal Eliminar-->
-<div class="modal fade" id="modalDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-    aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Alerta</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                ¿Desea Borrar el Álbum?
-            </div>
-            <div class="modal-footer">
-                <!-- <button type="button" (click)="deleteAlbum(idEliminar)" data-dismiss="modal" class="btn btn-danger">
-                    <h2>Si</h2>
-                </button>
-                <button type="button" data-dismiss="modal" class="btn btn-primary">
-                    <h2>No</h2>
-                </button> -->
-                <button type="button" class="btn btn-danger" (click)="deleteAlbum(idEliminar)"
-                    data-dismiss="modal">Sí</button>
-                <button type="button" class="btn btn-primary" data-dismiss="modal">No</button>
-            </div>
-        </div>
-    </div>
-</div>
-
 <!-- Modal Crear Álbum -->
 <p-dialog header="Header" [(visible)]="displayResponsiveCrear" [breakpoints]="{'960px': '75vw'}"
     [style]="{width: '50vw'}" [baseZIndex]="10000" [draggable]="false" [resizable]="false" [modal]="true">
@@ -153,6 +133,11 @@
                 <div *ngIf="registerAlbum.controls.description.errors.required">La Descripción es requerida
                 </div>
             </div>
+        </div>
+
+        <div class="form-group">
+            <label for="description">Imagen</label>
+            <input type="file" class="form-control" name="image" id="image" (change)="foto($event)">
         </div>
 
         <div class="form-group">

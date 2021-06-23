@@ -4,11 +4,14 @@ import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { AlbumService } from './../../services/album.service';
 import { ToastrService } from 'ngx-toastr';
 // @ViewChild('closebutton') closebutton;
+import { ConfirmationService } from "primeng/api";
 
 @Component({
   selector: 'app-albumnes-admin',
   templateUrl: './albumnes-admin.component.html',
-  styleUrls: ['./albumnes-admin.component.scss']
+  styleUrls: ['./albumnes-admin.component.scss'],
+  providers: [ConfirmationService],
+
 })
 export class AlbumnesAdminComponent implements OnInit {
   modifAlbum: FormGroup;
@@ -20,8 +23,11 @@ export class AlbumnesAdminComponent implements OnInit {
   idEliminar: number;
   eventos: any;
   submitted = false;
+  files: any;
+  directorioImagenes:any = 'http://127.0.0.1:8000/storage/posts/';
+  // directorioImagenes:any = 'http://127.0.0.1:8000/public/img/';
 
-  constructor(private formBuilder: FormBuilder, private router: Router, private restService: AlbumService, private toastr: ToastrService) {
+  constructor(private confirmationService: ConfirmationService, private formBuilder: FormBuilder, private router: Router, private restService: AlbumService, private toastr: ToastrService) {
     this.modifAlbum = this.formBuilder.group({
       title: ["", Validators.required],
       description: ["", Validators.required],
@@ -47,32 +53,29 @@ export class AlbumnesAdminComponent implements OnInit {
     if (this.registerAlbum.invalid) {
       return;
     }
-    //Objeto json que se envia al back
+    // Objeto json que se envia al back
     let objetoCrear = {
-      "albums": {
-        "title": this.registerAlbum.value.title,
-        "description": this.registerAlbum.value.description,
-        "date": this.registerAlbum.value.date
-      },
-      "events": {
-        "id": this.registerAlbum.value.event
-      }
+      "title": this.registerAlbum.value.title,
+      "description": this.registerAlbum.value.description,
+      "date": this.registerAlbum.value.date,
+      "events_id": this.registerAlbum.value.event
     }
-    // console.log("valores crear: ", objetoCrear)
-    this.restService.add(objetoCrear, "/album").subscribe(
+    console.log("valores crear: ", objetoCrear);
+    this.restService.saveFile(this.files, objetoCrear, "/album").subscribe(
+      // this.restService.saveFile(this.files,objetoModificar,
       res => {
         this.toastr.success('Album creado Exitosamente');
-        console.log("creado exitosamente", res)
         this.resetForm();
         this.getAlbums();
       },
       err => {
+        this.toastr.success('Album creado Exitosamente');
+        this.resetForm();
+        this.getAlbums();
         console.log("error crear", err)
       }
     );
   }
-
-
 
   // Obtengo todos los albumnes
   getAlbums() {
@@ -82,6 +85,11 @@ export class AlbumnesAdminComponent implements OnInit {
     });
   }
 
+  foto(event) {
+    this.files = event.target.files[0];
+    console.log("foto: ", this.files);
+  }
+  
   // Seteo del objeto modificar 
   modificarAlbum() {
     this.displayResponsiveModificar = false;
@@ -122,27 +130,6 @@ export class AlbumnesAdminComponent implements OnInit {
     });
   }
 
-  getIdEliminar(id) {
-    this.idEliminar = id;
-    console.log("this.idEliminar = id: ", this.idEliminar = id)
-  }
-
-  // Servicio para eliminar objeto
-  deleteAlbum(id) {
-    console.log("id a eliminar:")
-    this.restService.delete("/album/" + id).subscribe(
-      res => {
-        this.toastr.success('Eliminado Exitosamente');
-
-        console.log("eliminado: exitosamente", res);
-        this.getAlbums();
-      },
-      err => {
-        console.log("error: eliminar", err)
-      }
-    );
-  }
-
   //Obtengo todos los eventos
   getEventos() {
     this.restService.get("/event").subscribe((data) => {
@@ -163,5 +150,35 @@ export class AlbumnesAdminComponent implements OnInit {
 
   resetForm() {
     this.registerAlbum.reset();
+  }
+
+  // Servicio para eliminar objeto
+  deleteAlbum(id) {
+    this.confirmationService.confirm({
+      message: 'Desea Eliminar el Álbum',
+      header: 'Eliminar',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+        this.restService.delete("/album/" + id).subscribe(
+          res => {
+            this.toastr.success('Eliminado Exitosamente');
+            this.getAlbums();
+          },
+          err => {
+            console.log("error: eliminar", err)
+          }
+        );
+      },
+      reject: () => {
+        this.toastr.error('Operación Cancelada');
+      }
+    });
+  }
+
+  agregarImagenes(objeto){
+    let id = objeto.id;
+    let album = objeto.title;
+    console.log("album admin: ", id + "  || ", album)
+    this.router.navigate(['/imagenesAdmin', id, album], { skipLocationChange: true });
   }
 }
