@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Sponsors;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 
 class SponsorsController extends Controller
 {
@@ -37,22 +39,27 @@ class SponsorsController extends Controller
     public function store(Request $request)
     {
      
-        $data = $request->json()->all();
-        
-        $dataSponsors = $data['sponsors'];
+        if ($request->hasFile('image')){
+            $file      = $request->file('image');
+            $filename  = $file->getClientOriginalName();
+            $extension = $file->getClientOriginalExtension();
+            $picture   = date('His').'-'.$filename;
+            $path = $file->storeAs('public/posts', $picture);
 
-        $sponsors = new Sponsors();
-        $sponsors->name =  $dataSponsors['name'];
-        $sponsors->description =  $dataSponsors['description'];
-        $sponsors->image =  $dataSponsors['image'];
-        $sponsors->save();
+            $sponsorData = json_decode($request->data,true);
+            $sponsorData["image"] =  $picture;
 
-        return response()->json([
-        'data' => [
-            'Guardado'=>'Exitoso'
-        ]
-    ], 201);        
+            $sponsors = new Sponsors();
+            $data=$sponsors->addSponsor($sponsorData);
+            var_dump($data);
+            return response()->json([
+                'data' => [
+                    'Guardado'=>'Exitoso'
+                ]
+            ], 201);    
+        }
 
+     
     }
 
     /**
@@ -92,11 +99,11 @@ class SponsorsController extends Controller
         $data = $request->json()->all();
 
         $sponsors = sponsors::findOrFail($id);
-        $dataSponsors = $data['sponsors'];
+        // $dataSponsors = $data['sponsors'];
        
-        $sponsors->name =  $dataSponsors['name'];
-        $sponsors->description =  $dataSponsors['description'];
-        $sponsors->image =  $dataSponsors['image'];
+        $sponsors->name =  $data['name'];
+        $sponsors->description =  $data['description'];
+        $sponsors->image =  $data['image'];
         $sponsors->save();
 
         return response()->json(

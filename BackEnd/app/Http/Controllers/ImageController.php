@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 use App\Models\Albums;
+use App\Models\Images;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\DB;
+
 
 class ImageController extends Controller
 {
@@ -35,27 +39,29 @@ class ImageController extends Controller
      */
     public function store(Request $request)
     {
-     
-        $data = $request->json()->all();
-        
-        $dataImages = $data['images'];
-        $dataAlbums = $data['album'];
-        $album = Albums::findOrFail($dataAlbums['id']);
-       
+        $id = $request->get('id');
+    
+        if($request->hasFile('image'))
+        {
+            $files = $request->file('image');
 
-        $images = new Images();
-        $images->name =  $dataImages['name'];
-        $images->type =  $dataImages['type'];
-        $images->description =  $dataImages['description'];
-        $images->album()->associate($album);
-        $images->save();
+            foreach ($files as $file) {
+                // $imagen      = $file->file('image');
+                $filename  = $file->getClientOriginalName();
+                $extension = $file->getClientOriginalExtension();
+                $picture   = date('His').'-'.$filename;
+                $path = $file->storeAs('public/posts', $picture);
+                $description = "imagen insertada";
 
-        return response()->json([
-        'data' => [
-            'Guardado'=>'Exitoso'
-        ]
-    ], 201);        
-
+                // $id= 21;
+                $images = new Images();
+                    $images->name =  $picture;
+                    $images->type =  $extension;
+                    $images->description =  $description;
+                    $images->albums_id = $id;
+                    $images->save();
+            }
+        }
     }
 
     /**
@@ -64,12 +70,13 @@ class ImageController extends Controller
      * @param  \App\Models\images  $images
      * @return \Illuminate\Http\Response
      */
-    public function show(images $images)
+    public function show($id)
     {
-        $images = images::findOrFail($id);
+      $data = DB::table('images')->where('albums_id', $id)->get();
         return response()->json(
-              $images
+              $data
        );
+       
     }
 
     /**

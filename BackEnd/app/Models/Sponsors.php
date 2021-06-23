@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
+use DB;
 class Sponsors extends Model
 {
     use HasFactory;
@@ -21,4 +21,10 @@ class Sponsors extends Model
     {
         return $this->hasMany(SponsorsEvents::class);
     }
+
+    function addSponsor($data)
+    {
+        DB::table('sponsors')->insert($data);
+    }
+  
 }

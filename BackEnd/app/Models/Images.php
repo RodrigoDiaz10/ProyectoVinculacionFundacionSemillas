@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use DB;
 
 class Images extends Model
 {
@@ -21,4 +22,10 @@ class Images extends Model
     {
         return $this->belongsTo(Albums::class);
     }
+
+    // function addImages($data)
+    // {
+    //     DB::table('images')->insert($data);
+    // }
+ 
 }
