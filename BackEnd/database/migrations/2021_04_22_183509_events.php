@@ -21,7 +21,7 @@ class Events extends Migration
             $table->timestamp('date')->nullable();
             $table->string('hour')->nullable();
             $table->string('delay')->nullable();
-            $table->foreignId('blogs_id')->constrained('blogs');
+           // $table->foreignId('blogs_id')->constrained('blogs');
             $table->timestamps();
         });
     }

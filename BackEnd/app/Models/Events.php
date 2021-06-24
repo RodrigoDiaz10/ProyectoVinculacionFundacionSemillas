@@ -33,8 +33,8 @@ class Events extends Model
     {
         return $this->hasMany(SponsorEvents::class);
     }
-    public function albums()
+   /* public function albums()
     {
         return $this->hasMany(Albums::class);
-    }
+    }*/
 }

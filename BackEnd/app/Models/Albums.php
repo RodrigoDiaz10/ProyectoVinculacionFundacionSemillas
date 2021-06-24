@@ -24,10 +24,10 @@ class Albums extends Model
     {
         return $this->hasMany(Images::class);
     }
-    public function events()
+    /*public function events()
     {
         return $this->belongsTo(Events::class);
-    }
+    }*/
 
     function addAlbum($data)
     {
