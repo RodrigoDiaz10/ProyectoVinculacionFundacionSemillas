@@ -8,6 +8,7 @@ import { RouterModule } from '@angular/router';
 import { ComponentsComponent } from './components.component';
 import { NgImageSliderModule } from 'ng-image-slider';
 import { CarouselModule } from 'primeng/carousel';
+import {MatCardModule} from '@angular/material/card';
 
 @NgModule({
     imports: [
@@ -18,6 +19,7 @@ import { CarouselModule } from 'primeng/carousel';
         JwBootstrapSwitchNg2Module,
         NgImageSliderModule,
         CarouselModule,
+        MatCardModule,
     ],
     declarations: [
         ComponentsComponent,

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use App\Models\Events;
 use App\Models\Albums;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 
 class AlbumController extends Controller
 {
@@ -36,28 +38,33 @@ class AlbumController extends Controller
      */
     public function store(Request $request)
     {
-     
-        $data = $request->json()->all();
+            if ($request->hasFile('image'))
+            {  
+                  $file      = $request->file('image');
+                  $filename  = $file->getClientOriginalName();
+                  $extension = $file->getClientOriginalExtension();
+                  $picture   = date('His').'-'.$filename;
+                  $path = $file->storeAs('public/posts', $picture);
+    
+            $employeeData = json_decode($request->data,true);
+            $employeeData["image"] =  $picture;
         
-        $dataAlbums = $data['albums'];
-        $dataEvents = $data['events'];
-        $events = Events::findOrFail($dataEvents['id']);
-       
-
-        $albums = new Albums();
-        $albums->title =  $dataAlbums['title'];
-        $albums->description =  $dataAlbums['description'];
-        $albums->date =  $dataAlbums['date'];
-        $albums->events()->associate($events);
-        $albums->save();
-
-        return response()->json([
-        'data' => [
-            'Guardado'=>'Exitoso'
-        ]
-    ], 201);        
-
-    }
+            $albums = new Albums();
+            $data=$albums->addAlbum($employeeData);   
+            var_dump($data);   
+    
+            return response()->json([
+                    'data' => [
+                        'Guardado'=>'Exitoso'
+                    ]
+                ], 201);        
+    
+            } 
+            else
+            {
+            }
+        
+        }
 
     /**
      * Display the specified resource.
@@ -124,6 +131,9 @@ class AlbumController extends Controller
     public function destroy($id)
     {
         $albums = albums::findOrFail($id);
+        // var_dump($albums->image);   
+        // Storage::delete('$albums->image');
+        // Storage::delete('143925-oracle.png');
         $albums->delete();
         return response()->json(['message'=>'albums quitado', 'albums'=>$albums],200);
     }

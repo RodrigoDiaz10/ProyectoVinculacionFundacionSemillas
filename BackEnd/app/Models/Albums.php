@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use DB;
 
 class Albums extends Model
 {
@@ -15,6 +16,7 @@ class Albums extends Model
         'title',
         'description',
         'date',
+        'image'
        
     ];
 
@@ -26,4 +28,10 @@ class Albums extends Model
     {
         return $this->belongsTo(Events::class);
     }
+
+    function addAlbum($data)
+    {
+        DB::table('albums')->insert($data);
+    }
+  
 }

@@ -25,6 +25,33 @@ add(objeto, url: String): Observable<any> {
   return this.http.post(API_URL_FORM + url, objeto).map((res) => res);
 }
 
+saveFile(file: File,objeto, url: String): Observable<any> {
+  let formData = new FormData();
+  let json = JSON.stringify(objeto);
+  console.log("json: ", json)
+  let objetoJson = new Blob([json], {
+    type: 'application/json'
+  });
+  console.log("obejtojspn: ",objetoJson )
+  formData.append('image', file);
+  formData.append('data', json);
+  // formData.append('data', json);
+  return this.http.post("http://127.0.0.1:8000/album", formData).map((res) => res);
+}
+
+saveFileSponsor(file: File,objeto, url: String): Observable<any> {
+  let formData = new FormData();
+  let json = JSON.stringify(objeto);
+  console.log("json: ", json)
+  let objetoJson = new Blob([json], {
+    type: 'application/json'
+  });
+  console.log("obejtojspn: ",objetoJson )
+  formData.append('image', file);
+  formData.append('data', json);
+  // formData.append('data', json);
+  return this.http.post("http://127.0.0.1:8000/sponsor", formData).map((res) => res);
+}
 
 updateData(objeto, add: String) {
   console.log(objeto, "URL " + add);
@@ -45,5 +72,19 @@ delete(url: String): Observable<any> {
 
 get(url: string): Observable<any> {
   return this.http.get(API_URL_FORM + url).map((res) => res);
+}
+
+
+guardarImagenes(formdata: FormData): Observable<any> {
+  // let formData1 = new FormData();
+  // for (let i = 0; i < file.length; i++) {
+  //   formData1.append('image', file[i])
+  // }
+  // formData1.append('image[]', file);
+  console.log("formData1: ",formdata);
+  // console.log("formData: ",formData )
+
+  // formData.append('data', json);
+  return this.http.post("http://127.0.0.1:8000/image", formdata).map((res) => res);
 }
 }

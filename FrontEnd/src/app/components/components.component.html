@@ -109,13 +109,13 @@
             </ng-template>
             <ng-template let-product pTemplate="item">
                 <div class="product-item">
-                    <div class="product-item-content">
+                    <div class="product-item-content p-mb-3">
                         <div class="p-mb-3">
-                            <img src="{{product.logo}}" [alt]="product.nombre" class="product-image" />
+                            <img [src]="product.image" [alt]="product.nombre" class="product-image"/>
                         </div>
                         <div>
-                            <h4 class="p-mb-1">{{product.nombre}}</h4>
-                            <!-- <h5 class="p-mt-0 p-mb-3">${{product.id}}</h5> -->
+                            <h4 class="p-mb-1">{{product.name}}</h4>
+                            <!-- <h5 class="p-mt-0 p-mb-3">${{product.description}}</h5> -->
                         </div>
                     </div>
                 </div>

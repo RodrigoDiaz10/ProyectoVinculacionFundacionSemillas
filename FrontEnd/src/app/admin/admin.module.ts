@@ -16,7 +16,12 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatRadioModule } from '@angular/material/radio';
-import {DialogModule} from 'primeng/dialog';
+import { DialogModule } from 'primeng/dialog';
+import { MessagesModule, } from 'primeng/messages';
+import { MessageModule } from 'primeng/message';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { TooltipModule } from 'primeng/tooltip';
+import { ImagenesAdminComponent } from './albumnes-admin/imagenes-admin/imagenes-admin.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +30,7 @@ import {DialogModule} from 'primeng/dialog';
     NinosAdminComponent,
     AlbumnesAdminComponent,
     VoluntariosAdminComponent,
+    ImagenesAdminComponent,
   ],
   imports: [
     CommonModule,
@@ -39,6 +45,10 @@ import {DialogModule} from 'primeng/dialog';
     MatDatepickerModule,
     MatRadioModule,
     DialogModule,
+    ConfirmDialogModule,
+    MessageModule,
+    MessagesModule,
+    TooltipModule,
   ]
 })
 export class AdminModule { }

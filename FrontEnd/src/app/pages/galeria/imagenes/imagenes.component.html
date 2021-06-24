@@ -13,16 +13,19 @@
 </section>
 
 <div style="background: linear-gradient(45deg,  hsla(0, 0%, 100%, 1) 20%, rgba(128, 241, 193, 0.548) 100%);">
-<div class="tile text-center" *ngIf="album">
-    {{album}}
-    <div class="container">
-        <div class="group-2">
-            <div>
-                <img *ngFor="let img of fotos; let i = index" [src]="img.image" (click)="showLightbox(i)" />
+    <div class="tile text-center" *ngIf="album">
+        {{album}}
+        <div class="container">
+            <div class="group-2">
+                <img *ngFor="let img of imaganesAlbum; let i = index" [src]="directorioImagenes+img.name"
+                    (click)="showLightbox(i)" />
             </div>
+            <!-- <ng-image-fullscreen-view class="contenedor" [images]="imaganesAlbum" [imageIndex]="currentIndex"
+                [show]="showFlag" (close)="closeEventHandler()"></ng-image-fullscreen-view> -->
         </div>
-        <ng-image-fullscreen-view class="contenedor" [images]="fotos" [imageIndex]="currentIndex" [show]="showFlag"
-            (close)="closeEventHandler()"></ng-image-fullscreen-view>
     </div>
 </div>
-</div>
+
+<!-- <div *ngFor="let img of imaganesAlbum; let i = index">
+    <img alt="Card" [src]="directorioImagenes+img.name">
+</div> -->

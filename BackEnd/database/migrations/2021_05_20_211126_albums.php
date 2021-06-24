@@ -16,6 +16,7 @@ class Albums extends Migration
         Schema::create('albums', function (Blueprint $table) {
             $table->id();
             $table->string('title',200)->notNullable();
+            $table->string('image');
             $table->string('description',300)->nullable();
             $table->timestamp('date')->nullable();
             $table->foreignId('events_id')->constrained('events');
