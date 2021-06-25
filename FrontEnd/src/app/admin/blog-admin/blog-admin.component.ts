@@ -26,14 +26,14 @@ export class BlogAdminComponent implements OnInit {
       id: [null],//valor por defecto, 
       title: ['', [Validators.required, Validators.maxLength(20)]],
       description: ['', [Validators.required, Validators.maxLength(80)]],
-      image: [null],//si es una validacicion tener un Validators
+      //image: [null],//si es una validacicion tener un Validators
       link: [null]
     });
     this.registerBlog = this.formBuilder.group({
       id: [null],//valor por defecto, 
       title: ['', [Validators.required, Validators.maxLength(20)]],
       description: ['', [Validators.required, Validators.maxLength(80)]],
-      image: [null],//si es una validacicion tener un Validators
+      //image: [null],//si es una validacicion tener un Validators
       link: [null]
     });
   }
@@ -54,13 +54,9 @@ export class BlogAdminComponent implements OnInit {
       //"blogs": {
         "title": this.registerBlog.value.title,
         "description": this.registerBlog.value.description,
-        "image": this.registerBlog.value.image,
+        //"image": this.registerBlog.value.image,
         "link": this.registerBlog.value.link
       //}
-      /*,
-      "events": {
-        "id": this.registerBlog.value.event
-      }*/
     }
     console.log("valores crear: ", objetoCrear)
     this._blogServices.saveFile(this.files, objetoCrear, "/blog").subscribe(
@@ -71,7 +67,7 @@ export class BlogAdminComponent implements OnInit {
         this.getBlogs();
       },
       err => {
-        this.toastr.success('Blog creado Exitosamente');
+        this.toastr.error('Blog error');
         this.resetForm();
         this.getBlogs();
         console.log("error crear", err)
@@ -174,6 +170,18 @@ export class BlogAdminComponent implements OnInit {
   resetForm() {
     this.registerBlog.reset();
   }
+  foto(event) {
+    this.files = event.target.files[0];
+    console.log("foto: ", this.files);
+  }
+
+  agregarImagenes(objeto){
+    let id = objeto.id;
+    let imaChild = objeto.title;
+    console.log("album admin: ", id + "  || ", imaChild)
+    //this.router.navigate(['/imageChild', id, imaChild], { skipLocationChange: true });
+  }
+
 
   /* formBlog: FormGroup;
 

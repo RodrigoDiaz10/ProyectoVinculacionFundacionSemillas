@@ -17,11 +17,8 @@ class Blogs extends Model
         'image',
         'link',
     ];
-    public function Event()
-    {
-        return $this->hasMany(Events::class);
-    }
-    function addBlog($data)
+
+    function addBlogs($data)
     {
         DB::table('blogs')->insert($data);
     }
