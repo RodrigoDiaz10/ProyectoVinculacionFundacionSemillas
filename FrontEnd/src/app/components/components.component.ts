@@ -4,7 +4,8 @@ import { PrimeNGConfig } from 'primeng/api';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { AlbumService } from './../services/album.service';
 import { NgImageSliderComponent } from 'ng-image-slider';
-const directorioImagenes: any = 'http://127.0.0.1:8000/storage/posts/';
+import { environment } from "../../environments/environment";
+const  directorioImagenes: any = environment.baseUrl+'/storage/';
 
 @Component({
     selector: 'app-components',
