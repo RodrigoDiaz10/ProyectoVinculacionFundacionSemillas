@@ -6,7 +6,6 @@ use App\Http\Controllers\ChildrenController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\EventsController;
 use App\Http\Controllers\ImageController;
-use App\Http\Controllers\ImageChildController;
 use App\Http\Controllers\VolunteerEventsController;
 use App\Http\Controllers\SponsorsController;
 use App\Http\Controllers\SponsorsEventsController;
@@ -52,8 +51,6 @@ Route::apiResource('volunteer',VolunteersController::class);
 
 Route::apiResource('image',ImageController::class);
 
-Route::apiResource('imageChild',ImageChildController::class);
-
 Route::apiResource('VolunteerEvents',VolunteerEventsController::class);
 
 Route::apiResource('sponsor',SponsorsController::class);
@@ -61,6 +58,12 @@ Route::apiResource('sponsor',SponsorsController::class);
 Route::apiResource('sponsorEvents',SponsorsEventsController::class);
 
 Route::apiResource('album',AlbumController::class);
+
+Route::get('/artisan/storage', function() {
+    $command = 'storage:link';
+    $result = Artisan::call($command);
+    return Artisan::output();
+});
 
 
 
