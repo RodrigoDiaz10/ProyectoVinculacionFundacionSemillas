@@ -5,6 +5,8 @@ import { AlbumService } from './../../services/album.service';
 import { ToastrService } from 'ngx-toastr';
 // @ViewChild('closebutton') closebutton;
 import { ConfirmationService } from "primeng/api";
+import { environment } from "../../../environments/environment";
+const  directorioImagenes: any = environment.baseUrl+'/storage/posts/';
 
 @Component({
   selector: 'app-albumnes-admin',
@@ -24,7 +26,6 @@ export class AlbumnesAdminComponent implements OnInit {
   eventos: any;
   submitted = false;
   files: any;
-  directorioImagenes: any = 'http://127.0.0.1:8000/storage/posts/';
   // directorioImagenes:any = 'http://127.0.0.1:8000/public/img/';
 
   constructor(private confirmationService: ConfirmationService, private formBuilder: FormBuilder, private router: Router, private restService: AlbumService, private toastr: ToastrService) {
