@@ -5,7 +5,7 @@ import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { AlbumService } from './../services/album.service';
 import { NgImageSliderComponent } from 'ng-image-slider';
 import { environment } from "../../environments/environment";
-const  directorioImagenes: any = environment.baseUrl+'/storage/';
+
 
 @Component({
     selector: 'app-components',
@@ -20,6 +20,7 @@ export class ComponentsComponent implements OnInit {
     page1 = 5;
     focus;
     focus1;
+    directorioImagenes: any;
     focus2;
     date: { year: number, month: number };
     model: NgbDateStruct;
@@ -102,6 +103,7 @@ export class ComponentsComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.directorioImagenes = environment.baseUrl + '/storage/';
         this.getSponsors();
         this.primengConfig.ripple = true;
         let input_group_focus = document.getElementsByClassName('form-control');
@@ -120,7 +122,7 @@ export class ComponentsComponent implements OnInit {
         this.restService.get("/sponsor").subscribe((data) => {
             this.partners = data;
             for (var i = 0; i < this.partners.length; i++) {
-                this.partners[i].image = directorioImagenes + this.partners[i].image;
+                this.partners[i].image = this.directorioImagenes + this.partners[i].image;
             }
 
             console.log("sponsornes: ", this.partners);

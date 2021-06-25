@@ -5,7 +5,6 @@ import { ToastrService } from 'ngx-toastr';
 import { ConfirmationService } from "primeng/api";
 import { AlbumService } from './../../services/album.service';
 import { environment } from "../../../environments/environment";
-const directorioImagenes: any = environment.baseUrl+'/storage/';
 
 @Component({
   selector: 'app-patrocinadores-admin',
@@ -15,6 +14,7 @@ const directorioImagenes: any = environment.baseUrl+'/storage/';
 
 })
 export class PatrocinadoresAdminComponent implements OnInit {
+  directorioImagenes: any
   modifSponsor: FormGroup;
   registerSponsor: FormGroup;
   sponsors: any;
@@ -40,6 +40,7 @@ export class PatrocinadoresAdminComponent implements OnInit {
 
   ngOnInit(): void {
     this.getSponsors();
+    this.directorioImagenes = environment.baseUrl + '/storage/';
   }
   // seteo de objeto enviar
   crearSponsor() {
@@ -87,7 +88,7 @@ export class PatrocinadoresAdminComponent implements OnInit {
       alert("error formulaio modificar");
       return;
     }
-  this.modifSponsor.value.image = this.sponsorseleccionado.image;
+    this.modifSponsor.value.image = this.sponsorseleccionado.image;
     // console.log("objetoModificar: ", this.modifSponsor.value)
     this.restService.updateData(this.modifSponsor.value, "/sponsor/" + this.sponsorseleccionado.id).subscribe(
       res => {
@@ -148,5 +149,5 @@ export class PatrocinadoresAdminComponent implements OnInit {
   resetForm() {
     this.registerSponsor.reset();
   }
- 
+
 }
