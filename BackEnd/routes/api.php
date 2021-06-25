@@ -6,6 +6,7 @@ use App\Http\Controllers\ChildrenController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\EventsController;
 use App\Http\Controllers\ImageController;
+use App\Http\Controllers\ImageChildController;
 use App\Http\Controllers\VolunteerEventsController;
 use App\Http\Controllers\SponsorsController;
 use App\Http\Controllers\SponsorsEventsController;
@@ -50,6 +51,8 @@ Route::apiResource('event',EventsController::class);
 Route::apiResource('volunteer',VolunteersController::class);
 
 Route::apiResource('image',ImageController::class);
+
+Route::apiResource('imageChild',ImageChildController::class);
 
 Route::apiResource('VolunteerEvents',VolunteerEventsController::class);
 
