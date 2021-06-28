@@ -44,6 +44,7 @@ class AuthController extends Controller
         $register->name = $request->input('name');
         $register->last_name = $request->input('last_name');
         $register->email = $request->input('email');
+        $register->permission = $request->input('permission');
         $register->password = Hash::make($request->input('password'));
         $register->save();
         return $register;
