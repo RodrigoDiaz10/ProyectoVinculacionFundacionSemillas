@@ -88,7 +88,7 @@ export class NinosAdminComponent implements OnInit {
     }
     console.log("valores crear: ", objetoCrear)
     
-    this.restService.saveFile(this.files, objetoCrear, "/child").subscribe(
+    this.restService.saveFile(this.files, this.registerChild.value, "/child").subscribe(
       // this.restService.saveFile(this.files,objetoModificar,
       res => {
         this.toastr.success('Niño creado Exitosamente');

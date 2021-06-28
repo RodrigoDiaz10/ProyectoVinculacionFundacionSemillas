@@ -42,7 +42,7 @@ class ChildrenController extends Controller
               $filename  = $file->getClientOriginalName();
               $extension = $file->getClientOriginalExtension();
               $picture   = date('His').'-'.$filename;
-              $path = $file->storeAs('public/posts', $picture);
+              $path = $file->storeAs('public/', $picture);
 
         $employeeData = json_decode($request->data,true);
         $employeeData["Image"] =  $picture;
@@ -135,7 +135,7 @@ class ChildrenController extends Controller
         $children->study = $request->input('study');
         $children->houseAddress = $request->input('houseAddress');
         $children->schoolName = $request->input('schoolName');
-        $children->Image = $request->input('image');
+        $children->Image = $request->input('Image');
 
         $children->save();
         return response()->json(
