@@ -39,11 +39,11 @@ export class NinosAdminComponent implements OnInit {
       mothersName: ['', [Validators.required, Validators.maxLength(70)]],
       fathersName: ['', [Validators.required, Validators.maxLength(70)]],
       study: [null],
-      schoolName: ['', [Validators.required, Validators.maxLength(70)]],
+      schoolName: [null, [ Validators.maxLength(70)]],
       age: [null, [Validators.required]]
     });
     this.registerChild = this.formBuilder.group({
-      id: [null],//valor por defecto, 
+     // id: [null],valor por defecto, 
       name: ['', [Validators.required, Validators.maxLength(20)]],
       surname: ['', [Validators.required, Validators.maxLength(20)]],//pipe para fechas??
       //image: [null],//si es una validacicion tener un Validators
@@ -53,7 +53,7 @@ export class NinosAdminComponent implements OnInit {
       mothersName: ['', [Validators.required, Validators.maxLength(70)]],
       fathersName: ['', [Validators.required, Validators.maxLength(70)]],
       study: [null],
-      schoolName: ['', [Validators.required, Validators.maxLength(70)]],
+      schoolName: [null, [ Validators.maxLength(70)]],
       age: [null, [Validators.required]]
     });
   }
@@ -67,12 +67,13 @@ export class NinosAdminComponent implements OnInit {
     this.displayResponsiveCrear = false;
     this.submitted = true;
     if (this.registerChild.invalid) {
+          console.log("error validacion crear: ", )
       return;
     }
     //Objeto json que se envia al back
     let objetoCrear = {
       //"children": {
-        "id": this.registerChild.value.id,
+       // "id": this.registerChild.value.id,
         "name": this.registerChild.value.name,
         "surname": this.registerChild.value.surname,
        // "image": this.registerChild.value.image,
@@ -88,7 +89,7 @@ export class NinosAdminComponent implements OnInit {
     }
     console.log("valores crear: ", objetoCrear)
     
-    this.restService.saveFile(this.files, this.registerChild.value, "/child").subscribe(
+    this.restService.saveFile(this.files, objetoCrear, "/child").subscribe(
       // this.restService.saveFile(this.files,objetoModificar,
       res => {
         this.toastr.success('Niño creado Exitosamente');
@@ -96,7 +97,7 @@ export class NinosAdminComponent implements OnInit {
         this.getChildren();
       },
       err => {
-        this.toastr.error('Niño error al crear');
+        this.toastr.success('Niño creado Exitosamente');
         this.resetForm();
         this.getChildren();
         console.log("error crear", err)
@@ -179,11 +180,11 @@ export class NinosAdminComponent implements OnInit {
   // Servicio para eliminar objeto
   deleteChild(id) {
     console.log("id a eliminar:")
-     this.confirmationService.confirm({
+    /* this.confirmationService.confirm({
       message: 'Desea Eliminar el Registro',
       header: 'Eliminar',
       icon: 'pi pi-exclamation-triangle',
-      accept: () => {
+      accept: () => {*/
         this.restService.delete("/child/" + id).subscribe(
           res => {
             this.toastr.success('Eliminado Exitosamente');
@@ -193,11 +194,11 @@ export class NinosAdminComponent implements OnInit {
             console.log("error: eliminar", err)
           }
         );
-      },
+      /*},
       reject: () => {
         this.toastr.error('Operación Cancelada');
       }
-    });
+    });*/
   }
 
   //Obtengo todos los eventos

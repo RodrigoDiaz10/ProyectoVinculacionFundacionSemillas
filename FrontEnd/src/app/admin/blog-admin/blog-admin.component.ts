@@ -61,7 +61,7 @@ export class BlogAdminComponent implements OnInit {
       //}
     }
     console.log("valores crear: ", objetoCrear)
-    this._blogServices.saveFile(this.files,this.registerBlog.value, "/blog").subscribe(
+    this._blogServices.saveFile(this.files, objetoCrear, "/blog").subscribe(
       // this.restService.saveFile(this.files,objetoModificar,
       res => {
         this.toastr.success('Blog creado Exitosamente');
@@ -69,7 +69,7 @@ export class BlogAdminComponent implements OnInit {
         this.getBlogs();
       },
       err => {
-        this.toastr.success('Blog creado');
+        this.toastr.error('Blog error');
         this.resetForm();
         this.getBlogs();
         console.log("error crear", err)
